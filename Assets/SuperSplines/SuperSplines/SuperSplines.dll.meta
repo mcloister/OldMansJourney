@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: b93e002e0392f4fdc997c7e51887ebad
+labels:
+- Spline
+- curve
+- path
+- animation
+- SuperSplines
+- interpolation
+- modifier
+- mesh
+- curved
+MonoAssemblyImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  userData: 

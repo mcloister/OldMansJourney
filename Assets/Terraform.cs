@@ -81,12 +81,12 @@ public class Terraform : MonoBehaviour {
 		Vector3 adjustedMousePos = mousePos;
 
 		//switch z and y because our scene is set up this way
-		adjustedMousePos.z = adjustedMousePos.y;
-		adjustedMousePos.y = 0;
+//		adjustedMousePos.z = adjustedMousePos.y;
+//		adjustedMousePos.y = 0;
 
 		//normalize it to current screen resolution
 		adjustedMousePos.x /= Screen.width;
-		adjustedMousePos.z /= Screen.height;
+		adjustedMousePos.y /= Screen.height;
 
 		return adjustedMousePos;
 	}

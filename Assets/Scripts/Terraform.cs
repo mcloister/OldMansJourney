@@ -8,11 +8,16 @@ public class Terraform : MonoBehaviour {
 	protected SplineSelector selector;
 	protected Spline spline;
 	protected Vector3 lastMousePos;
+	
+	protected Bounds limits;
 
 	// Use this for initialization
 	virtual protected void Start () 
 	{
 		selector = GameObject.FindGameObjectWithTag ("GameController").GetComponent<SplineSelector> ();
+
+
+		limits = new Bounds(Vector3.zero, Vector3.zero);
 	}
 	
 	// Update is called once per frame
@@ -38,6 +43,10 @@ public class Terraform : MonoBehaviour {
 				Vector3 mouse = Input.mousePosition;
 				Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mouse.x, mouse.y, -Camera.main.gameObject.transform.position.z));
 
+				Transform limitsObject = spline.transform.Find ("Limits");
+				if (limitsObject != null) 
+					limits = limitsObject.GetComponent<BoxCollider>().bounds;
+
 				findClosestObjects(spline.GetClosestPointParam(mouseWorld, 3));
 			}
 
@@ -56,6 +65,9 @@ public class Terraform : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) 
 		{
 			spline = null;
+
+//			Destroy(limits);
+			limits = new Bounds(Vector3.zero, Vector3.zero);
 		}
 	}
 

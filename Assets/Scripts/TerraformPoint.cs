@@ -3,13 +3,13 @@ using System.Collections;
 
 public class TerraformPoint : Terraform 
 {
+	public float minDistance;
+
 	ArrayList toTerraform;
 	SplineNode pickedPoint;
 	SplineNode frontier;
 	SplineNode neighbour;
 	float direction;
-
-	public float minDistance;
 
 	// Use this for initialization
 	protected override void Start () 
@@ -121,7 +121,10 @@ public class TerraformPoint : Terraform
 		//terraform all nodes we need to move
 		foreach (SplineNode n in toTerraform) 
 		{
-			n.transform.position += mousePosDiff * influence;
+			Vector3 newPos = n.transform.position + mousePosDiff * influence;
+
+			if(limits.extents.y == 0 || (newPos.y < limits.max.y && newPos.y > limits.min.y) ) //limits.Contains(newPos)
+				n.transform.position = newPos;
 		}
 
 		//if we are getting to close to our neighbour, just move it along and update our data

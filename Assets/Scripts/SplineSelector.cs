@@ -23,7 +23,10 @@ public class SplineSelector : MonoBehaviour {
 			Debug.Log ("finding closest spline to mouse pos: " + mouse);
 			
 			findClosestSpline(mouseWorld);
-			
+
+			//disable MeshCollider because it's too expensive to be updated while spline is terraformed
+			spline.GetComponent<MeshCollider>().sharedMesh = null;
+
 			//			outputControlPoints();
 		}
 		
@@ -33,6 +36,8 @@ public class SplineSelector : MonoBehaviour {
 		
 		if (Input.GetMouseButtonUp (0)) 
 		{
+			//now we can update the meshcollider
+			spline.GetComponent<MeshCollider>().sharedMesh = spline.GetComponent<MeshFilter>().mesh;
 			spline = null;
 		}
 	}

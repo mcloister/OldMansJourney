@@ -39,25 +39,35 @@ public class SplineSelector : MonoBehaviour {
 	
 	private void findClosestSpline(Vector3 mouseWorld)
 	{
-		float minDist = Mathf.Infinity;
-		foreach(GameObject o in allSplines)
-		{
-			Spline s = o.GetComponent<Spline>();
-			
-			Vector3 mouseSpline = mouseWorld;
-			mouseSpline.z = s.transform.position.z;
-			
-			Vector3 onSpline = s.GetPositionOnSpline(s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Input.mousePosition), 3));
-			float dist = (onSpline - mouseSpline).magnitude;
-			
-			Debug.Log ("mW: " + mouseWorld + " " + s.name + " mS: " + mouseSpline + " pos on spline: " + onSpline + " dist: " + dist);
-			
-			if(dist < minDist)
-			{
-				minDist = dist;
-				spline = s;
-			}
-		}
+		RaycastHit hit;
+		if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 200))
+			return;
+
+		if (!hit.collider.gameObject.transform.root.CompareTag("Spline"))
+			return;
+		
+		spline = hit.collider.gameObject.transform.root.GetComponent<Spline> ();
+
+
+//		float minDist = Mathf.Infinity;
+//		foreach(GameObject o in allSplines)
+//		{
+//			Spline s = o.GetComponent<Spline>();
+//			
+//			Vector3 mouseSpline = mouseWorld;
+//			mouseSpline.z = s.transform.position.z;
+//			
+//			Vector3 onSpline = s.GetPositionOnSpline(s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Input.mousePosition), 3));
+//			float dist = (onSpline - mouseSpline).magnitude;
+//			
+//			Debug.Log ("mW: " + mouseWorld + " " + s.name + " mS: " + mouseSpline + " pos on spline: " + onSpline + " dist: " + dist);
+//			
+//			if(dist < minDist)
+//			{
+//				minDist = dist;
+//				spline = s;
+//			}
+//		}
 	}
 	
 	private void outputControlPoints()

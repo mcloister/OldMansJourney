@@ -13,92 +13,31 @@ struct Formable
 	}
 }
 
-public class TerraformBrush : MonoBehaviour {
+public class TerraformBrush : Terraform {
 
-	public GameObject currentNode;
-	public float influence = 1;
 	public float radius = 3;
 
-	private GameObject[] allSplines;
-	public Spline spline;
 	public ArrayList toTerraform;
-	private Vector3 lastMousePos;
 
 	// Use this for initialization
-	void Start () {
-		allSplines = GameObject.FindGameObjectsWithTag("Spline");
+	protected override void Start () 
+	{
+		base.Start ();
 
 		toTerraform = new ArrayList();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			Vector3 mouse = Input.mousePosition;
-			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mouse.x, mouse.y, -Camera.main.gameObject.transform.position.z));
-
-			Debug.Log ("finding closes spline to mouse pos: " + mouse);
-
-			findClosestSpline(mouseWorld);
-
-//			outputControlPoints();
-
-			findClosestObjects(spline.GetClosestPointParam(mouseWorld, 3));
-
-			lastMousePos = normalizeMousePos(mouse);
-		}
-
-		if (Input.GetMouseButton (0)) 
-		{
-			Vector3 mousePos = normalizeMousePos(Input.mousePosition);
-
-			Vector3 mousePosDiff = mousePos - lastMousePos;
-			
-//			Debug.Log("mouse pos: " + Input.mousePosition + " adjusted mouse pos: " + mousePos + " mouse diff: " + mousePosDiff);
-
-//			currentNode.transform.position += mousePosDiff * influence;
-			foreach(Formable f in toTerraform)
-				f.transform.position += mousePosDiff * influence * f.weight;
-
-
-			lastMousePos = mousePos;
-
-			spline.UpdateSpline();
-		}
+	protected override void Update () {
+		base.Update ();
 
 		if (Input.GetMouseButtonUp (0)) 
 		{
-//			Debug.Log(currentNode.name + " position: " + currentNode.transform.position);
-
 			toTerraform.Clear();
 		}
 	}
 
-	private void findClosestSpline(Vector3 mouseWorld)
-	{
-		float minDist = Mathf.Infinity;
-		foreach(GameObject o in allSplines)
-		{
-			Spline s = o.GetComponent<Spline>();
-
-			Vector3 mouseSpline = mouseWorld;
-			mouseSpline.z = s.transform.position.z;
-
-			Vector3 onSpline = s.GetPositionOnSpline(s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Input.mousePosition), 3));
-			float dist = (onSpline - mouseSpline).magnitude;
-
-			Debug.Log ("mW: " + mouseWorld + " " + s.name + " mS: " + mouseSpline + " pos on spline: " + onSpline + " dist: " + dist);
-
-			if(dist < minDist)
-			{
-				minDist = dist;
-				spline = s;
-			}
-		}
-	}
-
-	private void findClosestObjects(float param)
+	override protected void findClosestObjects(float param)
 	{
 		SplineNode[] allNodes = spline.SplineNodes;
 
@@ -121,24 +60,12 @@ public class TerraformBrush : MonoBehaviour {
 			Debug.LogWarning("couldn't find a node close enough to param " + param);
 		}
 	}
-
-	private Vector3 normalizeMousePos(Vector3 mousePos)
+	
+	
+	protected override void terraform(Vector3 mousePosDiff)
 	{
-		Vector3 adjustedMousePos = mousePos;
-
-		//normalize it to current screen resolution
-		adjustedMousePos.x /= Screen.width;
-		adjustedMousePos.y /= Screen.height;
-
-		return adjustedMousePos;
-	}
-
-	private void outputControlPoints()
-	{
-		foreach (SplineNode n in spline.SplineNodes) 
-		{
-			Debug.Log(n.gameObject.name + " position: " + n.transform.position);
-		}
+		foreach(Formable f in toTerraform)
+			f.transform.position += mousePosDiff * influence * f.weight;
 	}
 
 }

@@ -125,14 +125,25 @@ public class TerraformPoint : Terraform
 		}
 
 		//if we are getting to close to our neighbour, just move it along and update our data
-		if ( neighbour != null &&  Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x) <  minDistance) 
+		if ( neighbour != null) 
 		{
+			float distance = Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x);
+
+			//nothing to do if we are still far enough away
+			if (distance >  minDistance)
+				return;
+
+			//push neighbour away again to always keep the minDistance
+			Vector3 nPos = neighbour.transform.position;
+			nPos.x += (minDistance-distance) * direction;
+			neighbour.transform.position = nPos;
+
 			toTerraform.Add (neighbour);
 
 			frontier = neighbour;
 
 			
-			//now find the  neighbour of our frontier
+			//now find the neighbour of our new frontier
 			float minDist = Mathf.Infinity;
 			//dragging right
 			if(direction >= 0)

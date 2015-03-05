@@ -4,9 +4,12 @@ using System.Collections;
 public class TerraformPoint : Terraform 
 {
 	ArrayList toTerraform;
+	SplineNode pickedPoint;
 	SplineNode frontier;
 	SplineNode neighbour;
 	float direction;
+
+	public float minDistance;
 
 	// Use this for initialization
 	protected override void Start () 
@@ -39,21 +42,22 @@ public class TerraformPoint : Terraform
 		Vector3 onSpline = spline.GetPositionOnSpline (param);
 
 		float minDist = Mathf.Infinity;
-		SplineNode closest = null;
 		//we don't allow the first and the last control point to be moved, so no need to find them
 		for (int i = 1; i < allNodes.Length-1; i++) 
 		{
 			SplineNode n = allNodes[i];
-			
+	
 			float dist = (onSpline - spline.GetPositionOnSpline(n.Parameters[spline].PosInSpline)).magnitude;
 			if(dist < minDist)
 			{
 				minDist = dist;
-				closest = n;
+				pickedPoint = n;
 			}
 		}
 
-		toTerraform.Add (closest);
+		frontier = pickedPoint;
+
+		toTerraform.Add (pickedPoint);
 		
 		if (toTerraform == null) 
 		{
@@ -69,16 +73,9 @@ public class TerraformPoint : Terraform
 		{
 			direction = -1;
 
-			//find leftmost control point we are moving, aka our frontier
-			float leftmostX = Mathf.Infinity;
-			foreach (SplineNode n in toTerraform) 
-			{
-				if(n.transform.position.x < leftmostX)
-				{
-					leftmostX = n.transform.position.x;
-					frontier = n;
-				}
-			}
+			toTerraform.Clear();
+			toTerraform.Add(pickedPoint);
+			frontier = pickedPoint;
 
 			//now find the left neighbour of our frontier
 			float minDist = Mathf.Infinity;
@@ -100,17 +97,10 @@ public class TerraformPoint : Terraform
 		if (mousePosDiff.x > 0 && direction <= 0) 
 		{
 			direction = 1;
-			
-			//find leftmost control point we are moving, aka our frontier
-			float rightmostX = -Mathf.Infinity;
-			foreach (SplineNode n in toTerraform) 
-			{
-				if(n.transform.position.x > rightmostX)
-				{
-					rightmostX = n.transform.position.x;
-					frontier = n;
-				}
-			}
+
+			toTerraform.Clear();
+			toTerraform.Add(pickedPoint);
+			frontier = pickedPoint;
 			
 			//now find the right neighbour of our frontier
 			float minDist = Mathf.Infinity;
@@ -135,12 +125,48 @@ public class TerraformPoint : Terraform
 		}
 
 		//if we are getting to close to our neighbour, just move it along and update our data
-		if ( (mousePosDiff.x < 0 && frontier.transform.position.x <= neighbour.transform.position.x) ||
-		    (mousePosDiff.x > 0 && frontier.transform.position.x >= neighbour.transform.position.x) ) 
+		if ( neighbour != null &&  Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x) <  minDistance) 
 		{
 			toTerraform.Add (neighbour);
 
-			direction = 0;		//this will force us to find a new frontier and neighbour
+			frontier = neighbour;
+
+			
+			//now find the  neighbour of our frontier
+			float minDist = Mathf.Infinity;
+			//dragging right
+			if(direction >= 0)
+			{
+				foreach(SplineNode n in spline.SplineNodes)
+				{
+					if(n.transform.position.x > frontier.transform.position.x)
+					{
+						float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
+						if(dist < minDist)
+						{
+							minDist = dist;
+							neighbour = n;
+						}
+					}
+				}
+			}
+			//dragging left
+			else
+			{
+				foreach(SplineNode n in spline.SplineNodes)
+				{
+					if(n.transform.position.x < frontier.transform.position.x)
+					{
+						float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
+						if(dist < minDist)
+						{
+							minDist = dist;
+							neighbour = n;
+						}
+					}
+				}
+			}
+
 		}
 
 	}

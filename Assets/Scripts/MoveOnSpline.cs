@@ -11,7 +11,7 @@ public class MoveOnSpline : MonoBehaviour {
 	public float stopThreshold = 0.001f;
 
 	Spline[] allSplines;
-//	Dictionary<Spline, float> paramOnSplines;
+	Dictionary<Spline, float> paramOnSplines;
 	Vector3 lastMousePos = Vector3.zero;
 	Vector3 mouseDelta = Vector3.zero;
 	Vector3 posOnDown;
@@ -23,15 +23,17 @@ public class MoveOnSpline : MonoBehaviour {
 		GameObject[] splineObjects =  GameObject.FindGameObjectsWithTag("Spline");
 
 		allSplines = new Spline[splineObjects.Length];
+		
+		paramOnSplines = new Dictionary<Spline, float> ();
 
 		for (int i = 0; i < splineObjects.Length; i++) 
-			allSplines[i] = splineObjects[i].GetComponent<Spline>();
+		{
+			allSplines [i] = splineObjects [i].GetComponent<Spline> ();
+			float p = allSplines[i].GetClosestPointParam(transform.position, 3);
+			paramOnSplines.Add(allSplines[i], p);
+		}
 
-		spline = allSplines [1];
-
-//		paramOnSplines = new Dictionary<Spline, float> ();
-//
-//		paramOnSplines.Add (spline, 0.5f);
+		updateTransform ();
 
 		param = 0.5f;
 
@@ -46,6 +48,8 @@ public class MoveOnSpline : MonoBehaviour {
 		{
 			lastMousePos = normalizeMousePos(Input.mousePosition);
 			mouseDelta = Vector3.zero;
+
+			posOnDown = transform.position;
 		}
 
 		if (Input.GetMouseButtonUp (0)) 
@@ -60,14 +64,14 @@ public class MoveOnSpline : MonoBehaviour {
 		if (Input.GetMouseButton (0)) 
 		{
 			//move character along with dragged spline
-			param = spline.GetClosestPointParam(transform.position, 3);
-			transform.position = spline.GetPositionOnSpline(param) + new Vector3(0,transform.localScale.z/2,0);
-			transform.rotation = spline.GetOrientationOnSpline( param );
+			updateTransform();
 
 			mouseDelta = normalizeMousePos (Input.mousePosition) - lastMousePos;
 		} 
-		//only move character if no other hill is being dragged
-		else if(direction != 0)
+
+
+
+		if(direction != 0)
 		{
 			int currentDirection = (target.x - transform.position.x) > 0 ? 1 : -1;
 
@@ -80,16 +84,25 @@ public class MoveOnSpline : MonoBehaviour {
 			}
 			else
 			{
-//				foreach (var pair in paramOnSplines) 
-//					paramOnSplines[pair.Key] = pair.Value + speed * direction;
-//				paramOnSplines[spline] += speed * direction;
+				foreach (Spline s in allSplines) 
+					paramOnSplines[s] += speed * direction * Time.deltaTime;
 
-				param += speed * direction;
+//				paramOnSplines[spline] += speed * direction;
 			}
 
 //			transform.position = spline.GetPositionOnSpline(paramOnSplines[spline]);
-			transform.position = spline.GetPositionOnSpline(param) + new Vector3(0,transform.localScale.z/2,0);
-			transform.rotation = spline.GetOrientationOnSpline( param );
+			updateTransform();
+
+//			Vector3 nextFramePos = spline.get
+//			//now check if we need to switch spline
+//			foreach (Spline s in allSplines) 
+//			{
+//				//don't compare to active spline
+//				if(s.GetInstanceID() == spline.GetInstanceID())
+//					continue;
+//
+//
+//			}
 
 
 		}
@@ -102,7 +115,14 @@ public class MoveOnSpline : MonoBehaviour {
 		direction = (target.x - transform.position.x) > 0 ? 1 : -1;
 	}
 
-	
+
+	private void updateTransform()
+	{
+		float p = paramOnSplines [spline];
+		transform.position = spline.GetPositionOnSpline (p) + new Vector3 (0, transform.localScale.z / 2, 0);
+		transform.rotation = spline.GetOrientationOnSpline (p);
+	}
+
 	
 	private Vector3 normalizeMousePos(Vector3 mousePos)
 	{

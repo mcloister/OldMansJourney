@@ -4,6 +4,7 @@ using System.Collections;
 public class StayOnPath : MonoBehaviour {
 
 	public Spline spline;
+	public Vector3 offset;
 
 	float param;
 	// Use this for initialization
@@ -18,6 +19,6 @@ public class StayOnPath : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		transform.position = spline.GetPositionOnSpline (param);
+		transform.position = spline.GetPositionOnSpline (param) + offset;
 	}
 }

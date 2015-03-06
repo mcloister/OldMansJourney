@@ -119,7 +119,11 @@ public class MoveOnSpline : MonoBehaviour {
 					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
 					if(otherTangent.y > tangent.y)
+					{
 						spline = s;
+						paramOnSplines[s] = otherP;
+						transform.position = otherPos;
+					}
 				}
 
 

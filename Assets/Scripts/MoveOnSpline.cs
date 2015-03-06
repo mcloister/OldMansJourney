@@ -106,7 +106,7 @@ public class MoveOnSpline : MonoBehaviour {
 				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(pos)), 3);
 				Vector3 otherPos = s.GetPositionOnSpline(otherP);
 
-				s.transform.root.Find("CharacterPos").position = otherPos;
+//				s.transform.root.Find("CharacterPos").position = otherPos;
 
 				float dis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
 

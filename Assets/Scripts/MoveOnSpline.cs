@@ -9,6 +9,7 @@ public class MoveOnSpline : MonoBehaviour {
 	public float speed = 2;
 	public float dragThreshold = 0.001f;
 	public float stopThreshold = 0.001f;
+	public float switchThreshold = 0.5f;
 
 	Spline[] allSplines;
 	Dictionary<Spline, float> paramOnSplines;
@@ -90,19 +91,39 @@ public class MoveOnSpline : MonoBehaviour {
 //				paramOnSplines[spline] += speed * direction;
 			}
 
-//			transform.position = spline.GetPositionOnSpline(paramOnSplines[spline]);
 			updateTransform();
 
-//			Vector3 nextFramePos = spline.get
-//			//now check if we need to switch spline
-//			foreach (Spline s in allSplines) 
-//			{
-//				//don't compare to active spline
-//				if(s.GetInstanceID() == spline.GetInstanceID())
-//					continue;
-//
-//
-//			}
+//			float nextP = paramOnSplines[spline] + speed * direction * Time.deltaTime;
+			Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
+			//now check if we need to switch spline
+			foreach (Spline s in allSplines) 
+			{
+				
+				//don't compare to active spline
+				if(s.GetInstanceID() == spline.GetInstanceID())
+					continue;
+
+				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(pos)), 3);
+				Vector3 otherPos = s.GetPositionOnSpline(otherP);
+
+				s.transform.root.Find("CharacterPos").position = otherPos;
+
+				float dis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
+
+				Debug.Log(spline.name + " & " + s.name + " dis: " + dis);
+
+				if(dis < switchThreshold)
+				{
+					Vector3 tangent = spline.GetTangentToSpline(paramOnSplines[spline]) * direction;
+					Vector3 otherTangent = s.GetTangentToSpline(otherP) * direction;
+					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
+
+					if(otherTangent.y > tangent.y)
+						spline = s;
+				}
+
+
+			}
 
 
 		}

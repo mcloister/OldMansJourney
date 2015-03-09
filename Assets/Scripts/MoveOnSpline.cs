@@ -87,10 +87,7 @@ public class MoveOnSpline : MonoBehaviour {
 			}
 			else
 			{
-				foreach (Spline s in allSplines) 
-					paramOnSplines[s] += speed * direction * Time.deltaTime;
-
-//				paramOnSplines[spline] += (speed * direction * Time.deltaTime) / spline.Length;
+				paramOnSplines[spline] += (speed * direction * Time.deltaTime) / spline.Length;
 			}
 
 			updateTransform();

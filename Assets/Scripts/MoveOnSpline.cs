@@ -120,7 +120,7 @@ public class MoveOnSpline : MonoBehaviour {
 					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
 
-					if(otherTangent.y >= tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
+					if(otherTangent.y > tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 					{
 //						oldSpline = spline;
 //						StartCoroutine(forgetOldSpline());

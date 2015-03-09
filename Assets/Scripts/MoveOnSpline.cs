@@ -90,13 +90,15 @@ public class MoveOnSpline : MonoBehaviour {
 				foreach (Spline s in allSplines) 
 					paramOnSplines[s] += speed * direction * Time.deltaTime;
 
-//				paramOnSplines[spline] += speed * direction;
+//				paramOnSplines[spline] += (speed * direction * Time.deltaTime) / spline.Length;
 			}
 
 			updateTransform();
 
 //			float nextP = paramOnSplines[spline] + speed * direction * Time.deltaTime;
 			Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
+			spline.transform.Find("CharacterPos").position = pos;
+
 			//now check if we need to switch spline
 			foreach (Spline s in allSplines) 
 			{
@@ -105,7 +107,7 @@ public class MoveOnSpline : MonoBehaviour {
 				if(s.GetInstanceID() == spline.GetInstanceID())
 					continue;
 
-				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(pos + new Vector3(0,0,10))), 3);
+				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(pos + new Vector3(0,0,-1))), 3);
 				Vector3 otherPos = s.GetPositionOnSpline(otherP);
 
 				s.transform.Find("CharacterPos").position = otherPos;
@@ -121,10 +123,10 @@ public class MoveOnSpline : MonoBehaviour {
 					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
 
-					if(otherTangent.y >= tangent.y || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
+					if(otherTangent.y >= tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 					{
-						oldSpline = spline;
-						StartCoroutine(forgetOldSpline());
+//						oldSpline = spline;
+//						StartCoroutine(forgetOldSpline());
 
 						spline = s;
 						paramOnSplines[s] = otherP;

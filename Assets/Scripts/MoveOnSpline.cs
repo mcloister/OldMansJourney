@@ -118,7 +118,7 @@ public class MoveOnSpline : MonoBehaviour {
 					Vector3 otherTangent = s.GetTangentToSpline(otherP) * direction;
 					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
-					if(otherTangent.y > tangent.y)
+					if(otherTangent.y >= tangent.y)
 					{
 						spline = s;
 						paramOnSplines[s] = otherP;

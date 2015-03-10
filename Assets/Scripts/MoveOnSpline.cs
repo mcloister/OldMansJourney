@@ -12,8 +12,10 @@ public class MoveOnSpline : MonoBehaviour {
 	public float switchThreshold = 0.5f;
 
 	Spline[] allSplines;
+	private Spline oldSpline;
 	Dictionary<Spline, float> paramOnSplines;
-	Vector3 lastMousePos = Vector3.zero;
+	Vector3 targetMousePos;
+	Vector3 mousePosOnDown = Vector3.zero;
 	Vector3 mouseDelta = Vector3.zero;
 	Vector3 posOnDown;
 	int direction;
@@ -47,7 +49,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0))
 		{
-			lastMousePos = normalizeMousePos(Input.mousePosition);
+			mousePosOnDown = normalizeMousePos(Input.mousePosition);
 			mouseDelta = Vector3.zero;
 
 			posOnDown = transform.position;
@@ -67,7 +69,7 @@ public class MoveOnSpline : MonoBehaviour {
 			//move character along with dragged spline
 			updateTransform();
 
-			mouseDelta = normalizeMousePos (Input.mousePosition) - lastMousePos;
+			mouseDelta = normalizeMousePos (Input.mousePosition) - mousePosOnDown;
 		} 
 
 
@@ -85,16 +87,15 @@ public class MoveOnSpline : MonoBehaviour {
 			}
 			else
 			{
-				foreach (Spline s in allSplines) 
-					paramOnSplines[s] += speed * direction * Time.deltaTime;
-
-//				paramOnSplines[spline] += speed * direction;
+				paramOnSplines[spline] += (speed * direction * Time.deltaTime) / spline.Length;
 			}
 
 			updateTransform();
 
 //			float nextP = paramOnSplines[spline] + speed * direction * Time.deltaTime;
 			Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
+			spline.transform.Find("CharacterPos").position = pos;
+
 			//now check if we need to switch spline
 			foreach (Spline s in allSplines) 
 			{
@@ -106,7 +107,7 @@ public class MoveOnSpline : MonoBehaviour {
 				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(Camera.main.WorldToScreenPoint(pos)), 3);
 				Vector3 otherPos = s.GetPositionOnSpline(otherP);
 
-//				s.transform.root.Find("CharacterPos").position = otherPos;
+				s.transform.Find("CharacterPos").position = otherPos;
 
 				float dis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
 
@@ -118,11 +119,17 @@ public class MoveOnSpline : MonoBehaviour {
 					Vector3 otherTangent = s.GetTangentToSpline(otherP) * direction;
 					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
-					if(otherTangent.y >= tangent.y)
+
+					if(otherTangent.y >	 tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 					{
+//						oldSpline = spline;
+//						StartCoroutine(forgetOldSpline());
+
 						spline = s;
 						paramOnSplines[s] = otherP;
-						transform.position = otherPos;
+						updateTransform ();
+
+						setTarget (targetMousePos);
 					}
 				}
 
@@ -136,6 +143,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 	public void setTarget(Vector3 worldPosition)
 	{
+		targetMousePos = worldPosition;
 		target = spline.GetPositionOnSpline(spline.GetClosestPointParam(worldPosition, 3));
 		direction = (target.x - transform.position.x) > 0 ? 1 : -1;
 	}
@@ -158,5 +166,12 @@ public class MoveOnSpline : MonoBehaviour {
 		adjustedMousePos.y /= Screen.height;
 		
 		return adjustedMousePos;
+	}
+
+	private IEnumerator forgetOldSpline()
+	{
+		yield return new WaitForSeconds(0.5f);
+
+		oldSpline = null;
 	}
 }

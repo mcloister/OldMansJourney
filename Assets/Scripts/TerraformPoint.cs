@@ -17,8 +17,8 @@ public class TerraformPoint : Terraform
 		base.Start ();
 
 		toTerraform = new ArrayList();
-		neighbour = new FormableNode(null);
-		frontier = new FormableNode(null);
+		neighbour = null;
+		frontier = null;
 	}
 	
 	// Update is called once per frame
@@ -30,8 +30,8 @@ public class TerraformPoint : Terraform
 			toTerraform.Clear();
 
 			direction = 0;
-			neighbour = new FormableNode(null);
-			frontier = new FormableNode(null);
+			neighbour = null;
+			frontier = null;
 		}
 	}
 	
@@ -43,7 +43,6 @@ public class TerraformPoint : Terraform
 
 		float minDist = Mathf.Infinity;
 
-		//we don't allow the first and the last control point to be moved, so no need to find them
 		foreach(FormableNode fN in formableNodes)
 		{
 			SplineNode n = fN.splineNode;
@@ -127,7 +126,7 @@ public class TerraformPoint : Terraform
 		}
 
 		//if we are getting to close to our neighbour, just move it along and update our data
-		if ( neighbour.splineNode != null) 
+		if ( neighbour != null) 
 		{
 			float distance = Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x);
 
@@ -166,7 +165,7 @@ public class TerraformPoint : Terraform
 		float minDist = Mathf.Infinity;
 		foreach (FormableNode fN in formableNodes) {
 			
-			if (fN.splineNode.transform.position.x > frontier.transform.position.x) {
+			if (fN.transform.position.x > frontier.transform.position.x) {
 				float dist = Mathf.Abs (frontier.transform.position.x - fN.transform.position.x);
 				if (dist < minDist) {
 					minDist = dist;
@@ -182,7 +181,7 @@ public class TerraformPoint : Terraform
 		float minDist = Mathf.Infinity;
 		foreach (FormableNode fN in formableNodes) {
 			
-			if (fN.splineNode.transform.position.x < frontier.transform.position.x) {
+			if (fN.transform.position.x < frontier.transform.position.x) {
 				float dist = Mathf.Abs (frontier.transform.position.x - fN.transform.position.x);
 				if (dist < minDist) {
 					minDist = dist;

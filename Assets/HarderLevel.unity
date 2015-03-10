@@ -84,6 +84,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4955821}
   - 114: {fileID: 4955822}
+  - 114: {fileID: 4955823}
   m_Layer: 0
   m_Name: Node 0001
   m_TagString: Static Node
@@ -118,6 +119,24 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &4955823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4955820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &40991559
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +727,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 542064325}
   - 114: {fileID: 542064326}
+  - 114: {fileID: 542064327}
   m_Layer: 0
   m_Name: Node 0004
   m_TagString: Formable Node
@@ -742,6 +762,25 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &542064327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458072, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 542064324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &581964946
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,6 +791,7 @@ GameObject:
   - 4: {fileID: 581964948}
   - 114: {fileID: 581964947}
   - 65: {fileID: 581964949}
+  - 114: {fileID: 581964950}
   m_Layer: 2
   m_Name: Node 0004
   m_TagString: Formable Node
@@ -798,6 +838,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &581964950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 581964946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &639690724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1252,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 839381938}
   - 114: {fileID: 839381939}
+  - 114: {fileID: 839381940}
   m_Layer: 0
   m_Name: Node 0002
   m_TagString: Static Node
@@ -1228,6 +1287,24 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &839381940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 839381937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1087169277
 GameObject:
   m_ObjectHideFlags: 0
@@ -1280,6 +1357,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1127141444}
   - 114: {fileID: 1127141445}
+  - 114: {fileID: 1127141446}
   m_Layer: 0
   m_Name: Node 0006
   m_TagString: Formable Node
@@ -1314,6 +1392,25 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1127141446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458068, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 1127141443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1128738791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1535,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1177795283}
   - 114: {fileID: 1177795284}
+  - 114: {fileID: 1177795285}
   m_Layer: 0
   m_Name: Node 0007
   m_TagString: Formable Node
@@ -1472,6 +1570,24 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1177795285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1177795282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1223585144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,6 +1597,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1223585145}
   - 114: {fileID: 1223585146}
+  - 114: {fileID: 1223585147}
   m_Layer: 0
   m_Name: Node 0006
   m_TagString: Formable Node
@@ -1515,6 +1632,24 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1223585147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223585144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1269060204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1659,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1269060205}
   - 114: {fileID: 1269060206}
+  - 114: {fileID: 1269060207}
   m_Layer: 0
   m_Name: Node 0003
   m_TagString: Static Node
@@ -1558,6 +1694,24 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1269060207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1269060204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1333296529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1639,6 +1793,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1357900611}
   - 114: {fileID: 1357900612}
+  - 114: {fileID: 1357900613}
   m_Layer: 0
   m_Name: Node 0002
   m_TagString: Formable Node
@@ -1673,6 +1828,25 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1357900613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458070, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 1357900610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1368913685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1682,6 +1856,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1368913687}
   - 114: {fileID: 1368913686}
+  - 114: {fileID: 1368913688}
   m_Layer: 0
   m_Name: Node 0001
   m_TagString: Formable Node
@@ -1716,6 +1891,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 770680941}
   m_RootOrder: 0
+--- !u!114 &1368913688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458080, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 1368913685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1393957923
 GameObject:
   m_ObjectHideFlags: 0
@@ -2220,6 +2414,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1528121908}
   - 114: {fileID: 1528121909}
+  - 114: {fileID: 1528121910}
   m_Layer: 0
   m_Name: Node 0003
   m_TagString: Formable Node
@@ -2254,6 +2449,25 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1528121910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458076, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 1528121907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1568126950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,6 +2677,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1854678491}
   - 114: {fileID: 1854678492}
+  - 114: {fileID: 1854678493}
   m_Layer: 0
   m_Name: Node 0005
   m_TagString: Formable Node
@@ -2497,6 +2712,25 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1854678493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458078, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 1854678490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &1866236209
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2812,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1947146764}
   - 114: {fileID: 1947146765}
+  - 114: {fileID: 1947146766}
   m_Layer: 0
   m_Name: Node 0007
   m_TagString: Formable Node
@@ -2612,6 +2847,25 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &1947146766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11458074, guid: e8ff94556041646fcb69fdfeffcca449,
+    type: 2}
+  m_PrefabInternal: {fileID: 1527319407}
+  m_GameObject: {fileID: 1947146763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
 --- !u!1 &2056467478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,6 +3043,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2139897089}
   - 114: {fileID: 2139897090}
+  - 114: {fileID: 2139897091}
   m_Layer: 0
   m_Name: Node 0005
   m_TagString: Formable Node
@@ -2823,3 +3078,21 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
+--- !u!114 &2139897091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2139897088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splineNode: {fileID: 0}
+  limits:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0

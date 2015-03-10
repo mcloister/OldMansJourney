@@ -46,6 +46,9 @@ public class TerraformPoint : Terraform
 		for (int i = 1; i < allNodes.Length-1; i++) 
 		{
 			SplineNode n = allNodes[i];
+
+			if(n.tag == "Static Node")
+				continue;
 	
 			float dist = (onSpline - spline.GetPositionOnSpline(n.Parameters[spline].PosInSpline)).magnitude;
 			if(dist < minDist)
@@ -81,6 +84,9 @@ public class TerraformPoint : Terraform
 			float minDist = Mathf.Infinity;
 			foreach(SplineNode n in spline.SplineNodes)
 			{
+				if(n.tag == "Static Node")
+					continue;
+
 				if(n.transform.position.x < frontier.transform.position.x)
 				{
 					float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
@@ -106,6 +112,9 @@ public class TerraformPoint : Terraform
 			float minDist = Mathf.Infinity;
 			foreach(SplineNode n in spline.SplineNodes)
 			{
+				if(n.tag == "Static Node")
+					continue;
+
 				if(n.transform.position.x > frontier.transform.position.x)
 				{
 					float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
@@ -153,6 +162,10 @@ public class TerraformPoint : Terraform
 			{
 				foreach(SplineNode n in spline.SplineNodes)
 				{
+					
+					if(n.tag == "Static Node")
+						continue;
+
 					if(n.transform.position.x > frontier.transform.position.x)
 					{
 						float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
@@ -169,6 +182,10 @@ public class TerraformPoint : Terraform
 			{
 				foreach(SplineNode n in spline.SplineNodes)
 				{
+					
+					if(n.tag == "Static Node")
+						continue;
+
 					if(n.transform.position.x < frontier.transform.position.x)
 					{
 						float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);

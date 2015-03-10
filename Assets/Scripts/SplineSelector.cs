@@ -56,10 +56,10 @@ public class SplineSelector : MonoBehaviour {
 		if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 200))
 			return;
 
-		if (!hit.collider.gameObject.transform.root.CompareTag("Spline"))
+		if (!hit.collider.gameObject.transform.CompareTag("Spline"))
 			return;
 		
-		spline = hit.collider.gameObject.transform.root.GetComponent<Spline> ();
+		spline = hit.collider.gameObject.transform.GetComponent<Spline> ();
 
 
 //		float minDist = Mathf.Infinity;

@@ -85,7 +85,7 @@ MonoBehaviour:
   param: 0
   target: {x: 0, y: 0, z: 0}
   speed: 15
-  dragThreshold: .00100000005
+  dragThreshold: .00999999978
   stopThreshold: .100000001
   switchThreshold: .800000012
 --- !u!1001 &100100000

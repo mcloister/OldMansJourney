@@ -5,8 +5,8 @@ TagManager:
   tags:
   - Spline
   - Character
-  - Static Spline
-  - Static Node
+  - Fixed Spline
+  - Fixed Node
   - Formable Node
   - 
   Builtin Layer 0: Default

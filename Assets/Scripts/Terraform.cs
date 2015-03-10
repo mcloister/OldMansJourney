@@ -1,12 +1,71 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+struct FormableNode
+{
+	public SplineNode splineNode;
+	public Rect limits;
+	public Transform transform;
+
+	public FormableNode(SplineNode n)
+	{
+		splineNode = n;
+		if(n != null)
+			transform = n.transform;
+		else
+			transform = null;
+		
+		limits = new Rect (0, 0, 0, 0);
+	}
+
+	public FormableNode(SplineNode n, Bounds b)
+	{
+		splineNode = n;
+		if(n != null)
+			transform = n.transform;
+		else
+			transform = null;
+
+		limits = new Rect (0, 0, 0, 0);
+
+		setLimits (b);
+	}
+	
+	public FormableNode(SplineNode n, BoxCollider bc)
+	{
+		splineNode = n;
+		if(n != null)
+			transform = n.transform;
+		else
+			transform = null;
+		
+		limits = new Rect (0, 0, 0, 0);
+
+		if(bc != null)
+			setLimits (bc.bounds);
+	}
+
+	public void setLimits(Bounds b)
+	{
+		limits = new Rect (b.min.x, b.min.y, b.size.x, b.size.y);
+	}
+
+	public bool allowForming(Vector3 newPos)
+	{
+		if (limits.width == 0)
+			return true;
+
+		return limits.Contains (new Vector2 (newPos.x, newPos.y));
+	}
+}
+
 public class Terraform : MonoBehaviour {
 
 	public float influence = 1;
 
 	protected SplineSelector selector;
 	protected Spline spline;
+	protected ArrayList formableNodes;
 	protected Vector3 lastMousePos;
 	
 	protected Bounds limits;
@@ -16,8 +75,9 @@ public class Terraform : MonoBehaviour {
 	{
 		selector = GameObject.FindGameObjectWithTag ("GameController").GetComponent<SplineSelector> ();
 
-
 		limits = new Bounds(Vector3.zero, Vector3.zero);
+
+		formableNodes = new ArrayList ();
 	}
 	
 	// Update is called once per frame
@@ -46,6 +106,16 @@ public class Terraform : MonoBehaviour {
 				Transform limitsObject = spline.transform.Find ("Limits");
 				if (limitsObject != null) 
 					limits = limitsObject.GetComponent<BoxCollider>().bounds;
+
+				//find all nodes that are formable and store their limits
+				for (int i = 0; i < spline.transform.childCount; i++)
+				{
+					Transform t = spline.transform.GetChild(i);
+					if(!t.CompareTag("Formable Node"))
+						continue;
+
+					formableNodes.Add(new FormableNode(t.GetComponent<SplineNode>(), t.GetComponent<BoxCollider>()));
+				}
 
 				findClosestObjects(spline.GetClosestPointParam(mouseWorld, 3));
 			}

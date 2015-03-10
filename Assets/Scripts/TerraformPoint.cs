@@ -6,9 +6,9 @@ public class TerraformPoint : Terraform
 	public float minDistance;
 
 	ArrayList toTerraform;
-	SplineNode pickedPoint;
-	SplineNode frontier;
-	SplineNode neighbour;
+	FormableNode pickedNode;
+	FormableNode frontier;
+	FormableNode neighbour;
 	float direction;
 
 	// Use this for initialization
@@ -17,8 +17,8 @@ public class TerraformPoint : Terraform
 		base.Start ();
 
 		toTerraform = new ArrayList();
-		neighbour = null;
-		frontier = null;
+		neighbour = new FormableNode(null);
+		frontier = new FormableNode(null);
 	}
 	
 	// Update is called once per frame
@@ -30,37 +30,35 @@ public class TerraformPoint : Terraform
 			toTerraform.Clear();
 
 			direction = 0;
-			neighbour = null;
-			frontier = null;
+			neighbour = new FormableNode(null);
+			frontier = new FormableNode(null);
 		}
 	}
 	
 	override protected void findClosestObjects(float param)
 	{
-		SplineNode[] allNodes = spline.SplineNodes;
+//		SplineNode[] allNodes = spline.SplineNodes;
 		
 		Vector3 onSpline = spline.GetPositionOnSpline (param);
 
 		float minDist = Mathf.Infinity;
-		//we don't allow the first and the last control point to be moved, so no need to find them
-		for (int i = 1; i < allNodes.Length-1; i++) 
-		{
-			SplineNode n = allNodes[i];
 
-			if(n.tag == "Static Node")
-				continue;
+		//we don't allow the first and the last control point to be moved, so no need to find them
+		foreach(FormableNode fN in formableNodes)
+		{
+			SplineNode n = fN.splineNode;
 	
 			float dist = (onSpline - spline.GetPositionOnSpline(n.Parameters[spline].PosInSpline)).magnitude;
 			if(dist < minDist)
 			{
 				minDist = dist;
-				pickedPoint = n;
+				pickedNode = fN;
 			}
 		}
 
-		frontier = pickedPoint;
+		frontier = pickedNode;
 
-		toTerraform.Add (pickedPoint);
+		toTerraform.Add (pickedNode);
 		
 		if (toTerraform == null) 
 		{
@@ -77,26 +75,11 @@ public class TerraformPoint : Terraform
 			direction = -1;
 
 			toTerraform.Clear();
-			toTerraform.Add(pickedPoint);
-			frontier = pickedPoint;
+			toTerraform.Add(pickedNode);
+			frontier = pickedNode;
 
 			//now find the left neighbour of our frontier
-			float minDist = Mathf.Infinity;
-			foreach(SplineNode n in spline.SplineNodes)
-			{
-				if(n.tag == "Static Node")
-					continue;
-
-				if(n.transform.position.x < frontier.transform.position.x)
-				{
-					float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
-					if(dist < minDist)
-					{
-						minDist = dist;
-						neighbour = n;
-					}
-				}
-			}
+			findLeftNeighbour();
 		}
 
 		//start dragging right
@@ -105,39 +88,26 @@ public class TerraformPoint : Terraform
 			direction = 1;
 
 			toTerraform.Clear();
-			toTerraform.Add(pickedPoint);
-			frontier = pickedPoint;
+			toTerraform.Add(pickedNode);
+			frontier = pickedNode;
 			
 			//now find the right neighbour of our frontier
-			float minDist = Mathf.Infinity;
-			foreach(SplineNode n in spline.SplineNodes)
-			{
-				if(n.tag == "Static Node")
-					continue;
+			findRightNeighbour();
 
-				if(n.transform.position.x > frontier.transform.position.x)
-				{
-					float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
-					if(dist < minDist)
-					{
-						minDist = dist;
-						neighbour = n;
-					}
-				}
-			}
 		}
 
 		//terraform all nodes we need to move
-		foreach (SplineNode n in toTerraform) 
+		foreach (FormableNode fN in toTerraform) 
 		{
-			Vector3 newPos = n.transform.position + mousePosDiff * influence;
+			Vector3 newPos = fN.transform.position + mousePosDiff * influence;
 
-			if(limits.extents.y == 0 || (newPos.y < limits.max.y && newPos.y > limits.min.y) ) //limits.Contains(newPos)
-				n.transform.position = newPos;
+			if( ( limits.extents.y == 0 || (newPos.y < limits.max.y && newPos.y > limits.min.y) ) &&
+			   fN.allowForming(newPos) ) //limits.Contains(newPos)
+				fN.transform.position = newPos;
 		}
 
 		//if we are getting to close to our neighbour, just move it along and update our data
-		if ( neighbour != null) 
+		if ( neighbour.splineNode != null) 
 		{
 			float distance = Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x);
 
@@ -145,10 +115,10 @@ public class TerraformPoint : Terraform
 			if (distance >  minDistance)
 				return;
 
-			//push neighbour away again to always keep the minDistance
-			Vector3 nPos = neighbour.transform.position;
-			nPos.x += (minDistance-distance) * direction;
-			neighbour.transform.position = nPos;
+			//if we have come too close already, push neighbour away again to always keep the minDistance
+//			Vector3 nPos = neighbour.transform.position;
+//			nPos.x += (minDistance-distance) * direction;
+//			neighbour.transform.position = nPos;
 
 			toTerraform.Add (neighbour);
 
@@ -156,50 +126,50 @@ public class TerraformPoint : Terraform
 
 			
 			//now find the neighbour of our new frontier
-			float minDist = Mathf.Infinity;
 			//dragging right
 			if(direction >= 0)
 			{
-				foreach(SplineNode n in spline.SplineNodes)
-				{
-					
-					if(n.tag == "Static Node")
-						continue;
-
-					if(n.transform.position.x > frontier.transform.position.x)
-					{
-						float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
-						if(dist < minDist)
-						{
-							minDist = dist;
-							neighbour = n;
-						}
-					}
-				}
+				findRightNeighbour();
 			}
 			//dragging left
 			else
 			{
-				foreach(SplineNode n in spline.SplineNodes)
-				{
-					
-					if(n.tag == "Static Node")
-						continue;
-
-					if(n.transform.position.x < frontier.transform.position.x)
-					{
-						float dist = Mathf.Abs (frontier.transform.position.x - n.transform.position.x);
-						if(dist < minDist)
-						{
-							minDist = dist;
-							neighbour = n;
-						}
-					}
-				}
+				findLeftNeighbour();
 			}
 
 		}
 
 	}
 
-}
+	void findRightNeighbour()
+	{
+		float minDist = Mathf.Infinity;
+		foreach (FormableNode fN in formableNodes) {
+			
+			if (fN.splineNode.transform.position.x > frontier.transform.position.x) {
+				float dist = Mathf.Abs (frontier.transform.position.x - fN.transform.position.x);
+				if (dist < minDist) {
+					minDist = dist;
+					neighbour = fN;
+				}
+			}
+		}
+		
+	}
+	
+	void findLeftNeighbour()
+	{
+		float minDist = Mathf.Infinity;
+		foreach (FormableNode fN in formableNodes) {
+			
+			if (fN.splineNode.transform.position.x < frontier.transform.position.x) {
+				float dist = Mathf.Abs (frontier.transform.position.x - fN.transform.position.x);
+				if (dist < minDist) {
+					minDist = dist;
+					neighbour = fN;
+				}
+			}
+		}
+		
+	}
+}	

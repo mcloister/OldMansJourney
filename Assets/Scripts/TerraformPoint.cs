@@ -101,9 +101,29 @@ public class TerraformPoint : Terraform
 		{
 			Vector3 newPos = fN.transform.position + mousePosDiff * influence;
 
-			if( ( limits.extents.y == 0 || (newPos.y < limits.max.y && newPos.y > limits.min.y) ) &&
-			   fN.allowForming(newPos) ) //limits.Contains(newPos)
+			if( fN.allowForming(newPos) ) //limits.Contains(newPos)
 				fN.transform.position = newPos;
+			else
+			{
+				//make sure we're never pushed outside of our limits
+//				float offset = 0.01f;
+//
+//				Vector3 curPos = fN.transform.position;
+//
+//				if(curPos.x <= fN.limits.xMin)
+//					curPos.x = fN.limits.xMin + offset;
+//				if(curPos.y <= fN.limits.yMin)
+//					curPos.y = fN.limits.xMin + offset;
+//
+//				
+//				if(curPos.x >= fN.limits.xMax)
+//					curPos.x = fN.limits.xMax - offset;
+//				if(curPos.y >= fN.limits.yMax)
+//					curPos.y = fN.limits.yMax - offset;
+//
+//				fN.transform.position = curPos;
+			}
+
 		}
 
 		//if we are getting to close to our neighbour, just move it along and update our data

@@ -51,7 +51,7 @@ GameObject:
   - 64: {fileID: 6400600}
   - 114: {fileID: 11494004}
   m_Layer: 8
-  m_Name: Hill 001
+  m_Name: Formable Spline
   m_TagString: Spline
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

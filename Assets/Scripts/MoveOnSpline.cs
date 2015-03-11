@@ -24,6 +24,9 @@ public class MoveOnSpline : MonoBehaviour {
 
 	int direction;
 
+	GameObject targetPosObj;
+	GameObject targetMousePosObj;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -48,6 +51,14 @@ public class MoveOnSpline : MonoBehaviour {
 		param = 0.5f;
 
 		direction = 0;
+
+		targetPosObj = GameObject.Find ("TargetPos");
+		targetMousePosObj = GameObject.Find ("TargetMousePos");
+
+		///adapt threshold to different resolutions
+		//a higher resolution means smaller pixel, or more pixels per world unit, does the threshold has to be adjusted
+		float resFactor = Camera.main.pixelWidth / 1024.0f;
+		switchThreshold = switchThreshold * resFactor;
 	}
 	
 	// Update is called once per frame
@@ -67,7 +78,7 @@ public class MoveOnSpline : MonoBehaviour {
 			if(mouseDelta.magnitude < dragThreshold)
 			{
 				Vector3 mousePos = Input.mousePosition;
-				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -(Camera.main.transform.position.z + spline.gameObject.transform.position.z))));
+				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z + spline.gameObject.transform.position.z)));
 			}
 		}
 		
@@ -101,7 +112,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 //			float nextP = paramOnSplines[spline] + speed * direction * Time.deltaTime;
 			Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
-			Vector3 posOnScreen = Camera.main.WorldToScreenPoint(pos);
+			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
 			spline.transform.Find("CharacterPos").position = pos;
 
 			//now check if we need to switch spline
@@ -117,11 +128,23 @@ public class MoveOnSpline : MonoBehaviour {
 
 				s.transform.Find("CharacterPos").position = otherPos;
 
-				//TODO; check this
-//				float dis = Vector3.Distance(pos, Camera.main.WorldToScreenPoint(otherPos));
+				Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(otherPos);
+				float screenDis = Vector3.Distance(posOnScreen, otherPosOnScreen);
+
 				float dis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
 
-				Debug.Log(spline.name + " & " + s.name + " dis: " + dis);
+				if(dis < 3)
+				{
+					
+					Debug.Log ("distance between " + printPath (spline.transform) + " and " + printPath(s.transform));
+
+					Debug.Log("World Coordinates: " + pos + " vs. " + otherPos + " = " + dis);
+					
+					Debug.Log("screen Coordinates: " + posOnScreen + " vs. " + otherPosOnScreen + " = " + screenDis);
+
+				}
+
+				dis = screenDis;
 
 				if(dis < switchThreshold)
 				{
@@ -162,7 +185,7 @@ public class MoveOnSpline : MonoBehaviour {
 							if(oldSpline.GetComponent<Waterfall>())
 								setTarget (transform.position);
 
-							setTarget (targetMousePos);
+							setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));
 						}
 					}
 				}
@@ -178,8 +201,16 @@ public class MoveOnSpline : MonoBehaviour {
 	public void setTarget(Vector3 worldPosition)
 	{
 		targetMousePos = worldPosition;
+
 		target = spline.GetPositionOnSpline(spline.GetClosestPointParam(worldPosition, 3));
 		direction = (target.x - transform.position.x) > 0 ? 1 : -1;
+
+		
+		
+		if (targetMousePosObj != null)
+			targetMousePosObj.transform.position = targetMousePos;
+		if (targetPosObj != null)
+			targetPosObj.transform.position = target;
 	}
 
 
@@ -207,5 +238,18 @@ public class MoveOnSpline : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 
 		oldSpline = null;
+	}
+
+	public string printPath(Transform t)
+	{
+		string path = t.name;
+
+		while (t.parent != null) 
+		{
+			t = t.parent;
+			path = t.name + "." + path;
+		}
+
+		return path;
 	}
 }

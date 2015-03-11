@@ -74,7 +74,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 		if (Input.GetMouseButtonUp (0)) 
 		{
-			if(mouseDelta.magnitude < dragThreshold)
+			if(spline.GetComponent<Waterfall>() == null && mouseDelta.magnitude < dragThreshold)
 			{
 				Vector3 mousePos = Input.mousePosition;
 				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z + spline.gameObject.transform.position.z)));
@@ -114,6 +114,9 @@ public class MoveOnSpline : MonoBehaviour {
 			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
 			spline.transform.Find("CharacterPos").position = pos;
 
+			Waterfall w = spline.GetComponent<Waterfall>();
+			float switchThresholdFactor = (w) ? w.switchThresholdFactor : 1;
+
 			//now check if we need to switch spline
 			foreach (Spline s in allSplines) 
 			{
@@ -122,8 +125,8 @@ public class MoveOnSpline : MonoBehaviour {
 				if(s.GetInstanceID() == spline.GetInstanceID())
 					continue;
 
-				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 3);
-				Vector3 otherPos = s.GetPositionOnSpline(otherP);
+				paramOnSplines[s] = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 5);
+				Vector3 otherPos = s.GetPositionOnSpline(paramOnSplines[s]);
 
 				s.transform.Find("CharacterPos").position = otherPos;
 
@@ -145,7 +148,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 				dis = screenDis;
 
-				if(dis < switchThreshold)
+				if(dis < switchThreshold * switchThresholdFactor)
 				{
 					Waterfall waterfall = s.GetComponent<Waterfall>();
 					if(waterfall != null)
@@ -155,7 +158,7 @@ public class MoveOnSpline : MonoBehaviour {
 					}
 
 					Vector3 tangent = spline.GetTangentToSpline(paramOnSplines[spline]) * direction;
-					Vector3 otherTangent = s.GetTangentToSpline(otherP) * direction;
+					Vector3 otherTangent = s.GetTangentToSpline(paramOnSplines[s]) * direction;
 					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
 
@@ -165,7 +168,6 @@ public class MoveOnSpline : MonoBehaviour {
 //						StartCoroutine(forgetOldSpline());
 
 						spline = s;
-						paramOnSplines[s] = otherP;
 						updateTransform ();
 
 						if(waterfall!=null)

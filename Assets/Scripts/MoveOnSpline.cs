@@ -139,7 +139,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 					if(otherTangent.y >	tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 					{
-//						oldSpline = spline;
+						Spline oldSpline = spline;
 //						StartCoroutine(forgetOldSpline());
 
 						spline = s;
@@ -157,6 +157,11 @@ public class MoveOnSpline : MonoBehaviour {
 						else
 						{
 							speed = initialSpeed;
+
+							//after a waterfall stop where we currently are
+							if(oldSpline.GetComponent<Waterfall>())
+								setTarget (transform.position);
+
 							setTarget (targetMousePos);
 						}
 					}

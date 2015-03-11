@@ -125,7 +125,13 @@ public class MoveOnSpline : MonoBehaviour {
 				if(s.GetInstanceID() == spline.GetInstanceID())
 					continue;
 
-				paramOnSplines[s] = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 5);
+				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 5);
+				float pDiff = paramOnSplines[s] - otherP;
+				//TODO: if pDiff is too high, maybe we should check for positions in between as well
+				if(pDiff > 0.01)
+					Debug.Log ("PDIFF: " + pDiff);
+				paramOnSplines[s] = otherP;
+
 				Vector3 otherPos = s.GetPositionOnSpline(paramOnSplines[s]);
 
 				s.transform.Find("CharacterPos").position = otherPos;
@@ -135,16 +141,16 @@ public class MoveOnSpline : MonoBehaviour {
 
 				float dis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
 
-				if(dis < 3)
-				{
-					
-					Debug.Log ("distance between " + printPath (spline.transform) + " and " + printPath(s.transform));
-
-					Debug.Log("World Coordinates: " + pos + " vs. " + otherPos + " = " + dis);
-					
-					Debug.Log("screen Coordinates: " + posOnScreen + " vs. " + otherPosOnScreen + " = " + screenDis);
-
-				}
+//				if(dis < 1)
+//				{
+//					
+//					Debug.Log ("distance between " + printPath (spline.transform) + " and " + printPath(s.transform));
+//
+//					Debug.Log("World Coordinates: " + pos + " vs. " + otherPos + " = " + dis);
+//					
+//					Debug.Log("screen Coordinates: " + posOnScreen + " vs. " + otherPosOnScreen + " = " + screenDis);
+//
+//				}
 
 				dis = screenDis;
 

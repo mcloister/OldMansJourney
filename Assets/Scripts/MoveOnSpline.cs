@@ -57,8 +57,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 		///adapt threshold to different resolutions
 		//a higher resolution means smaller pixel, or more pixels per world unit, does the threshold has to be adjusted
-		float resFactor = Camera.main.pixelWidth / 1024.0f;
-		switchThreshold = switchThreshold * resFactor;
+		switchThreshold *= Camera.main.pixelWidth / 1024.0f;
 	}
 	
 	// Update is called once per frame

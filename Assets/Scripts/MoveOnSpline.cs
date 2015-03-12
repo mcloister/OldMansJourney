@@ -137,22 +137,20 @@ public class MoveOnSpline : MonoBehaviour {
 				s.transform.Find("CharacterPos").position = otherPos;
 
 				Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(otherPos);
-				float screenDis = Vector3.Distance(posOnScreen, otherPosOnScreen);
+				float dis = Vector3.Distance(posOnScreen, otherPosOnScreen);
 
-				float dis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
+//				float worldDis = Vector3.Distance(pos, otherPos) - Mathf.Abs (spline.transform.position.z - s.transform.position.z);
 
 //				if(dis < 1)
 //				{
 //					
 //					Debug.Log ("distance between " + printPath (spline.transform) + " and " + printPath(s.transform));
 //
-//					Debug.Log("World Coordinates: " + pos + " vs. " + otherPos + " = " + dis);
+//					Debug.Log("World Coordinates: " + pos + " vs. " + otherPos + " = " + worldDis);
 //					
-//					Debug.Log("screen Coordinates: " + posOnScreen + " vs. " + otherPosOnScreen + " = " + screenDis);
+//					Debug.Log("screen Coordinates: " + posOnScreen + " vs. " + otherPosOnScreen + " = " + dis);
 //
 //				}
-
-				dis = screenDis;
 
 				if(dis < switchThreshold * switchThresholdFactor)
 				{

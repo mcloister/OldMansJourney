@@ -25,7 +25,7 @@ public class Gear : MonoBehaviour {
 		if (Mathf.Abs (Mathf.DeltaAngle (lastRotationZ, rotationZ)) > activationThreshold) {
 			moving = true;
 
-			transmission += Mathf.DeltaAngle (lastRotationZ, rotationZ) * ratio * Time.deltaTime;
+			transmission += Mathf.DeltaAngle (lastRotationZ, rotationZ) * ratio;
 
 			float clamped = Mathf.Clamp (transmission, limits.x, limits.y);
 

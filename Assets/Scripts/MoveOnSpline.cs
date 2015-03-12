@@ -114,8 +114,8 @@ public class MoveOnSpline : MonoBehaviour {
 			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
 			spline.transform.Find("CharacterPos").position = pos;
 
-			Waterfall w = spline.GetComponent<Waterfall>();
-			float switchThresholdFactor = (w) ? w.switchThresholdFactor : 1;
+			Waterfall waterfall = spline.GetComponent<Waterfall>();
+			float switchThresholdFactor = (waterfall) ? waterfall.switchThresholdFactor : 1;
 
 			//now check if we need to switch spline
 			foreach (Spline s in allSplines) 
@@ -154,10 +154,12 @@ public class MoveOnSpline : MonoBehaviour {
 
 				if(dis < switchThreshold * switchThresholdFactor)
 				{
-					Waterfall waterfall = s.GetComponent<Waterfall>();
-					if(waterfall != null)
+					//waterfalls can only be switched to from a specific direction
+					//unless we are coming from a waterfall
+					Waterfall otherWaterfall = s.GetComponent<Waterfall>();
+					if(otherWaterfall != null && waterfall == null)
 					{
-						if(waterfall.direction != direction)
+						if(otherWaterfall.direction != direction)
 							continue;
 					}
 
@@ -174,9 +176,9 @@ public class MoveOnSpline : MonoBehaviour {
 						spline = s;
 						updateTransform ();
 
-						if(waterfall!=null)
+						if(otherWaterfall!=null)
 						{
-							speed = waterfall.fallSpeed;
+							speed = otherWaterfall.fallSpeed;
 
 							Vector3 screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -Camera.main.transform.position.z + transform.position.z));
 
@@ -187,7 +189,7 @@ public class MoveOnSpline : MonoBehaviour {
 							speed = initialSpeed;
 
 							//after a waterfall stop where we currently are
-							if(oldSpline.GetComponent<Waterfall>())
+							if(waterfall != null)
 								setTarget (transform.position);
 
 							setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));

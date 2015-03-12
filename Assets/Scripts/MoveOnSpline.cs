@@ -128,8 +128,8 @@ public class MoveOnSpline : MonoBehaviour {
 				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 5);
 				float pDiff = paramOnSplines[s] - otherP;
 				//TODO: if pDiff is too high, maybe we should check for positions in between as well
-				if(pDiff > 0.01)
-					Debug.Log ("PDIFF: " + pDiff);
+//				if(pDiff > 0.01)
+//					Debug.Log ("PDIFF: " + pDiff);
 				paramOnSplines[s] = otherP;
 
 				Vector3 otherPos = s.GetPositionOnSpline(paramOnSplines[s]);

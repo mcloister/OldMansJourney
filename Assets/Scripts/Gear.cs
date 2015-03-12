@@ -8,6 +8,7 @@ public class Gear : MonoBehaviour {
 	public Vector2 limits = new Vector2(0,1);
 	public float activationThreshold = 0.01f;
 
+//	public bool lockAtLimits;
 	public bool moving;
 
 	float lastRotationZ;
@@ -26,7 +27,19 @@ public class Gear : MonoBehaviour {
 
 			transmission += Mathf.DeltaAngle (lastRotationZ, rotationZ) * ratio * Time.deltaTime;
 
-			transmission = Mathf.Clamp (transmission, limits.x, limits.y);
+			float clamped = Mathf.Clamp (transmission, limits.x, limits.y);
+
+//			if(lockAtLimits)
+//			{
+//				if(clamped - transmission < Mathf.Epsilon)
+//					rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
+//				else
+//					rigidbody.constraints = RigidbodyConstraints.None;
+//
+//			}
+
+			transmission = clamped;
+
 		} else
 			moving = false;
 		

@@ -169,7 +169,9 @@ PlayerSettings:
   psp2PackagedResourcesPath: 
   flashStrippingLevel: 2
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    2: 
+    4: 
   metroPackageName: Old Mans Journey
   metroPackageLogo: 
   metroPackageLogo140: 

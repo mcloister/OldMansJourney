@@ -7,12 +7,16 @@ public class Goal : MonoBehaviour {
 	public float winDistance = 0.5f;
 
 	GameObject canvas;
+	public GameObject winEffect;
 
 	// Use this for initialization
 	void Start () 
 	{
 		canvas = GameObject.Find ("WinCanvas");
 		canvas.SetActive (false);
+
+//		winEffect = transform.Find ("winEffect").gameObject;
+		winEffect.SetActive (false);
 
 
 		if (character == null) 
@@ -25,8 +29,10 @@ public class Goal : MonoBehaviour {
 	void Update () {
 		if (character != null) {
 //			Debug.Log("dis to character: " + Vector3.Distance (character.transform.position, transform.position));
-			if (Vector3.Distance (character.transform.position, transform.position) < winDistance)
+			if (Vector3.Distance (character.transform.position, transform.position) < winDistance) {
 				canvas.SetActive (true);
+				winEffect.SetActive(true);
+			}
 		}
 	}
 }

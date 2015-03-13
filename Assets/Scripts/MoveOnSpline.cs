@@ -159,7 +159,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 			//first check the remotesplines every other frame
 			sinceLastRemoteCheck += Time.deltaTime;
-			if(sinceLastRemoteCheck > 0.1666f)
+			if(sinceLastRemoteCheck > 0.25f)
 			{
 				for (int rI = 0; rI < remoteSplines.Count; rI++)
 				{

@@ -4623,6 +4623,14 @@ Prefab:
       propertyPath: spline
       value: 
       objectReference: {fileID: 3479461}
+    - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
+      propertyPath: remoteThreshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
+      propertyPath: stopThreshold
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
   m_RootGameObject: {fileID: 1480118044}
@@ -5722,8 +5730,9 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 15
   dragThreshold: .00999999978
-  stopThreshold: .100000001
+  stopThreshold: 1
   switchThreshold: 5
+  remoteThreshold: 50
 --- !u!23 &1480118046
 Renderer:
   m_ObjectHideFlags: 0

@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &3479454
 GameObject:
@@ -872,7 +873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &232874645
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &418765456
 Transform:
   m_ObjectHideFlags: 0
@@ -1439,7 +1440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &475732933
 Transform:
   m_ObjectHideFlags: 0
@@ -1764,7 +1765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &517730010
 Transform:
   m_ObjectHideFlags: 0
@@ -1836,7 +1837,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &533004820
 Transform:
   m_ObjectHideFlags: 0
@@ -2281,8 +2282,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -3119,6 +3120,14 @@ Prefab:
       propertyPath: spline
       value: 
       objectReference: {fileID: 3479461}
+    - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
+      propertyPath: remoteThreshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
+      propertyPath: stopThreshold
+      value: .333299994
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
   m_RootGameObject: {fileID: 1480118044}
@@ -4748,7 +4757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1297829363
 Transform:
   m_ObjectHideFlags: 0
@@ -5221,7 +5230,7 @@ Transform:
   - {fileID: 1709511798}
   - {fileID: 397572093}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1419369191
 GameObject:
   m_ObjectHideFlags: 0
@@ -5638,8 +5647,9 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 15
   dragThreshold: .00999999978
-  stopThreshold: .100000001
+  stopThreshold: .333299994
   switchThreshold: 5
+  remoteThreshold: 50
 --- !u!23 &1480118046
 Renderer:
   m_ObjectHideFlags: 0
@@ -6019,7 +6029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1588274460
 Transform:
   m_ObjectHideFlags: 0
@@ -6091,7 +6101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1595693373
 Transform:
   m_ObjectHideFlags: 0
@@ -6945,7 +6955,7 @@ Transform:
   m_Children:
   - {fileID: 177253373}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!59 &1883429204
 HingeJoint:
   m_ObjectHideFlags: 0
@@ -7314,7 +7324,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: .300000012
-  far clip plane: 100
+  far clip plane: 120
   field of view: 52
   orthographic: 0
   orthographic size: 5

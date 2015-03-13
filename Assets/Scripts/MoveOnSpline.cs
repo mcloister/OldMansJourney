@@ -95,14 +95,17 @@ public class MoveOnSpline : MonoBehaviour {
 		{
 			//first determine if we are already at target and should stop
 			int currentDirection = (target.x - transform.position.x) > 0 ? 1 : -1;
-			if(currentDirection != direction)
+			if(Vector3.Distance(target, transform.position - new Vector3 (0, transform.localScale.y / 2, 0)) < stopThreshold)
 			{
 //				paramOnSplines[spline] = spline.GetClosestPointParam(target, 3);
-				param = spline.GetClosestPointParam(target, 3);
+//				param = spline.GetClosestPointParam(target, 3);
+
+				if(Debug.isDebugBuild)
+					Debug.Log ("at target! pos: " + transform.position + " t.pos: " + target);
 
 				direction = 0;	//stop moving
 			}
-			//if not move along on current spline
+			//if not, move along on current spline
 			else
 			{
 				paramOnSplines[spline] += (speed * direction * Time.deltaTime) / spline.Length;
@@ -128,7 +131,16 @@ public class MoveOnSpline : MonoBehaviour {
 				//don't compare to active spline
 				if(s.GetInstanceID() == spline.GetInstanceID())
 					continue;
-
+				
+				//waterfalls can only be switched to from a specific direction
+				//unless we are coming from a waterfall
+				Waterfall otherWaterfall = s.GetComponent<Waterfall>();
+				if(otherWaterfall != null)
+				{
+					if(otherWaterfall.direction != direction)
+						continue;
+				}
+				
 				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 5);
 				float pDiff = paramOnSplines[s] - otherP;
 				paramOnSplines[s] = otherP;
@@ -161,14 +173,6 @@ public class MoveOnSpline : MonoBehaviour {
 				//are we close enough to switch?
 				if(dis < switchThreshold * switchThresholdFactor)
 				{
-					//waterfalls can only be switched to from a specific direction
-					//unless we are coming from a waterfall
-					Waterfall otherWaterfall = s.GetComponent<Waterfall>();
-					if(otherWaterfall != null && waterfall == null)
-					{
-						if(otherWaterfall.direction != direction)
-							continue;
-					}
 
 					Vector3 tangent = spline.GetTangentToSpline(paramOnSplines[spline]) * direction;
 					Vector3 otherTangent = s.GetTangentToSpline(paramOnSplines[s]) * direction;
@@ -189,11 +193,12 @@ public class MoveOnSpline : MonoBehaviour {
 						{
 							speed = otherWaterfall.fallSpeed;
 
-							Vector3 screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -Camera.main.transform.position.z + transform.position.z));
+//							Vector3 screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -Camera.main.transform.position.z + transform.position.z));
 
-							setTarget(new Vector3(transform.position.x, screenBottom.y, transform.position.z));
+							float targetParam = (otherWaterfall.direction >0) ? 1.0f : 0.0f;
+							setTarget(spline.GetPositionOnSpline(targetParam));
 						}
-						//switching to a nomral spline
+						//switching to a normal spline
 						else
 						{
 							speed = initialSpeed;
@@ -235,7 +240,7 @@ public class MoveOnSpline : MonoBehaviour {
 	private void updateTransform()
 	{
 		float p = paramOnSplines [spline];
-		transform.position = spline.GetPositionOnSpline (p) + new Vector3 (0, transform.localScale.z / 2, 0);
+		transform.position = spline.GetPositionOnSpline (p) + new Vector3 (0, transform.localScale.y / 2, 0);
 		transform.rotation = spline.GetOrientationOnSpline (p);
 	}
 

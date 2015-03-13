@@ -772,8 +772,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  fallSpeed: 30
-  switchThresholdFactor: 1.5
+  fallSpeed: 50
+  switchThresholdFactor: 1
 --- !u!114 &11436304
 MonoBehaviour:
   m_ObjectHideFlags: 1

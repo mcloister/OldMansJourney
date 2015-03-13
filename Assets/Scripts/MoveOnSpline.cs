@@ -90,11 +90,11 @@ public class MoveOnSpline : MonoBehaviour {
 		} 
 
 
-
+		//are we moving?
 		if(direction != 0)
 		{
+			//first determine if we are already at target and should stop
 			int currentDirection = (target.x - transform.position.x) > 0 ? 1 : -1;
-
 			if(currentDirection != direction)
 			{
 //				paramOnSplines[spline] = spline.GetClosestPointParam(target, 3);
@@ -102,39 +102,45 @@ public class MoveOnSpline : MonoBehaviour {
 
 				direction = 0;	//stop moving
 			}
+			//if not move along on current spline
 			else
 			{
 				paramOnSplines[spline] += (speed * direction * Time.deltaTime) / spline.Length;
 			}
 
+			//position and rotate us
 			updateTransform();
 
-//			float nextP = paramOnSplines[spline] + speed * direction * Time.deltaTime;
+			//now it's time to find out if we need to switch to one of the other splines
+
 			Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
 			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
-			spline.transform.Find("CharacterPos").position = pos;
+
+			if(Debug.isDebugBuild)
+				spline.transform.Find("CharacterPos").position = pos;
 
 			Waterfall waterfall = spline.GetComponent<Waterfall>();
 			float switchThresholdFactor = (waterfall) ? waterfall.switchThresholdFactor : 1;
 
-			//now check if we need to switch spline
+			// check each other spline if we need to switch spline
 			foreach (Spline s in allSplines) 
 			{
-				
 				//don't compare to active spline
 				if(s.GetInstanceID() == spline.GetInstanceID())
 					continue;
 
 				float otherP = s.GetClosestPointParamToRay(Camera.main.ScreenPointToRay(posOnScreen), 5);
 				float pDiff = paramOnSplines[s] - otherP;
+				paramOnSplines[s] = otherP;
+
 				//TODO: if pDiff is too high, maybe we should check for positions in between as well
 //				if(pDiff > 0.01)
 //					Debug.Log ("PDIFF: " + pDiff);
-				paramOnSplines[s] = otherP;
 
 				Vector3 otherPos = s.GetPositionOnSpline(paramOnSplines[s]);
 
-				s.transform.Find("CharacterPos").position = otherPos;
+				if(Debug.isDebugBuild)
+					s.transform.Find("CharacterPos").position = otherPos;
 
 				Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(otherPos);
 				float dis = Vector3.Distance(posOnScreen, otherPosOnScreen);
@@ -152,6 +158,7 @@ public class MoveOnSpline : MonoBehaviour {
 //
 //				}
 
+				//are we close enough to switch?
 				if(dis < switchThreshold * switchThresholdFactor)
 				{
 					//waterfalls can only be switched to from a specific direction
@@ -165,9 +172,10 @@ public class MoveOnSpline : MonoBehaviour {
 
 					Vector3 tangent = spline.GetTangentToSpline(paramOnSplines[spline]) * direction;
 					Vector3 otherTangent = s.GetTangentToSpline(paramOnSplines[s]) * direction;
-					Debug.Log (spline.name + " & " + s.name + " are crossing! t: " + tangent + " oT: " + otherTangent);
 
+					Debug.Log (printPath(spline.transform) + " & " + printPath (s.transform) + " are crossing! t.y: " + tangent.y + " oT.y: " + otherTangent.y);
 
+					//is the other spline moving above ours?
 					if(otherTangent.y >	tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 					{
 						Spline oldSpline = spline;
@@ -176,6 +184,7 @@ public class MoveOnSpline : MonoBehaviour {
 						spline = s;
 						updateTransform ();
 
+						//switching to a waterfall
 						if(otherWaterfall!=null)
 						{
 							speed = otherWaterfall.fallSpeed;
@@ -184,15 +193,15 @@ public class MoveOnSpline : MonoBehaviour {
 
 							setTarget(new Vector3(transform.position.x, screenBottom.y, transform.position.z));
 						}
+						//switching to a nomral spline
 						else
 						{
 							speed = initialSpeed;
 
-							//after a waterfall stop where we currently are
 							if(waterfall != null)
-								setTarget (transform.position);
-
-							setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));
+								direction = 0;			//after a waterfall stop where we currently are
+							else
+								setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
 						}
 					}
 				}
@@ -212,12 +221,14 @@ public class MoveOnSpline : MonoBehaviour {
 		target = spline.GetPositionOnSpline(spline.GetClosestPointParam(worldPosition, 3));
 		direction = (target.x - transform.position.x) > 0 ? 1 : -1;
 
-		
-		
-		if (targetMousePosObj != null)
-			targetMousePosObj.transform.position = targetMousePos;
-		if (targetPosObj != null)
-			targetPosObj.transform.position = target;
+		if (Debug.isDebugBuild) 
+		{
+			if (targetMousePosObj != null)
+				targetMousePosObj.transform.position = targetMousePos;
+			if (targetPosObj != null)
+				targetPosObj.transform.position = target;
+
+		}
 	}
 
 

@@ -20,20 +20,16 @@ public class SplineSelector : MonoBehaviour {
 			Vector3 mouse = Input.mousePosition;
 			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mouse.x, mouse.y, -Camera.main.gameObject.transform.position.z));
 			
-			Debug.Log ("finding closest spline to mouse pos: " + mouse);
+//			Debug.Log ("finding closest spline to mouse pos: " + mouse);
 			
 			findClosestSpline(mouseWorld);
 
-			Debug.Log ("found: " + spline);
+//			Debug.Log ("found: " + spline);
 
 			//disable MeshCollider because it's too expensive to be updated while spline is terraformed
 			if(spline != null)
 				Destroy (spline.gameObject.GetComponent<MeshCollider>());
 
-//			spline.GetComponent<MeshCollider>().sharedMesh = new Mesh();
-//			spline.GetComponent<MeshCollider>().enabled = false;
-
-			//			outputControlPoints();
 		}
 		
 		if (Input.GetMouseButton (0)) 
@@ -45,8 +41,6 @@ public class SplineSelector : MonoBehaviour {
 			//now we can update the meshcollider
 			if(spline != null)
 				spline.gameObject.AddComponent<MeshCollider>();
-//			spline.GetComponent<MeshCollider>().sharedMesh = spline.GetComponent<MeshFilter>().mesh;
-//			spline.GetComponent<MeshCollider>().enabled = true;
 
 			spline = null;
 		}

@@ -18,4 +18,9 @@ public class scaler : MonoBehaviour {
 		float t = timeTaken / duration;
 		transform.localScale = Vector3.Lerp (start, target, t);
 	}
+
+	void OnDisable() {
+		timeTaken = 0.0f;
+		transform.localScale = start;
+	}
 }

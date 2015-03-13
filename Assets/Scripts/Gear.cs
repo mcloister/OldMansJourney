@@ -16,11 +16,11 @@ public class Gear : MonoBehaviour {
 	void Start () {
 		transmission = limits.x;
 	}
-	
+
 	// Update is called once per frame
 	void Update () 
 	{
-		float rotationZ = transform.localRotation.eulerAngles.z;
+		float rotationZ = transform.localRotation.eulerAngles.y;
 
 		if (Mathf.Abs (Mathf.DeltaAngle (lastRotationZ, rotationZ)) > activationThreshold) {
 			moving = true;

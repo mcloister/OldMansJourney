@@ -43,7 +43,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 488098}
   m_Layer: 8
-  m_Name: Static + Formable Spline
+  m_Name: Fixed+Formable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,11 +76,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 488102}
   - 114: {fileID: 11488104}
-  - 33: {fileID: 3388096}
-  - 114: {fileID: 11488102}
   - 23: {fileID: 2388096}
+  - 33: {fileID: 3388096}
   - 64: {fileID: 6488094}
   - 114: {fileID: 11488100}
+  - 114: {fileID: 11488102}
   m_Layer: 8
   m_Name: Fixed Spline
   m_TagString: Spline
@@ -485,7 +485,7 @@ Renderer:
   m_SortingOrder: 0
 --- !u!23 &2388096
 Renderer:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188102}
@@ -572,7 +572,7 @@ MeshFilter:
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3388096
 MeshFilter:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188102}
@@ -600,7 +600,7 @@ MeshFilter:
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!64 &6488094
 MeshCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188102}
@@ -792,7 +792,7 @@ MonoBehaviour:
   normal: {x: 0, y: 1, z: 0}
 --- !u!114 &11488100
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188102}
@@ -804,7 +804,7 @@ MonoBehaviour:
   moveOffset: 50
 --- !u!114 &11488102
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188102}
@@ -854,7 +854,7 @@ MonoBehaviour:
   tension: .5
   normal: {x: 0, y: 1, z: 0}
   autoClose: 0
-  interpolationAccuracy: 5
+  interpolationAccuracy: 1
 --- !u!114 &11488106
 MonoBehaviour:
   m_ObjectHideFlags: 1

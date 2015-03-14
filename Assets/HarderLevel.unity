@@ -3430,7 +3430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  fallSpeed: 30
+  fallSpeed: 50
   switchThresholdFactor: 2
 --- !u!114 &1109709276
 MonoBehaviour:
@@ -3661,7 +3661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  fallSpeed: 30
+  fallSpeed: 50
   switchThresholdFactor: 2
 --- !u!114 &1159512374
 MonoBehaviour:
@@ -5338,6 +5338,7 @@ MonoBehaviour:
   stopThreshold: .333299994
   switchThreshold: 5
   remoteThreshold: 50
+  maxPDiff: .00499999989
 --- !u!23 &1480118046
 Renderer:
   m_ObjectHideFlags: 0

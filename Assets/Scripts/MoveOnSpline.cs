@@ -187,7 +187,7 @@ public class MoveOnSpline : MonoBehaviour {
 					remoteSplines.Remove(rmS);
 
 				
-				if(toRemove.Count > 0)
+				if(Debug.isDebugBuild && toRemove.Count > 0)
 				{
 					Debug.Log ("LISTS CHANGED! remoteSplines (" + remoteSplines.Count + ")" + " - > closeSplines (" + closeSplines.Count + ")");
 					printSplineLists();
@@ -299,7 +299,7 @@ public class MoveOnSpline : MonoBehaviour {
 			foreach (Spline rmS in toRemove) 
 				closeSplines.Remove(rmS);
 			
-			if(toRemove.Count > 0)
+			if(Debug.isDebugBuild && toRemove.Count > 0)
 			{
 				Debug.Log ("LISTS CHANGED!  closeSplines (" + closeSplines.Count + ") remoteSplines (" + remoteSplines.Count + ")");
 				printSplineLists();

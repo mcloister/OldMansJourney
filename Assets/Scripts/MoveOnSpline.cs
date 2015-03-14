@@ -34,6 +34,7 @@ public class MoveOnSpline : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		Application.targetFrameRate = 60;
 
 		initialSpeed = speed;
 

@@ -14,6 +14,8 @@ public class FormableNode : MonoBehaviour {
 		BoxCollider bc = GetComponent<BoxCollider> ();
 		if (bc != null) 
 			setLimits(bc.bounds);
+
+		bc.enabled = false;
 	}
 	
 	// Update is called once per frame

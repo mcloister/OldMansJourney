@@ -180,7 +180,8 @@ public class MoveOnSpline : MonoBehaviour {
 			}
 			
 			interpolatedP.Add(newP);
-			Debug.Log (newP);
+			if(Debug.isDebugBuild)
+				Debug.Log (newP);
 
 			//check each parameter iP between parameter of last frame and current frame
 			foreach(float iP in interpolatedP)

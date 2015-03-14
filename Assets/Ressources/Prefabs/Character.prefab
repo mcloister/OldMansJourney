@@ -144,8 +144,10 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   speed: 15
   dragThreshold: .00999999978
-  stopThreshold: .100000001
+  stopThreshold: .333299994
   switchThreshold: 5
+  remoteThreshold: 50
+  maxPDiff: .00100000005
 --- !u!212 &21246050
 SpriteRenderer:
   m_ObjectHideFlags: 1

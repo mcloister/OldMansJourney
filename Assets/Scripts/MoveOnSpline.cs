@@ -263,7 +263,9 @@ public class MoveOnSpline : MonoBehaviour {
 				
 				if(Debug.isDebugBuild)
 					otherSpline.transform.Find("CharacterPos").position = otherPos;
-				
+
+				bool switched = false;
+
 				//in screenspace to take persepctive into account
 				Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(otherPos);
 
@@ -290,7 +292,7 @@ public class MoveOnSpline : MonoBehaviour {
 						Vector3 tangent = spline.GetTangentToSpline(interpolated.parameter) * direction;
 						Vector3 otherTangent = otherSpline.GetTangentToSpline(otherP) * direction;
 						
-						Debug.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y);
+						Debug.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y + " p: " + interpolated.parameter + " oP: " + otherP);
 						
 						
 						//is the other spline going up, that is moving higher?
@@ -328,7 +330,8 @@ public class MoveOnSpline : MonoBehaviour {
 								else
 									setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
 							}
-							
+
+							switched = true;
 							break; //no need to check other interpolated parameters anymore
 						}
 					}
@@ -346,6 +349,9 @@ public class MoveOnSpline : MonoBehaviour {
 //						Debug.Log (printPath(rmS.transform));
 //				}
 				toRemove.Clear ();
+
+				if(switched)
+					break;
 			}
 		}
 	

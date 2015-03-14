@@ -1571,7 +1571,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &492768523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3032,10 +3032,6 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: -10.1199999
       objectReference: {fileID: 0}
-    - target: {fileID: 11470026, guid: 6d9db4eaf94ac4d3088e98d492a171f8, type: 2}
-      propertyPath: fallSpeed
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 170018, guid: 6d9db4eaf94ac4d3088e98d492a171f8, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -3454,7 +3450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  fallSpeed: 100
+  fallSpeed: 50
   switchThresholdFactor: 2
 --- !u!114 &1109709276
 MonoBehaviour:
@@ -5422,7 +5418,7 @@ Transform:
   - {fileID: 1041736318}
   - {fileID: 1736399263}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1504296707
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class FPSDisplay : MonoBehaviour {
 			dt -= 1.0f/updateRate;
 
 			if(text != null)
-				text.text = string.Format (initialString, fps);
+				text.text = string.Format (initialString, fps.ToString("N2"));
 		}
 	}
 }

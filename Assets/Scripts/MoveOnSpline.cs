@@ -12,12 +12,13 @@ public class MoveOnSpline : MonoBehaviour {
 	public float switchThreshold = 0.5f;
 	public float remoteThreshold = 10.0f;
 
-	public float maxPDiff = 0.005f;
+	public float maxDistancePerFrame = 0.1f;
 
 	List<Spline> closeSplines;
 	List<Spline> remoteSplines;
 	private Spline oldSpline;
-	Dictionary<Spline, float> paramOnSplines;
+	float curParameter;
+	float curDistance;
 
 	Vector3 targetMousePos;
 	Vector3 mousePosOnDown = Vector3.zero;
@@ -32,6 +33,18 @@ public class MoveOnSpline : MonoBehaviour {
 	GameObject targetMousePosObj;
 
 	float sinceLastRemoteCheck;
+
+	struct InterpolationData
+	{
+		public float parameter;
+		public Vector2 screenPos;
+
+		public InterpolationData(float p, Vector2 sPos)
+		{
+			parameter = p;
+			screenPos = sPos;
+		}
+	}
 
 	// Use this for initialization
 	void Start () 
@@ -48,14 +61,14 @@ public class MoveOnSpline : MonoBehaviour {
 		closeSplines.Add (spline);
 		remoteSplines = new List<Spline>(splineObjects.Length);
 		
-		paramOnSplines = new Dictionary<Spline, float> ();
 
 		// position on initila spline
-		paramOnSplines.Add (spline, spline.GetClosestPointParam (transform.position, 3));
+		curParameter = spline.GetClosestPointParam (transform.position, 3);
+		curDistance = spline.ConvertNormalizedParameterToDistance (curParameter);
 		updateTransform ();
 
 		//determin which splines are close and which are far away
-		Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
+		Vector3 pos = spline.GetPositionOnSpline(curParameter);
 		Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
 		for (int i = 0; i < splineObjects.Length; i++) 
 		{
@@ -65,7 +78,6 @@ public class MoveOnSpline : MonoBehaviour {
 				continue;
 
 			float p = s.GetClosestPointParam(transform.position, 3);
-			paramOnSplines.Add(s, p);
 
 			float dis = Vector2.Distance(posOnScreen, (Vector2)Camera.main.WorldToScreenPoint(s.GetPositionOnSpline(p)));
 
@@ -108,7 +120,6 @@ public class MoveOnSpline : MonoBehaviour {
 				Vector3 mousePos = Input.mousePosition;
 				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z + spline.gameObject.transform.position.z)));
 
-//				StartCoroutine(checkRemoteSplines());
 			}
 		}
 		
@@ -125,10 +136,8 @@ public class MoveOnSpline : MonoBehaviour {
 		if(direction != 0)
 		{
 			//first determine if we are already at target and should stop
-			int currentDirection = (target.x - transform.position.x) > 0 ? 1 : -1;
 			if(Vector3.Distance(target, transform.position - new Vector3 (0, transform.localScale.y / 2, 0)) < stopThreshold)
 			{
-//				paramOnSplines[spline] = spline.GetClosestPointParam(target, 3);
 
 //				if(Debug.isDebugBuild)
 //					Debug.Log ("at target! pos: " + transform.position + " t.pos: " + target);
@@ -137,173 +146,166 @@ public class MoveOnSpline : MonoBehaviour {
 				return;
 			}
 
-			float oldP = paramOnSplines[spline];
-
 			//if not, move along on current spline
-			float newP = oldP + (speed * direction * Time.deltaTime) / spline.Length;
-			paramOnSplines[spline] = newP;
+			float oldP = curParameter;
+			curParameter = oldP + (speed * direction * Time.deltaTime) / spline.Length;
+			float oldD = curDistance;
+			curDistance = spline.ConvertNormalizedParameterToDistance(curParameter);
 
 			//position and rotate us
 			updateTransform();
 
 			//now it's time to find out if we need to switch to one of the other splines
 
+			//world and screen pos of our character on current spline
+			Vector3 pos = spline.GetPositionOnSpline(curParameter);
+			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
+
 			//we need to interpolate the spline parameter if we have moved too far since last frame
-			float pDiff = Mathf.Abs (oldP - newP);
-			List<float> interpolatedP = new List<float>(3);
-			
-			//TODO: if pDiff is too high, we should check for positions in between as well
-			if(pDiff > maxPDiff)
+			Vector3 avgPos;
+			Vector2 avgPosOnScreen;
+			List<InterpolationData> interpolations = new List<InterpolationData>(3);
+
+			//we always want to check the position of our current parameter
+			interpolations.Add(new InterpolationData(curParameter, posOnScreen));
+
+			float distanceSinceLastFrame = Mathf.Abs (curDistance - oldD);
+
+			//close enough -> we don't need to interpolate position on spline between frames
+			if(distanceSinceLastFrame < maxDistancePerFrame)
 			{
-				Debug.Log ("Interpolating on " + printPath(spline.transform) + " between " + oldP + " and " + newP + " PDIFF: " + pDiff);
-				float lastInterpolation = (oldP < newP) ? oldP : newP;
-				float interpolationTarget = (oldP < newP) ? newP : oldP;
+				avgPos = pos;
+				avgPosOnScreen = posOnScreen;
+			}
+			//we moved too far since last frame -> need to also check the positions that we passed since last frame
+			else
+			{
+				//calcualte an avg pos between last and current frame
+				avgPos = spline.GetPositionOnSpline(oldP + (curParameter - oldP)/2.0f);
+				avgPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(avgPos);
+
+				//now calculate and save interpolated screen position.
+				//we'll compare these to the closest point to avgPos on all other splines later on
+				float lastInterpolatedP = (oldP < curParameter) ? oldP : curParameter;
+				float targetP = (oldP < curParameter) ? curParameter : oldP;
+
+				float deltaP = spline.ConvertDistanceToNormalizedParameter(maxDistancePerFrame)/3.0f;
 				
+				Debug.Log ("Interpolating on " + printPath(spline.transform) + " between " + oldD + " and " + curDistance + " distance: " + distanceSinceLastFrame);
+				Debug.Log ("in parameters: " + oldP + " and " + curParameter + " distance: " + Mathf.Abs (curParameter - oldP) + " deltaP is: " + deltaP);
+
 				while (true) 
 				{
-					float newInterpolation = lastInterpolation + maxPDiff/3.0f;
-					if(newInterpolation > interpolationTarget)
+					float interpolatedP = lastInterpolatedP + deltaP;
+					if(interpolatedP > targetP)
 					{
-						if(Debug.isDebugBuild)
-						{
-							Debug.Log("finished interpolating!");
-							foreach(float f in interpolatedP)
-								Debug.Log (f);
-						}
+//						if(Debug.isDebugBuild)
+//						{
+//							Debug.Log("finished interpolating!");
+//							foreach(InterpolationData d in interpolations)
+//								Debug.Log (d.parameter + " pos: " + d.screenPos);
+//						}
+
 						break;
 					}
 					
-					interpolatedP.Add(newInterpolation);
+					interpolations.Add(new InterpolationData(interpolatedP, (Vector2)Camera.main.WorldToScreenPoint(spline.GetPositionOnSpline(interpolatedP))));
 					
-					lastInterpolation = newInterpolation;
+					lastInterpolatedP = interpolatedP;
 				}
 			}
-			
-			interpolatedP.Add(newP);
-			if(Debug.isDebugBuild)
-				Debug.Log (newP);
 
-			//check each parameter iP between parameter of last frame and current frame
-			foreach(float iP in interpolatedP)
+			Ray rayFromAvgPos = Camera.main.ScreenPointToRay(avgPosOnScreen);
+//			Debug.DrawRay(rayFromPos.origin, rayFromPos.direction * 150, Color.yellow);
+			
+			if(Debug.isDebugBuild)
+				spline.transform.Find("CharacterPos").position = pos;
+			
+			Waterfall waterfall = spline.GetComponent<Waterfall>();
+			float switchThresholdFactor = (waterfall) ? waterfall.switchThresholdFactor : 1;
+
+			//first check the remotesplines every other frame
+			sinceLastRemoteCheck += Time.deltaTime;
+			if(sinceLastRemoteCheck > 0.25f)
 			{
-				Vector3 pos = spline.GetPositionOnSpline(iP);
-				Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
-				Ray rayFromPos = Camera.main.ScreenPointToRay(posOnScreen);
-				Debug.DrawRay(rayFromPos.origin, rayFromPos.direction * 150, Color.yellow);
+				checkRemoteSplines(rayFromAvgPos, avgPosOnScreen);
+		
+				sinceLastRemoteCheck = 0.0f;
+			}
+
+			
+			List<Spline> toRemove =new List<Spline>();
+			// then check each spline that is close enough if we need to switch spline
+			for (int cI = 0; cI < closeSplines.Count; cI++)
+			{
+				Spline otherSpline = closeSplines[cI];
+				
+				//don't compare to active spline
+				if(otherSpline.GetInstanceID() == spline.GetInstanceID())
+					continue;
+				
+				//waterfalls can only be switched to from a specific direction
+				//unless we are coming from a waterfall
+				Waterfall otherWaterfall = otherSpline.GetComponent<Waterfall>();
+				if(otherWaterfall != null)
+				{
+					if(otherWaterfall.direction != direction)
+						continue;
+				}
+
+				
+				if(Debug.isDebugBuild && interpolations.Count > 1)
+					Debug.Log ("Comparing " + printPath(spline.transform) + " to " + printPath (otherSpline.transform));
+
+				float otherP = otherSpline.GetClosestPointParamToRay(rayFromAvgPos, 5);
+
+				Vector3 otherPos = otherSpline.GetPositionOnSpline(otherP);
 				
 				if(Debug.isDebugBuild)
-					spline.transform.Find("CharacterPos").position = pos;
+					otherSpline.transform.Find("CharacterPos").position = otherPos;
 				
-				Waterfall waterfall = spline.GetComponent<Waterfall>();
-				float switchThresholdFactor = (waterfall) ? waterfall.switchThresholdFactor : 1;
-				
-				List<Spline> toRemove =new List<Spline>();
-				
-				//first check the remotesplines every other frame
-				sinceLastRemoteCheck += Time.deltaTime;
-				if(sinceLastRemoteCheck > 0.25f)
+				//in screenspace to take persepctive into account
+				Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(otherPos);
+
+				//compare position on otherSpline with all interpolated positions on current spline
+				foreach(InterpolationData interpolated in interpolations)
 				{
-					for (int rI = 0; rI < remoteSplines.Count; rI++)
+					float dis = Vector3.Distance(interpolated.screenPos, otherPosOnScreen);
+					
+					if(Debug.isDebugBuild && interpolations.Count > 1)
 					{
-						Spline s = remoteSplines[rI];
-						
-						float p = s.GetClosestPointParamToRay(rayFromPos, 5);
-						
-						Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(s.GetPositionOnSpline(p));
-						float dis = Vector2.Distance(posOnScreen, otherPosOnScreen );
-						
-						//					if(Debug.isDebugBuild)
-						//						Debug.Log("distance to " + printPath(s.transform) + " is " + dis);
-						
-						if(dis <= remoteThreshold)
-						{
-							closeSplines.Add (s);
-							toRemove.Add(s);
-						}
-						
-						paramOnSplines[s] = p;
-						
-						//			i++;
+						Debug.Log ("interpolated screenPos: " + interpolated.screenPos + " otherScreenPos: " + otherPosOnScreen + " dis: " + dis);
 					}
-					foreach (Spline rmS in toRemove) 
-						remoteSplines.Remove(rmS);
-					
-					
-					//				if(Debug.isDebugBuild && toRemove.Count > 0)
-					//				{
-					//					Debug.Log ("LISTS CHANGED! remoteSplines (" + remoteSplines.Count + ")" + " - > closeSplines (" + closeSplines.Count + ")");
-					//					printSplineLists();
-					//				}
-					
-					toRemove.Clear();
-					
-					sinceLastRemoteCheck = 0.0f;
-				}
-				
-				// check each spline that is close enough if we need to switch spline
-				//			int sI = 0;
-				//			foreach (Spline s in closeSplines) 
-				for (int cI = 0; cI < closeSplines.Count; cI++)
-				{
-					Spline s = closeSplines[cI];
-					
-					//don't compare to active spline
-					if(s.GetInstanceID() == spline.GetInstanceID())
-						continue;
-					
-					//waterfalls can only be switched to from a specific direction
-					//unless we are coming from a waterfall
-					Waterfall otherWaterfall = s.GetComponent<Waterfall>();
-					if(otherWaterfall != null)
-					{
-						if(otherWaterfall.direction != direction)
-							continue;
-					}
-					
-					float otherP = s.GetClosestPointParamToRay(rayFromPos, 5);
-					paramOnSplines[s] = otherP;
-					
-					//determine if the position at p is close enough to switch to another spline
-					Vector3 otherPos = s.GetPositionOnSpline(otherP);
-					
-					if(Debug.isDebugBuild)
-						s.transform.Find("CharacterPos").position = otherPos;
-					
-					//compare distance in screenspace to take persepctive into account
-					Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(otherPos);
-					float dis = Vector3.Distance(posOnScreen, otherPosOnScreen);
-					
-					if(Debug.isDebugBuild && interpolatedP.Count > 0)
-					{
-						Debug.Log ("oP: " + otherP + " oPS: " + otherPosOnScreen + " dis: " + dis);
-					}
-					
-					
 					//if we are far away stop checking this spline every frame
 					if(dis > remoteThreshold)
 					{
-						toRemove.Add(s);
-						remoteSplines.Add (s);
+						toRemove.Add(otherSpline);
+						remoteSplines.Add (otherSpline);
+
+						break;		//no need to check the other interpolated positions
 					}
 					//are we close enough to switch?
 					else if(dis < switchThreshold * switchThresholdFactor)
 					{
-						Vector3 tangent = spline.GetTangentToSpline(iP) * direction;
-						Vector3 otherTangent = s.GetTangentToSpline(otherP) * direction;
+						Vector3 tangent = spline.GetTangentToSpline(interpolated.parameter) * direction;
+						Vector3 otherTangent = otherSpline.GetTangentToSpline(otherP) * direction;
 						
-						Debug.Log (printPath(spline.transform) + " & " + printPath (s.transform) + " are crossing! t.y: " + tangent.y + " oT.y: " + otherTangent.y);
+						Debug.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y);
 						
 						
-						//is the other spline moving above ours?
+						//is the other spline going up, that is moving higher?
 						if(otherTangent.y >	tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 						{
 							Spline oldSpline = spline;
 							//						StartCoroutine(forgetOldSpline());
 							
 							if(Debug.isDebugBuild)
-								Debug.Log("SWITCHED to spline: " + printPath(s.transform));
+								Debug.Log("SWITCHED to spline: " + printPath(otherSpline.transform));
 							
-							spline = s;
+							spline = otherSpline;
+							curParameter = otherP;
+							curDistance = spline.ConvertNormalizedParameterToDistance(otherP);
+
 							updateTransform ();
 							
 							//switching to a waterfall
@@ -336,46 +338,18 @@ public class MoveOnSpline : MonoBehaviour {
 				foreach (Spline rmS in toRemove) 
 					closeSplines.Remove(rmS);
 				
-				//			if(Debug.isDebugBuild && toRemove.Count > 0)
-				//			{
-				//				Debug.Log ("LISTS CHANGED!  closeSplines (" + closeSplines.Count + ") remoteSplines (" + remoteSplines.Count + ")");
-				//				printSplineLists();
-				//			}
+//				if(Debug.isDebugBuild && toRemove.Count > 0)
+//				{
+//					Debug.Log ("LISTS CHANGED!  closeSplines (" + closeSplines.Count + ") remoteSplines (" + remoteSplines.Count + ")");
+//					Debug.Log ("removed from closeSpline:");
+//					foreach (Spline rmS in toRemove) 
+//						Debug.Log (printPath(rmS.transform));
+//				}
 				toRemove.Clear ();
 			}
 		}
 	
 	}
-
-
-//	IEnumerator checkRemoteSplines()
-//	{
-//		yield return new WaitForSeconds (0.16667f);
-//
-//		Vector3 pos = spline.GetPositionOnSpline(paramOnSplines[spline]);
-//		Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(pos);
-//
-////		int i = 0;
-////		foreach (Spline s in remoteSplines) 
-//		for (int i = 0; i < remoteSplines.Count; i++)
-//		{
-//			Spline s = remoteSplines[i];
-//
-//			float p = s.GetClosestPointParam(transform.position, 3);
-//
-//			Vector2 otherPosOnScreen = (Vector2)Camera.main.WorldToScreenPoint(s.GetPositionOnSpline(p));
-//			float dis = Vector2.Distance(posOnScreen, otherPosOnScreen );
-//			if(dis <= remoteThreshold)
-//			{
-//				remoteSplines.RemoveAt(i);
-//				closeSplines.Add (s);
-//			}
-//			
-//			paramOnSplines.Add(s, p);
-//
-////			i++;
-//		}
-//	}
 
 	public void setTarget(Vector3 worldPosition)
 	{
@@ -397,9 +371,8 @@ public class MoveOnSpline : MonoBehaviour {
 
 	private void updateTransform()
 	{
-		float p = paramOnSplines [spline];
-		transform.position = spline.GetPositionOnSpline (p) + new Vector3 (0, transform.localScale.y / 2, 0);
-		transform.rotation = spline.GetOrientationOnSpline (p);
+		transform.position = spline.GetPositionOnSpline (curParameter) + new Vector3 (0, transform.localScale.y / 2, 0);
+		transform.rotation = spline.GetOrientationOnSpline (curParameter);
 	}
 
 	
@@ -437,7 +410,6 @@ public class MoveOnSpline : MonoBehaviour {
 	public void stopMoving()
 	{
 		direction = 0;
-//		StopCoroutine (checkRemoteSplines());
 	}
 
 	void printSplineLists()
@@ -449,5 +421,44 @@ public class MoveOnSpline : MonoBehaviour {
 		Debug.Log ("CLOSESPLINES count: " + closeSplines.Count);
 		foreach (Spline s in closeSplines)
 			Debug.Log (printPath (s.transform));
+	}
+
+	void checkRemoteSplines(Ray ray, Vector2 compareTo)
+	{
+		List<Spline> toRemove =new List<Spline>();
+		for (int rI = 0; rI < remoteSplines.Count; rI++)
+		{
+			Spline s = remoteSplines[rI];
+			
+			float p = s.GetClosestPointParamToRay(ray, 5);
+			
+			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(s.GetPositionOnSpline(p));
+			float dis = Vector2.Distance(compareTo, posOnScreen );
+			
+			//					if(Debug.isDebugBuild)
+			//						Debug.Log("distance to " + printPath(s.transform) + " is " + dis);
+			
+			if(dis <= remoteThreshold)
+			{
+				closeSplines.Add (s);
+				toRemove.Add(s);
+			}
+			
+			
+			//			i++;
+		}
+		foreach (Spline rmS in toRemove) 
+			remoteSplines.Remove(rmS);
+		
+		
+//		if(Debug.isDebugBuild && toRemove.Count > 0)
+//		{
+//			Debug.Log ("LISTS CHANGED! remoteSplines (" + remoteSplines.Count + ")" + " - > closeSplines (" + closeSplines.Count + ")");
+//			Debug.Log ("ADDED to closeSpline:");
+//			foreach (Spline rmS in toRemove) 
+//				Debug.Log (printPath(rmS.transform));
+//		}
+		
+		toRemove.Clear();
 	}
 }

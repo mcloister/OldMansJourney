@@ -146,8 +146,8 @@ MonoBehaviour:
   dragThreshold: .00999999978
   stopThreshold: .333299994
   switchThreshold: 5
-  remoteThreshold: 50
-  maxPDiff: .00100000005
+  remoteThreshold: 200
+  maxDistancePerFrame: 1
 --- !u!212 &21246050
 SpriteRenderer:
   m_ObjectHideFlags: 1

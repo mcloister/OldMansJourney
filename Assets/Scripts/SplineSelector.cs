@@ -6,11 +6,20 @@ public class SplineSelector : MonoBehaviour {
 	private GameObject[] allSplines;
 	public Spline spline;
 
+	public MoveOnSpline characterMovement;
+
 	// Use this for initialization
 	void Start () {
 		allSplines = GameObject.FindGameObjectsWithTag("Spline");
 
 		spline = null;
+
+		if (characterMovement == null) 
+		{
+			GameObject character = GameObject.FindGameObjectWithTag("Character");
+			if(character != null)
+				characterMovement = character.GetComponent<MoveOnSpline>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -55,7 +64,15 @@ public class SplineSelector : MonoBehaviour {
 		if (!hit.collider.gameObject.transform.CompareTag("Spline"))
 			return;
 		
-		spline = hit.collider.gameObject.transform.GetComponent<Spline> ();
+		Spline s = hit.collider.gameObject.transform.GetComponent<Spline> ();
+
+		//don't allow terraforming of spline where character is currently moving
+		if (characterMovement != null && s.GetInstanceID () == characterMovement.spline.GetInstanceID ()) 
+		{
+			return;
+		}
+
+		spline = s;
 
 
 //		float minDist = Mathf.Infinity;

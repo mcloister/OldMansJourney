@@ -105,22 +105,22 @@ public class TerraformPoint : Terraform
 			else
 			{
 				//make sure we're never pushed outside of our limits
-//				float offset = 0.01f;
-//
-//				Vector3 curPos = fN.transform.position;
-//
-//				if(curPos.x <= fN.limits.xMin)
-//					curPos.x = fN.limits.xMin + offset;
-//				if(curPos.y <= fN.limits.yMin)
-//					curPos.y = fN.limits.xMin + offset;
-//
-//				
-//				if(curPos.x >= fN.limits.xMax)
-//					curPos.x = fN.limits.xMax - offset;
-//				if(curPos.y >= fN.limits.yMax)
-//					curPos.y = fN.limits.yMax - offset;
-//
-//				fN.transform.position = curPos;
+				float offset = 0.01f;
+
+				Vector3 curPos = fN.transform.position;
+
+				if(curPos.x <= fN.limits.xMin)
+					curPos.x = fN.limits.xMin + offset;
+				if(curPos.y <= fN.limits.yMin)
+					curPos.y = fN.limits.xMin + offset;
+
+				
+				if(curPos.x >= fN.limits.xMax)
+					curPos.x = fN.limits.xMax - offset;
+				if(curPos.y >= fN.limits.yMax)
+					curPos.y = fN.limits.yMax - offset;
+
+				fN.transform.position = curPos;
 			}
 
 		}

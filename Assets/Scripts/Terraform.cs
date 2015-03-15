@@ -1,63 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-//struct FormableNode
-//{
-//	public SplineNode splineNode;
-//	public Rect limits;
-//	public Transform transform;
-//
-//	public FormableNode(SplineNode n)
-//	{
-//		splineNode = n;
-//		if(n != null)
-//			transform = n.transform;
-//		else
-//			transform = null;
-//		
-//		limits = new Rect (0, 0, 0, 0);
-//	}
-//
-//	public FormableNode(SplineNode n, Bounds b)
-//	{
-//		splineNode = n;
-//		if(n != null)
-//			transform = n.transform;
-//		else
-//			transform = null;
-//
-//		limits = new Rect (0, 0, 0, 0);
-//
-//		setLimits (b);
-//	}
-//	
-//	public FormableNode(SplineNode n, BoxCollider bc)
-//	{
-//		splineNode = n;
-//		if(n != null)
-//			transform = n.transform;
-//		else
-//			transform = null;
-//		
-//		limits = new Rect (0, 0, 0, 0);
-//
-//		if(bc != null)
-//			setLimits (bc.bounds);
-//	}
-//
-//	public void setLimits(Bounds b)
-//	{
-//		limits = new Rect (b.min.x, b.min.y, b.size.x, b.size.y);
-//	}
-//
-//	public bool allowForming(Vector3 newPos)
-//	{
-//		if (limits.width == 0)
-//			return true;
-//
-//		return limits.Contains (new Vector2 (newPos.x, newPos.y));
-//	}
-//}
+using System.Collections.Generic;
 
 public class Terraform : MonoBehaviour {
 
@@ -65,7 +8,7 @@ public class Terraform : MonoBehaviour {
 
 	protected SplineSelector selector;
 	protected Spline spline;
-	protected ArrayList formableNodes;
+	protected List<FormableNode> formableNodes;
 	protected Vector3 lastMousePos;
 	
 	protected Bounds limits;
@@ -77,7 +20,7 @@ public class Terraform : MonoBehaviour {
 
 		limits = new Bounds(Vector3.zero, Vector3.zero);
 
-		formableNodes = new ArrayList ();
+		formableNodes = new List<FormableNode> (3);
 	}
 	
 	// Update is called once per frame
@@ -107,14 +50,14 @@ public class Terraform : MonoBehaviour {
 				if (limitsObject != null) 
 					limits = limitsObject.GetComponent<BoxCollider>().bounds;
 
-				//find all nodes that are formable and store their limits
+				//find all nodes that are formable
 				formableNodes.Clear();
-				for (int i = 0; i < spline.transform.childCount; i++)
+				foreach(SplineNode sN in spline.SplineNodes)
 				{
-					Transform t = spline.transform.GetChild(i);
+					Transform t = sN.transform;
 					if(!t.CompareTag("Formable Node"))
 						continue;
-
+					
 					formableNodes.Add(t.GetComponent<FormableNode>());
 				}
 

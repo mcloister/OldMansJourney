@@ -71,7 +71,7 @@ GameObject:
   - 65: {fileID: 6570012}
   m_Layer: 2
   m_Name: Node 0003
-  m_TagString: Static Node
+  m_TagString: Fixed Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - 65: {fileID: 6570018}
   m_Layer: 2
   m_Name: Node 0002
-  m_TagString: Static Node
+  m_TagString: Fixed Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,7 +261,7 @@ GameObject:
   - 65: {fileID: 6570026}
   m_Layer: 2
   m_Name: Node 0001
-  m_TagString: Static Node
+  m_TagString: Fixed Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

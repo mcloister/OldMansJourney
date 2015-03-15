@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: StaticHill
+  m_Name: StaticHill 2
   m_Shader: {fileID: 4800000, guid: b7043140fe03245b682231e27c39a664, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -29,4 +29,4 @@ Material:
       data:
         first:
           name: _Illumi
-        second: {r: .451724142, g: .451724142, b: .451724142, a: 1}
+        second: {r: .362068951, g: .362068951, b: .362068951, a: 1}

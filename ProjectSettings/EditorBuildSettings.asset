@@ -8,6 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/TestHills.unity
   - enabled: 1
-    path: Assets/HarderLevel.unity
+    path: Assets/WaterfallLevel.unity
   - enabled: 0
     path: Assets/DebugLevel.unity

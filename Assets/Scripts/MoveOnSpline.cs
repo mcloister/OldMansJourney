@@ -32,6 +32,9 @@ public class MoveOnSpline : MonoBehaviour {
 	GameObject targetPosObj;
 	GameObject targetMousePosObj;
 
+	AudioSource tap;
+	AudioSource walking;
+
 	float sinceLastRemoteCheck;
 
 	struct InterpolationData
@@ -99,6 +102,16 @@ public class MoveOnSpline : MonoBehaviour {
 		///adapt threshold to different resolutions
 		//a higher resolution means smaller pixel, or more pixels per world unit, does the threshold has to be adjusted
 		switchThreshold *= Camera.main.pixelWidth / 1024.0f;
+
+		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
+
+		foreach (GameObject o in sounds) 
+		{
+			if(o.name == "Tap")
+			   tap = o.GetComponent<AudioSource>();
+			else if(o.name == "walking")
+				walking = o.GetComponent<AudioSource>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -120,6 +133,11 @@ public class MoveOnSpline : MonoBehaviour {
 				Vector3 mousePos = Input.mousePosition;
 				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z + spline.gameObject.transform.position.z)));
 
+				if(tap != null)
+							tap.Play();
+
+				if(walking != null)
+					walking.Play();
 			}
 		}
 		
@@ -416,6 +434,10 @@ public class MoveOnSpline : MonoBehaviour {
 	public void stopMoving()
 	{
 		direction = 0;
+
+		
+		if(walking != null)
+			walking.Stop();
 	}
 
 	void printSplineLists()

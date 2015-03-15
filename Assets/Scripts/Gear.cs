@@ -12,9 +12,19 @@ public class Gear : MonoBehaviour {
 	public bool moving;
 
 	float lastRotationZ;
+
+	AudioSource sound;
+
 	// Use this for initialization
 	void Start () {
 		transmission = limits.x;
+		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
+		
+		foreach (GameObject o in sounds) 
+		{
+			if(o.name == "crank")
+				sound = o.GetComponent<AudioSource>();
+		}
 	}
 
 	// Update is called once per frame
@@ -23,7 +33,13 @@ public class Gear : MonoBehaviour {
 		float rotationZ = transform.localRotation.eulerAngles.z;
 
 		if (Mathf.Abs (Mathf.DeltaAngle (lastRotationZ, rotationZ)) > activationThreshold) {
-			moving = true;
+			if (!moving) {
+				moving = true;
+				
+				StopCoroutine (stopSound());
+				if(!sound.isPlaying)
+					sound.Play ();
+			}
 
 			transmission += Mathf.DeltaAngle (lastRotationZ, rotationZ) * ratio;
 
@@ -40,9 +56,18 @@ public class Gear : MonoBehaviour {
 
 			transmission = clamped;
 
-		} else
+		} else if (moving) {
 			moving = false;
+			StartCoroutine (stopSound());
+		}
 		
 		lastRotationZ = rotationZ;
+	}
+
+	IEnumerator stopSound()
+	{
+		yield return new WaitForSeconds (1f);
+
+		sound.Stop ();
 	}
 }

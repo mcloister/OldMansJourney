@@ -17,7 +17,7 @@ function Update ()
 		
 	// We need to actually hit an object
 	var hit : RaycastHit;
-	if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),  hit, 100))
+	if (!Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition),  hit, 120))
 		return;
 	// We need to hit a rigidbody that is not kinematic
 	if (!hit.rigidbody || hit.rigidbody.isKinematic)

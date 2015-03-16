@@ -28,7 +28,6 @@ GameObject:
   - 136: {fileID: 13620774}
   - 23: {fileID: 2320774}
   - 114: {fileID: 11420776}
-  - 114: {fileID: 11420774}
   m_Layer: 8
   m_Name: winEffect
   m_TagString: Untagged
@@ -89,8 +88,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120774}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: .129999995, y: -.730000019, z: 1.46000004}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalPosition: {x: .129999995, y: -.730000019, z: 8}
+  m_LocalScale: {x: 60, y: 1, z: 60}
   m_Children: []
   m_Father: {fileID: 431948}
   m_RootOrder: 1
@@ -113,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.9000015, y: 8.32999992, z: 0}
+  m_LocalPosition: {x: 38.0999985, y: -14.6000004, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 431946}
@@ -206,18 +205,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11420774
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 120774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c5c1dceef0fb4542bf06545e07784a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -120
 --- !u!114 &11420776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,8 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: {x: 0, y: 0, z: 0}
-  target: {x: 10, y: 1, z: 10}
-  duration: .300000012
+  target: {x: 60, y: 1, z: 60}
+  duration: 1
 --- !u!114 &11431946
 MonoBehaviour:
   m_ObjectHideFlags: 1

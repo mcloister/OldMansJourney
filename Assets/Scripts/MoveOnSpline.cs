@@ -211,9 +211,13 @@ public class MoveOnSpline : MonoBehaviour {
 				float targetP = (oldP < curParameter) ? curParameter : oldP;
 
 				float deltaP = spline.ConvertDistanceToNormalizedParameter(maxDistancePerFrame)/3.0f;
-				
-				Debug.Log ("Interpolating on " + printPath(spline.transform) + " between " + oldD + " and " + curDistance + " distance: " + distanceSinceLastFrame);
-				Debug.Log ("in parameters: " + oldP + " and " + curParameter + " distance: " + Mathf.Abs (curParameter - oldP) + " deltaP is: " + deltaP);
+
+				if(Debug.isDebugBuild)
+				{
+					Debug.Log ("Interpolating on " + printPath(spline.transform) + " between " + oldD + " and " + curDistance + " distance: " + distanceSinceLastFrame);
+					Debug.Log ("in parameters: " + oldP + " and " + curParameter + " distance: " + Mathf.Abs (curParameter - oldP) + " deltaP is: " + deltaP);
+
+				}
 
 				while (true) 
 				{
@@ -312,8 +316,9 @@ public class MoveOnSpline : MonoBehaviour {
 					{
 						Vector3 tangent = spline.GetTangentToSpline(interpolated.parameter) * direction;
 						Vector3 otherTangent = otherSpline.GetTangentToSpline(otherP) * direction;
-						
-						Debug.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y + " p: " + interpolated.parameter + " oP: " + otherP);
+
+						if(Debug.isDebugBuild)
+							Debug.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y + " p: " + interpolated.parameter + " oP: " + otherP);
 						
 						
 						//is the other spline going up, that is moving higher?

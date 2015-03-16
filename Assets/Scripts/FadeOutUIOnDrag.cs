@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class FadeOutUIOnTap : FadeOutUI 
+public class FadeOutUIOnDrag : FadeOutUI 
 {
 
 	// Update is called once per frame
@@ -13,9 +13,9 @@ public class FadeOutUIOnTap : FadeOutUI
 		if (faded)
 			return;
 		
-		if (Input.GetMouseButtonUp (0)) 
+		if (Input.GetMouseButton (0)) 
 		{
-			if(mouseDelta.magnitude < 0.01)
+			if(mouseDelta.magnitude > 0.1)
 			{
 				StartCoroutine(fadeOut());
 			}

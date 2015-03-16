@@ -546,7 +546,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Drag this hill to shape the landscape.
+  m_Text: Drag this hill to shape it.
 --- !u!222 &145869198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -567,10 +567,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 104365767}
   m_RootOrder: 0
-  m_AnchorMin: {x: .216271877, y: .654000044}
-  m_AnchorMax: {x: .780568838, y: .783000052}
-  m_AnchoredPosition: {x: 102, y: -121}
-  m_SizeDelta: {x: -42, y: 24}
+  m_AnchorMin: {x: .442195892, y: .299241781}
+  m_AnchorMax: {x: .938000023, y: .458747298}
+  m_AnchoredPosition: {x: 2, y: 2.99999976}
+  m_SizeDelta: {x: -10, y: -11}
   m_Pivot: {x: .5, y: .499999911}
 --- !u!114 &145869200
 MonoBehaviour:
@@ -2262,39 +2262,39 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Text
-      value: Drag this hill to shape the landscape.
+      value: Drag this hill to shape it.
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMin.y
-      value: .654000044
+      value: .299241781
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMax.y
-      value: .783000052
+      value: .458747298
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -121
+      value: 2.99999976
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMin.x
-      value: .216271877
+      value: .442195892
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 102
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_SizeDelta.x
-      value: -42
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 24
+      value: -11
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMax.x
-      value: .780568838
+      value: .938000023
       objectReference: {fileID: 0}
     - target: {fileID: 22310568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Enabled
@@ -2303,6 +2303,22 @@ Prefab:
     - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_FontData.m_Alignment
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_FontData.m_VerticalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_FontData.m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}

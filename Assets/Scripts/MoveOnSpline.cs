@@ -97,7 +97,8 @@ public class MoveOnSpline : MonoBehaviour {
 
 		direction = 0;
 
-		targetPosObj = GameObject.Find ("TargetPos");
+		targetPosObj = GameObject.FindGameObjectWithTag ("TargetPos");
+		targetPosObj.SetActive (false);
 		targetMousePosObj = GameObject.Find ("TargetMousePos");
 
 		///adapt threshold to different resolutions
@@ -136,8 +137,10 @@ public class MoveOnSpline : MonoBehaviour {
 				Vector3 mousePos = Input.mousePosition;
 				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z + spline.gameObject.transform.position.z)));
 
+				targetPosObj.SetActive (true);
+
 				if(tap != null)
-							tap.Play();
+					tap.Play();
 
 				if(walking != null)
 					walking.Play();
@@ -412,7 +415,8 @@ public class MoveOnSpline : MonoBehaviour {
 	{
 		direction = 0;
 
-		
+		targetPosObj.SetActive (false);
+
 		if(walking != null)
 			walking.Stop();
 	}

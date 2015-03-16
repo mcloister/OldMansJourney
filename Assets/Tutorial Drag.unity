@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &40991559
 GameObject:
@@ -446,8 +445,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -542,12 +541,12 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 120
-    m_Alignment: 4
+    m_Alignment: 5
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Drag the curve to transform the flandscape
+  m_Text: Drag this hill to shape the landscape.
 --- !u!222 &145869198
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -570,8 +569,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .216271877, y: .654000044}
   m_AnchorMax: {x: .780568838, y: .783000052}
-  m_AnchoredPosition: {x: .5, y: -.50000155}
-  m_SizeDelta: {x: 2, y: 1}
+  m_AnchoredPosition: {x: 102, y: -121}
+  m_SizeDelta: {x: -42, y: 24}
   m_Pivot: {x: .5, y: .499999911}
 --- !u!114 &145869200
 MonoBehaviour:
@@ -1339,7 +1338,7 @@ Transform:
   m_PrefabInternal: {fileID: 869445508}
   m_GameObject: {fileID: 572505695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.600000024, y: 2.5999999, z: 0}
+  m_LocalPosition: {x: -.600000024, y: -6.4000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 270492478}
@@ -1505,8 +1504,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1805,7 +1804,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488644, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.5999999
+      value: -6.4000001
       objectReference: {fileID: 0}
     - target: {fileID: 488644, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2263,7 +2262,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Text
-      value: Drag the curve to transform the flandscape
+      value: Drag this hill to shape the landscape.
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMin.y
@@ -2275,7 +2274,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -.50000155
+      value: -121
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMin.x
@@ -2283,15 +2282,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: .5
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 2
+      value: -42
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 1
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchorMax.x
@@ -2300,6 +2299,10 @@ Prefab:
     - target: {fileID: 22310568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
@@ -2803,7 +2806,7 @@ Transform:
   m_PrefabInternal: {fileID: 1726033031}
   m_GameObject: {fileID: 1639030868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.7999992, y: -16.7999992, z: 0}
+  m_LocalPosition: {x: -39.7999992, y: -26.3999996, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 2003588137}
@@ -2900,7 +2903,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -16.7999992
+      value: -26.3999996
       objectReference: {fileID: 0}
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2924,7 +2927,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: spline

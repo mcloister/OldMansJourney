@@ -160,7 +160,7 @@ public class MoveOnSpline : MonoBehaviour {
 		if(direction != 0)
 		{
 			//first determine if we are already at target and should stop
-			if(Vector3.Distance(target, transform.position - new Vector3 (0, transform.localScale.y / 2, 0)) < stopThreshold)
+			if(Vector3.Distance(target, transform.position - new Vector3 (0, transform.localScale.y / 2, -1)) < stopThreshold)
 			{
 
 //				if(Debug.isDebugBuild)
@@ -368,14 +368,14 @@ public class MoveOnSpline : MonoBehaviour {
 				targetMousePosObj.transform.position = targetMousePos;
 		}
 		if (targetPosObj != null)
-			targetPosObj.transform.position = target;
+			targetPosObj.transform.position = target + new Vector3(0,0,-1);
 
 	}
 
 
 	private void updateTransform()
 	{
-		transform.position = spline.GetPositionOnSpline (curParameter) + new Vector3 (0, transform.localScale.y / 2, 0);
+		transform.position = spline.GetPositionOnSpline (curParameter) + new Vector3 (0, transform.localScale.y / 2, -1);
 		transform.rotation = spline.GetOrientationOnSpline (curParameter);
 	}
 

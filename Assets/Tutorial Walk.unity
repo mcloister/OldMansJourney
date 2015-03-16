@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &40991559
 GameObject:
@@ -280,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1263,8 +1264,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2258,7 +2259,7 @@ Transform:
   m_PrefabInternal: {fileID: 1726033031}
   m_GameObject: {fileID: 1639030868}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.7999992, y: -16.7999992, z: 0}
+  m_LocalPosition: {x: -5.19999981, y: -5.9000001, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 2003588137}
@@ -2521,11 +2522,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -39.7999992
+      value: -5.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -16.7999992
+      value: -5.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2549,7 +2550,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: spline

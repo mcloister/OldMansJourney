@@ -366,10 +366,10 @@ public class MoveOnSpline : MonoBehaviour {
 		{
 			if (targetMousePosObj != null)
 				targetMousePosObj.transform.position = targetMousePos;
-			if (targetPosObj != null)
-				targetPosObj.transform.position = target;
-
 		}
+		if (targetPosObj != null)
+			targetPosObj.transform.position = target;
+
 	}
 
 

@@ -38,6 +38,8 @@ public class MoveOnSpline : MonoBehaviour {
 
 	float sinceLastRemoteCheck;
 
+	bool inWaterfall;
+
 	struct InterpolationData
 	{
 		public float parameter;
@@ -376,7 +378,10 @@ public class MoveOnSpline : MonoBehaviour {
 	private void updateTransform()
 	{
 		transform.position = spline.GetPositionOnSpline (curParameter) + new Vector3 (0, transform.localScale.y / 2, -1);
-		transform.rotation = spline.GetOrientationOnSpline (curParameter);
+		if (inWaterfall)
+			transform.rotation = Quaternion.identity;
+		else
+			transform.rotation = spline.GetOrientationOnSpline (curParameter);
 	}
 
 	
@@ -471,7 +476,7 @@ public class MoveOnSpline : MonoBehaviour {
 		toRemove.Clear();
 	}
 
-	public void switchTo(Spline otherSpline, float otherP)
+	public void switchTo(Spline newSpline, float otherP)
 	{
 		if (switchSound != null)
 			switchSound.Play ();
@@ -481,24 +486,24 @@ public class MoveOnSpline : MonoBehaviour {
 		//						StartCoroutine(forgetOldSpline());
 		
 		if(Debug.isDebugBuild)
-			Debug.Log("SWITCHED to spline: " + printPath(otherSpline.transform));
+			Debug.Log("SWITCHED to spline: " + printPath(newSpline.transform));
 		
-		spline = otherSpline;
+		spline = newSpline;
 		curParameter = otherP;
 		curDistance = spline.ConvertNormalizedParameterToDistance(otherP);
 		
 		updateTransform ();
 
-		Waterfall otherWaterfall = otherSpline.GetComponent<Waterfall> ();
+		Waterfall newWaterfall = newSpline.GetComponent<Waterfall> ();
+		
+		inWaterfall = newWaterfall != null;
 
 		//switching to a waterfall
-		if(otherWaterfall!=null)
+		if(newWaterfall!=null)
 		{
-			speed = otherWaterfall.fallSpeed;
-			
-			//							Vector3 screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -Camera.main.transform.position.z + transform.position.z));
-			
-			float targetParam = (otherWaterfall.direction >0) ? 1.0f : 0.0f;
+			speed = newWaterfall.fallSpeed;
+
+			float targetParam = (newWaterfall.direction >0) ? 1.0f : 0.0f;
 			setTarget(spline.GetPositionOnSpline(targetParam));
 		}
 		//switching to a normal spline

@@ -6,14 +6,19 @@ public class Goal : MonoBehaviour {
 	public GameObject character;
 	public float winDistance = 0.5f;
 
-	GameObject canvas;
+	Canvas winCanvas;
 	public GameObject winEffect;
+
+	AudioSource winSound;
+
+	bool reached;
 
 	// Use this for initialization
 	void Start () 
 	{
-		canvas = GameObject.Find ("WinCanvas");
-		canvas.SetActive (false);
+		GameObject winObject = GameObject.Find ("WinCanvas");
+		if (winObject)
+			winCanvas = winObject.GetComponent<Canvas> ();
 
 //		winEffect = transform.Find ("winEffect").gameObject;
 		winEffect.SetActive (false);
@@ -23,14 +28,30 @@ public class Goal : MonoBehaviour {
 		{
 			character = GameObject.FindGameObjectWithTag("Character");
 		}
+
+		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
+		foreach (GameObject o in sounds) 
+		{
+			if(o.name == "Winning Sound")
+				winSound = o.GetComponent<AudioSource>();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (reached)
+			return;
+
 		if (character != null) {
 //			Debug.Log("dis to character: " + Vector3.Distance (character.transform.position, transform.position));
-			if (Vector3.Distance (character.transform.position, transform.position) < winDistance) {
-				canvas.SetActive (true);
+			if (Vector3.Distance (character.transform.position, transform.position) < winDistance) 
+			{
+				reached = true;
+
+				if(winSound != null)
+					winSound.Play();
+
+				winCanvas.enabled = true;
 				winEffect.SetActive(true);
 			}
 		}

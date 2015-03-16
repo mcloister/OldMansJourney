@@ -34,6 +34,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 	AudioSource tap;
 	AudioSource walking;
+	AudioSource switchSound;
 
 	float sinceLastRemoteCheck;
 
@@ -107,10 +108,12 @@ public class MoveOnSpline : MonoBehaviour {
 
 		foreach (GameObject o in sounds) 
 		{
-			if(o.name == "Tap")
+			if(o.name == "Tap Sound")
 			   tap = o.GetComponent<AudioSource>();
-			else if(o.name == "walking")
+			else if(o.name == "Walking Sound")
 				walking = o.GetComponent<AudioSource>();
+			else if(o.name == "Switch Sound")
+				switchSound = o.GetComponent<AudioSource>();
 		}
 	}
 	
@@ -316,38 +319,7 @@ public class MoveOnSpline : MonoBehaviour {
 						//is the other spline going up, that is moving higher?
 						if(otherTangent.y >	tangent.y)// || spline.transform.position.z == s.transform.position.z && (oldSpline == null || oldSpline.GetInstanceID() != s.GetInstanceID()) )
 						{
-							Spline oldSpline = spline;
-							//						StartCoroutine(forgetOldSpline());
-							
-							if(Debug.isDebugBuild)
-								Debug.Log("SWITCHED to spline: " + printPath(otherSpline.transform));
-							
-							spline = otherSpline;
-							curParameter = otherP;
-							curDistance = spline.ConvertNormalizedParameterToDistance(otherP);
-
-							updateTransform ();
-							
-							//switching to a waterfall
-							if(otherWaterfall!=null)
-							{
-								speed = otherWaterfall.fallSpeed;
-								
-								//							Vector3 screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -Camera.main.transform.position.z + transform.position.z));
-								
-								float targetParam = (otherWaterfall.direction >0) ? 1.0f : 0.0f;
-								setTarget(spline.GetPositionOnSpline(targetParam));
-							}
-							//switching to a normal spline
-							else
-							{
-								speed = initialSpeed;
-								
-								if(waterfall != null)
-									stopMoving();			//after a waterfall stop where we currently are
-								else
-									setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
-							}
+							switchTo(otherSpline, otherP);
 
 							switched = true;
 							break; //no need to check other interpolated parameters anymore
@@ -488,5 +460,47 @@ public class MoveOnSpline : MonoBehaviour {
 //		}
 		
 		toRemove.Clear();
+	}
+
+	public void switchTo(Spline otherSpline, float otherP)
+	{
+		if (switchSound != null)
+			switchSound.Play ();
+
+		Spline oldSpline = spline;
+		Waterfall waterfall = oldSpline.GetComponent<Waterfall> ();
+		//						StartCoroutine(forgetOldSpline());
+		
+		if(Debug.isDebugBuild)
+			Debug.Log("SWITCHED to spline: " + printPath(otherSpline.transform));
+		
+		spline = otherSpline;
+		curParameter = otherP;
+		curDistance = spline.ConvertNormalizedParameterToDistance(otherP);
+		
+		updateTransform ();
+
+		Waterfall otherWaterfall = otherSpline.GetComponent<Waterfall> ();
+
+		//switching to a waterfall
+		if(otherWaterfall!=null)
+		{
+			speed = otherWaterfall.fallSpeed;
+			
+			//							Vector3 screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0,0, -Camera.main.transform.position.z + transform.position.z));
+			
+			float targetParam = (otherWaterfall.direction >0) ? 1.0f : 0.0f;
+			setTarget(spline.GetPositionOnSpline(targetParam));
+		}
+		//switching to a normal spline
+		else
+		{
+			speed = initialSpeed;
+			
+			if(waterfall != null)
+				stopMoving();			//after a waterfall stop where we currently are
+			else
+				setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
+		}
 	}
 }

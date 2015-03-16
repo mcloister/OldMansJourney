@@ -3047,7 +3047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &428986218
 MonoBehaviour:
@@ -3712,7 +3712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &521843011
 MonoBehaviour:
@@ -3914,7 +3914,7 @@ Transform:
   m_PrefabInternal: {fileID: 805238701}
   m_GameObject: {fileID: 555844879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.46999979, y: 10.1999998, z: -10.7600002}
+  m_LocalPosition: {x: 6.46999979, y: 10.1999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1159512368}
@@ -4959,7 +4959,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 436334, guid: 9e397f3fd6140407a94c7306f41fcb93, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -10.7600002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436336, guid: 9e397f3fd6140407a94c7306f41fcb93, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5720,7 +5720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &916037015
 MonoBehaviour:
@@ -5938,7 +5938,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 960393529}
   - 33: {fileID: 960393532}
-  - 65: {fileID: 960393531}
   - 23: {fileID: 960393530}
   - 114: {fileID: 960393533}
   m_Layer: 2
@@ -5982,18 +5981,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!65 &960393531
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 960393528}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &960393532
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6589,6 +6576,10 @@ Prefab:
     - target: {fileID: 470016, guid: 6d9db4eaf94ac4d3088e98d492a171f8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470026, guid: 6d9db4eaf94ac4d3088e98d492a171f8, type: 2}
+      propertyPath: fallSpeed
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d9db4eaf94ac4d3088e98d492a171f8, type: 2}
@@ -7497,7 +7488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &1109709276
 MonoBehaviour:
@@ -8019,7 +8010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &1159512374
 MonoBehaviour:
@@ -8438,7 +8429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &1208197630
 MonoBehaviour:
@@ -10120,7 +10111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 15
+  moveOffset: 50
 --- !u!64 &1435210389
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -10173,12 +10164,12 @@ MonoBehaviour:
   deltaFrames: 1
   deltaTime: .100000001
   startBaseMesh: {fileID: 0}
-  baseMesh: {fileID: 4300000, guid: d5033d233b27346778cdab7e54593916, type: 3}
+  baseMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   endBaseMesh: {fileID: 0}
-  segmentCount: 50
+  segmentCount: 30
   uvMode: 2
   uvScale: {x: 1, y: 1}
-  xyScale: {x: .100000001, y: 30}
+  xyScale: {x: 1, y: 100}
   highAccuracy: 0
   splitMode: 0
   segmentStart: 0
@@ -13557,7 +13548,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 5
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

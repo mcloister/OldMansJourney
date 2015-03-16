@@ -4,7 +4,7 @@ using System.Collections;
 public class Waterfall : MonoBehaviour {
 	public int direction = 1;
 
-	public float fallSpeed = 0;
+	public float fallSpeed = 35;
 	public float switchThresholdFactor = 1;
 
 	// Use this for initialization

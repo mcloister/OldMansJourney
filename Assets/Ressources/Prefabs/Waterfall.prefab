@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &11495370
 MonoBehaviour:
@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  fallSpeed: 50
+  fallSpeed: 35
   switchThresholdFactor: 2
 --- !u!114 &11495386
 MonoBehaviour:

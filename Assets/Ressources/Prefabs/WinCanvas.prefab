@@ -79,8 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -109,7 +109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TAP TO CONTINUE
+  m_Text: Touch to continue.
 --- !u!222 &22210568
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -163,10 +163,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22410566}
   m_RootOrder: 0
-  m_AnchorMin: {x: .195000008, y: .364000022}
-  m_AnchorMax: {x: .803000033, y: .461000025}
-  m_AnchoredPosition: {x: .5, y: -.500002742}
-  m_SizeDelta: {x: -2, y: 0}
+  m_AnchorMin: {x: .230000004, y: 0}
+  m_AnchorMax: {x: .769876361, y: .186329678}
+  m_AnchoredPosition: {x: -.500015259, y: .999998033}
+  m_SizeDelta: {x: -27, y: -27}
   m_Pivot: {x: .5, y: .499999911}
 --- !u!1001 &100100000
 Prefab:

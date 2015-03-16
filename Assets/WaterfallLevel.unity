@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &3479454
 GameObject:
@@ -1121,7 +1120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 1480118044}
-  winDistance: 3
+  winDistance: 5
   winEffect: {fileID: 1743732018}
 --- !u!114 &128827415
 MonoBehaviour:
@@ -1728,8 +1727,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1762,7 +1761,7 @@ Canvas:
     type: 2}
   m_PrefabInternal: {fileID: 577802900}
   m_GameObject: {fileID: 234802053}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -4014,11 +4013,43 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22310568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Text
-      value: Thanks for playing!
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.99999809
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .964285851
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: .188814431
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: .821494579
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: .80712384
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
@@ -6159,7 +6190,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Thanks for playing!
+  m_Text: 
 --- !u!222 &1013526117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6180,10 +6211,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 234802054}
   m_RootOrder: 0
-  m_AnchorMin: {x: .195000008, y: .364000022}
-  m_AnchorMax: {x: .803000033, y: .461000025}
-  m_AnchoredPosition: {x: .5, y: -.500002742}
-  m_SizeDelta: {x: -2, y: 0}
+  m_AnchorMin: {x: .188814431, y: .821494579}
+  m_AnchorMax: {x: .80712384, y: .964285851}
+  m_AnchoredPosition: {x: -.5, y: 2.99999809}
+  m_SizeDelta: {x: -7, y: -16}
   m_Pivot: {x: .5, y: .499999911}
 --- !u!1 &1022831575
 GameObject:
@@ -10409,8 +10440,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295

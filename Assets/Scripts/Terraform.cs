@@ -13,6 +13,8 @@ public class Terraform : MonoBehaviour {
 	
 	protected Bounds limits;
 
+	protected AudioSource sound;
+
 	// Use this for initialization
 	virtual protected void Start () 
 	{
@@ -21,6 +23,14 @@ public class Terraform : MonoBehaviour {
 		limits = new Bounds(Vector3.zero, Vector3.zero);
 
 		formableNodes = new List<FormableNode> (3);
+
+		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
+		
+		foreach (GameObject o in sounds) 
+		{
+			if(o.name == "Terraform Sound")
+				sound = o.GetComponent<AudioSource>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -62,6 +72,9 @@ public class Terraform : MonoBehaviour {
 				}
 
 				findClosestObjects(spline.GetClosestPointParam(mouseWorld, 3));
+
+				if(sound != null)
+					sound.Play();
 			}
 
 			Vector3 mousePos = normalizeMousePos(Input.mousePosition);
@@ -79,6 +92,9 @@ public class Terraform : MonoBehaviour {
 		if (Input.GetMouseButtonUp (0)) 
 		{
 			spline = null;
+
+			if(sound != null)
+				sound.Stop();
 
 //			Destroy(limits);
 			limits = new Bounds(Vector3.zero, Vector3.zero);

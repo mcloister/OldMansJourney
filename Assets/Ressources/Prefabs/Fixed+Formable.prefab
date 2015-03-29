@@ -221,6 +221,7 @@ GameObject:
   - 23: {fileID: 2388100}
   - 64: {fileID: 6488096}
   - 114: {fileID: 11488132}
+  - 114: {fileID: 11462582}
   m_Layer: 8
   m_Name: Formable Spline 001
   m_TagString: Spline
@@ -294,7 +295,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 12.3999996, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 488102}
@@ -509,7 +510,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 3e4f94e51b56047079e648f4802e8900, type: 2}
+  - {fileID: 2100000, guid: 96847c92aa79d4889a1014ef46308156, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -686,6 +687,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 30, y: 60, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11462582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ba7d69445e949a5a56c88313d862da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  influence: 70
+  minDistance: 20
 --- !u!114 &11488094
 MonoBehaviour:
   m_ObjectHideFlags: 1

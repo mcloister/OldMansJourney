@@ -67,13 +67,7 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	public void OnDrag(PointerEventData eventData)
 	{
 		Terraform touchedTerraform;
-		if (selector.draggedSplines.TryGetValue (eventData.pointerId, out touchedTerraform)) {
-			if (touchedTerraform.GetInstanceID () != this.GetInstanceID ()) {
-				touchedTerraform.OnDrag (eventData);
-				return;
-			}
-		} 
-		else
+		if (selector.draggedSplines.TryGetValue (eventData.pointerId, out touchedTerraform)) 
 			return;
 
 
@@ -85,15 +79,7 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		Terraform touchedTerraform;
-		if (selector.draggedSplines.TryGetValue (eventData.pointerId, out touchedTerraform)) 
-		{
-			if (touchedTerraform.GetInstanceID () != this.GetInstanceID ()) 
-			{
-				touchedTerraform.OnDrag(eventData);
-				return;
-			}
-		}
-		else
+		if (!selector.draggedSplines.TryGetValue (eventData.pointerId, out touchedTerraform)) 
 			return;
 
 		endTerraforming();

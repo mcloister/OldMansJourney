@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class SplineSelector : MonoBehaviour {
+public class SplineSelector : MonoBehaviour 
+{
+	public Dictionary<int, Terraform> draggedSplines;
+	public Spline characterSpline;
 
-	private GameObject[] allSplines;
-	public Spline spline;
+	private MoveOnSpline characterMovement;
 
-	public MoveOnSpline characterMovement;
 
 	// Use this for initialization
 	void Start () {
-		allSplines = GameObject.FindGameObjectsWithTag("Spline");
-
-		spline = null;
+		draggedSplines = new Dictionary<int, Terraform> (10);
 
 		if (characterMovement == null) 
 		{
@@ -20,59 +20,63 @@ public class SplineSelector : MonoBehaviour {
 			if(character != null)
 				characterMovement = character.GetComponent<MoveOnSpline>();
 		}
+		if (characterMovement == null) 
+		{
+			characterSpline = characterMovement.spline;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonDown (0)) 
-		{
-			Vector3 mouse = Input.mousePosition;
-			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mouse.x, mouse.y, -Camera.main.gameObject.transform.position.z));
-			
-//			Debug.Log ("finding closest spline to mouse pos: " + mouse);
-			
-			findClosestSpline(mouseWorld);
-
-//			Debug.Log ("found: " + spline);
-
-			//disable MeshCollider because it's too expensive to be updated while spline is terraformed
-			if(spline != null)
-				Destroy (spline.gameObject.GetComponent<MeshCollider>());
-
-		}
-		
-		if (Input.GetMouseButton (0)) 
-		{
-		}
-		
-		if (Input.GetMouseButtonUp (0)) 
-		{
-			//now we can update the meshcollider
-			if(spline != null)
-				spline.gameObject.AddComponent<MeshCollider>();
-
-			spline = null;
-		}
+//		if (Input.GetMouseButtonDown (0)) 
+//		{
+//			Vector3 mouse = Input.mousePosition;
+//			Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mouse.x, mouse.y, -Camera.main.gameObject.transform.position.z));
+//			
+////			Debug.Log ("finding closest spline to mouse pos: " + mouse);
+//			
+//			findClosestSpline(mouseWorld);
+//
+////			Debug.Log ("found: " + spline);
+//
+//			//disable MeshCollider because it's too expensive to be updated while spline is terraformed
+//			if(spline != null)
+//				Destroy (spline.gameObject.GetComponent<MeshCollider>());
+//
+//		}
+//		
+//		if (Input.GetMouseButton (0)) 
+//		{
+//		}
+//		
+//		if (Input.GetMouseButtonUp (0)) 
+//		{
+//			//now we can update the meshcollider
+//			if(spline != null)
+//				spline.gameObject.AddComponent<MeshCollider>();
+//
+//			spline = null;
+//		}
 	}
 	
 	private void findClosestSpline(Vector3 mouseWorld)
 	{
-		RaycastHit hit;
-		if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 200))
-			return;
-
-		if (!hit.collider.gameObject.transform.CompareTag("Spline"))
-			return;
-		
-		Spline s = hit.collider.gameObject.transform.GetComponent<Spline> ();
-
-		//don't allow terraforming of spline where character is currently moving
-		if (characterMovement != null && s.GetInstanceID () == characterMovement.spline.GetInstanceID ()) 
-		{
-			return;
-		}
-
-		spline = s;
+//		RaycastHit hit;
+//		if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 200))
+//			return;
+//
+//		if (!hit.collider.gameObject.transform.CompareTag("Spline"))
+//			return;
+//		
+//		Spline s = hit.collider.gameObject.transform.GetComponent<Spline> ();
+//
+//		//don't allow terraforming of spline where character is currently moving
+//		if (characterMovement != null && s.GetInstanceID () == characterMovement.spline.GetInstanceID ()) 
+//		{
+//			return;
+//		}
+//
+//		spline = s;
 
 
 //		float minDist = Mathf.Infinity;
@@ -95,13 +99,18 @@ public class SplineSelector : MonoBehaviour {
 //			}
 //		}
 	}
-	
-	private void outputControlPoints()
+
+	public bool isBeingDragged(Spline spline)
 	{
-		foreach (SplineNode n in spline.SplineNodes) 
+		foreach (KeyValuePair<int, Terraform> p in draggedSplines) 
 		{
-			Debug.Log(n.gameObject.name + " position: " + n.transform.position);
+			if(p.Value.gameObject.GetInstanceID() == spline.gameObject.GetInstanceID())
+			{
+				return true;
+			}
 		}
+
+		return false;
 	}
-	
+
 }

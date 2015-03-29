@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 
 public class TerraformPoint : Terraform 
@@ -19,20 +20,6 @@ public class TerraformPoint : Terraform
 		toTerraform = new ArrayList();
 		neighbour = null;
 		frontier = null;
-	}
-	
-	// Update is called once per frame
-	protected override void Update () {
-		base.Update ();
-
-		if (Input.GetMouseButtonUp (0)) 
-		{
-			toTerraform.Clear();
-
-			direction = 0;
-			neighbour = null;
-			frontier = null;
-		}
 	}
 	
 	override protected void findClosestObjects(float param)
@@ -158,6 +145,17 @@ public class TerraformPoint : Terraform
 
 		}
 
+	}
+	
+	override protected void endTerraforming()
+	{
+		base.endTerraforming ();
+		
+		toTerraform.Clear();
+		
+		direction = 0;
+		neighbour = null;
+		frontier = null;
 	}
 
 	void findRightNeighbour()

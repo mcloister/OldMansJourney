@@ -31,7 +31,7 @@ public class StayOnPath : MonoBehaviour {
 		if(updateParam && Input.GetMouseButtonDown(0))
 			param = spline.GetClosestPointParam (transform.position, 3);
 
-		if(spline != null && selector != null && selector.spline != null && selector.spline.GetInstanceID() == spline.GetInstanceID())
+		if(spline != null && selector != null && selector.isBeingDragged(spline))
 			transform.position = spline.GetPositionOnSpline (param) + offset;
 	}
 }

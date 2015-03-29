@@ -125,7 +125,7 @@ public class TerraformPoint : Terraform
 
 		}
 
-		//if we are getting to close to our neighbour, just move it along and update our data
+		//if we are getting too close to our neighbour, just move it along and update our data
 		if ( neighbour != null) 
 		{
 			float distance = Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x);
@@ -142,7 +142,7 @@ public class TerraformPoint : Terraform
 			toTerraform.Add (neighbour);
 
 			frontier = neighbour;
-
+			neighbour = null;
 			
 			//now find the neighbour of our new frontier
 			//dragging right

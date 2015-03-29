@@ -20,7 +20,7 @@ public class SplineSelector : MonoBehaviour
 			if(character != null)
 				characterMovement = character.GetComponent<MoveOnSpline>();
 		}
-		if (characterMovement == null) 
+		if (characterMovement != null) 
 		{
 			characterSpline = characterMovement.spline;
 		}

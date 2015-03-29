@@ -438,7 +438,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 950445385}
   m_GameObject: {fileID: 267671143}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b41e9bc966ad451daf2f67ac32613ea, type: 3}
   m_Name: 
@@ -1422,7 +1422,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11467298, guid: 81ef2727a8fbd4286be103cb43576157, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11467300, guid: 81ef2727a8fbd4286be103cb43576157, type: 2}
       propertyPath: m_Enabled
@@ -1864,8 +1864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ba7d69445e949a5a56c88313d862da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  influence: 70
-  minDistance: 20
+  influence: 1
+  minDistance: 0
 --- !u!1 &1166092067
 GameObject:
   m_ObjectHideFlags: 0

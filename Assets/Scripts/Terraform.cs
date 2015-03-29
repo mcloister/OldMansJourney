@@ -76,7 +76,8 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		else
 			return;
 
-		terraform(eventData.delta);
+
+		terraform(normalizeScreenPos(eventData.delta));
 
 		spline.UpdateSpline();
 	}
@@ -190,15 +191,15 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		
 	}
 
-//	private Vector3 normalizeMousePos(Vector3 mousePos)
-//	{
-//		Vector3 adjustedMousePos = mousePos;
-//
-//		//normalize it to current screen resolution
-//		adjustedMousePos.x /= Screen.width;
-//		adjustedMousePos.y /= Screen.height;
-//
-//		return adjustedMousePos;
-//	}
+	private Vector2 normalizeScreenPos(Vector2 screenPos)
+	{
+		Vector2 adjustedScreenPos = screenPos;
+
+		//normalize it to current screen resolution
+		adjustedScreenPos.x /= Screen.width;
+		adjustedScreenPos.y /= Screen.height;
+
+		return adjustedScreenPos;
+	}
 
 }

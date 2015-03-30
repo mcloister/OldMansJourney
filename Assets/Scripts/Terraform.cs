@@ -41,9 +41,9 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		}
 
 		//do we have a seperate collider child
-//		Transform cT = transform.Find("Collider");
-//		if(cT != null)
-//			colliderMesh = cT.GetComponent<SplineMesh>();
+		Transform cT = transform.Find("Collider");
+		if(cT != null)
+			colliderMesh = cT.GetComponent<SplineMesh>();
 	
 
 		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");

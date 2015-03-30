@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
-	public float influence = 1;
+	protected float influence = 70;
 
 	protected SplineSelector selector;
 	protected MoveOnSpline characterMovement;

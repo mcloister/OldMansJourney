@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class SplineSelector : MonoBehaviour 
 {
 	public Dictionary<int, Terraform> draggedSplines;
-	public Spline characterSpline;
 
 	private MoveOnSpline characterMovement;
 
@@ -13,17 +12,6 @@ public class SplineSelector : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		draggedSplines = new Dictionary<int, Terraform> (10);
-
-		if (characterMovement == null) 
-		{
-			GameObject character = GameObject.FindGameObjectWithTag("Character");
-			if(character != null)
-				characterMovement = character.GetComponent<MoveOnSpline>();
-		}
-		if (characterMovement != null) 
-		{
-			characterSpline = characterMovement.spline;
-		}
 	}
 	
 	// Update is called once per frame

@@ -8,6 +8,7 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	public float influence = 1;
 
 	protected SplineSelector selector;
+	protected MoveOnSpline characterMovement;
 	protected Spline spline;
 	protected List<FormableNode> formableNodes;
 	protected Vector3 lastMousePos;
@@ -22,6 +23,8 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	virtual protected void Start () 
 	{
 		selector = GameObject.FindGameObjectWithTag ("GameController").GetComponent<SplineSelector> ();
+
+		characterMovement = GameObject.FindGameObjectWithTag("Character").GetComponent<MoveOnSpline>();
 
 		spline = GetComponent<Spline> ();
 
@@ -56,7 +59,7 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		Debug.Log ("eD: " + eventData);
-		if (selector.characterSpline.GetInstanceID() == spline.GetInstanceID())
+		if (characterMovement.spline.GetInstanceID() == spline.GetInstanceID())
 			return;
 		if (selector.draggedSplines.ContainsKey (eventData.pointerId))
 			return;

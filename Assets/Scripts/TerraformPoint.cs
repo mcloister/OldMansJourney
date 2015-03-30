@@ -1,41 +1,36 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TerraformPoint : Terraform 
 {
 	public float minDistance;
 
-	ArrayList toTerraform;
-	FormableNode pickedNode;
-	FormableNode frontier;
-	FormableNode neighbour;
-	float direction;
+	Dictionary<int, List<FormableNode>> toTerraform;
+//	ArrayList toTerraform;
+	Dictionary<int, FormableNode> pickedNodes;
+//	FormableNode pickedNode;
+	Dictionary<int, FormableNode> frontiers;
+//	FormableNode frontier;
+	Dictionary<int, FormableNode> neighbours;
+//	FormableNode neighbour;
+	Dictionary<int, float> directions;
+//	float direction;
 
 	// Use this for initialization
 	protected override void Start () 
 	{
 		base.Start ();
 
-		toTerraform = new ArrayList();
-		neighbour = null;
-		frontier = null;
+		toTerraform = new Dictionary<int, List<FormableNode>>();
+		pickedNodes = new Dictionary<int, FormableNode> ();
+		neighbours = new Dictionary<int, FormableNode>();
+		frontiers = new Dictionary<int, FormableNode>();
+		directions = new Dictionary<int, float> ();
 	}
 	
-	// Update is called once per frame
-	protected override void Update () {
-		base.Update ();
-
-		if (Input.GetMouseButtonUp (0)) 
-		{
-			toTerraform.Clear();
-
-			direction = 0;
-			neighbour = null;
-			frontier = null;
-		}
-	}
-	
-	override protected void findClosestObjects(float param)
+	override protected void findClosestObjects(float param, int pointerId)
 	{
 //		SplineNode[] allNodes = spline.SplineNodes;
 		
@@ -43,6 +38,7 @@ public class TerraformPoint : Terraform
 
 		float minDist = Mathf.Infinity;
 
+		FormableNode pickedNode = null;
 		foreach(FormableNode fN in formableNodes)
 		{
 			SplineNode n = fN.splineNode;
@@ -54,49 +50,69 @@ public class TerraformPoint : Terraform
 				pickedNode = fN;
 			}
 		}
-
-		frontier = pickedNode;
-
-		toTerraform.Add (pickedNode);
 		
-		if (toTerraform == null) 
+		if (pickedNode == null) 
 		{
-			Debug.LogWarning("couldn't find a node close enough to param " + param);
+			Debug.LogError("couldn't find a node close enough to param " + param);
+			return;
 		}
+		
+		pickedNodes.Add (pointerId, pickedNode);
+
+		frontiers.Add(pointerId, pickedNodes[pointerId]);
+
+		List<FormableNode> temp = new List<FormableNode> ();
+		temp.Add (pickedNodes[pointerId]);
+		toTerraform.Add (pointerId, temp);
+
+		//		Destroy (temp);
+
+		neighbours.Add (pointerId, null);
+		directions.Add (pointerId, 0);
 	}
 	
 	
-	protected override void terraform(Vector3 mousePosDiff)
+	protected override void terraform(Vector3 mousePosDiff, int pointerId)
 	{
-		//start dragging left
-		if (mousePosDiff.x < 0 && direction >= 0) 
-		{
-			direction = -1;
+		if (!directions.ContainsKey (pointerId))
+			return;
+		if (!pickedNodes.ContainsKey (pointerId))
+			return;
+		if (!frontiers.ContainsKey (pointerId))
+			return;
+		if (!neighbours.ContainsKey (pointerId))
+			return;
 
-			toTerraform.Clear();
-			toTerraform.Add(pickedNode);
-			frontier = pickedNode;
+
+		//start dragging left
+		if (mousePosDiff.x < 0 && directions[pointerId] >= 0) 
+		{
+			directions[pointerId] = -1;
+
+			toTerraform[pointerId].Clear();
+			toTerraform[pointerId].Add(pickedNodes[pointerId]);
+			frontiers[pointerId] = pickedNodes[pointerId];
 
 			//now find the left neighbour of our frontier
-			findLeftNeighbour();
+			findLeftNeighbour(pointerId);
 		}
 
 		//start dragging right
-		if (mousePosDiff.x > 0 && direction <= 0) 
+		if (mousePosDiff.x > 0 && directions[pointerId] <= 0) 
 		{
-			direction = 1;
+			directions[pointerId] = 1;
 
-			toTerraform.Clear();
-			toTerraform.Add(pickedNode);
-			frontier = pickedNode;
+			toTerraform[pointerId].Clear();
+			toTerraform[pointerId].Add(pickedNodes[pointerId]);
+			frontiers[pointerId] = pickedNodes[pointerId];
 			
 			//now find the right neighbour of our frontier
-			findRightNeighbour();
+			findRightNeighbour(pointerId);
 
 		}
 
 		//terraform all nodes we need to move
-		foreach (FormableNode fN in toTerraform) 
+		foreach (FormableNode fN in toTerraform[pointerId]) 
 		{
 			Vector3 newPos = fN.transform.position + mousePosDiff * influence;
 
@@ -126,9 +142,9 @@ public class TerraformPoint : Terraform
 		}
 
 		//if we are getting too close to our neighbour, just move it along and update our data
-		if ( neighbour != null) 
+		if ( neighbours[pointerId] != null) 
 		{
-			float distance = Mathf.Abs (frontier.transform.position.x - neighbour.transform.position.x);
+			float distance = Mathf.Abs (frontiers[pointerId].transform.position.x - neighbours[pointerId].transform.position.x);
 
 			//nothing to do if we are still far enough away
 			if (distance >  minDistance)
@@ -139,53 +155,75 @@ public class TerraformPoint : Terraform
 //			nPos.x += (minDistance-distance) * direction;
 //			neighbour.transform.position = nPos;
 
-			toTerraform.Add (neighbour);
+			toTerraform[pointerId].Add (neighbours[pointerId]);
 
-			frontier = neighbour;
-			neighbour = null;
+			frontiers[pointerId] = neighbours[pointerId];
+			neighbours[pointerId] = null;
 			
 			//now find the neighbour of our new frontier
 			//dragging right
-			if(direction >= 0)
+			if(directions[pointerId] >= 0)
 			{
-				findRightNeighbour();
+				findRightNeighbour(pointerId);
 			}
 			//dragging left
 			else
 			{
-				findLeftNeighbour();
+				findLeftNeighbour(pointerId);
 			}
 
 		}
 
 	}
-
-	void findRightNeighbour()
+	
+	override protected void endTerraforming(int pointerId)
 	{
+		base.endTerraforming (pointerId);
+		
+		toTerraform.Remove (pointerId);
+		
+		pickedNodes.Remove (pointerId);
+		frontiers.Remove(pointerId);
+		neighbours.Remove(pointerId);
+		directions.Remove(pointerId);
+	}
+
+	void findRightNeighbour(int pointerId)
+	{
+		if (!frontiers.ContainsKey (pointerId))
+			return;
+		if (!neighbours.ContainsKey (pointerId))
+			return;
+
 		float minDist = Mathf.Infinity;
 		foreach (FormableNode fN in formableNodes) {
 			
-			if (fN.transform.position.x > frontier.transform.position.x) {
-				float dist = Mathf.Abs (frontier.transform.position.x - fN.transform.position.x);
+			if (fN.transform.position.x > frontiers[pointerId].transform.position.x) {
+				float dist = Mathf.Abs (frontiers[pointerId].transform.position.x - fN.transform.position.x);
 				if (dist < minDist) {
 					minDist = dist;
-					neighbour = fN;
+					neighbours[pointerId] = fN;
 				}
 			}
 		}
 		
 	}
 	
-	void findLeftNeighbour()
+	void findLeftNeighbour(int pointerId)
 	{
+		if (!frontiers.ContainsKey (pointerId))
+			return;
+		if (!neighbours.ContainsKey (pointerId))
+			return;
+
 		float minDist = Mathf.Infinity;
 		foreach (FormableNode fN in formableNodes) {
 			
-			if (fN.transform.position.x < frontier.transform.position.x) {
-				float dist = Mathf.Abs (frontier.transform.position.x - fN.transform.position.x);
+			if (fN.transform.position.x < frontiers[pointerId].transform.position.x) {
+				float dist = Mathf.Abs (frontiers[pointerId].transform.position.x - fN.transform.position.x);
 				if (dist < minDist) {
 					minDist = dist;
-					neighbour = fN;
+					neighbours[pointerId] = fN;
 				}
 			}
 		}

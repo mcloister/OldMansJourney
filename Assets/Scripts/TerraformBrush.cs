@@ -37,7 +37,7 @@ public class TerraformBrush : Terraform {
 		}
 	}
 
-	override protected void findClosestObjects(float param)
+	override protected void findClosestObjects(float param, int pointerId)
 	{
 		SplineNode[] allNodes = spline.SplineNodes;
 
@@ -62,7 +62,7 @@ public class TerraformBrush : Terraform {
 	}
 	
 	
-	protected override void terraform(Vector3 mousePosDiff)
+	protected override void terraform(Vector3 mousePosDiff, int pointerId)
 	{
 		foreach(Formable f in toTerraform)
 			f.transform.position += mousePosDiff * influence * f.weight;

@@ -127,69 +127,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	// Update is called once per frame
 	virtual protected void Update () 
 	{
-//		if (Input.GetMouseButtonDown (0)) 
-//		{
-//			lastMousePos = normalizeMousePos(Input.mousePosition);
-//		}
-//
-//		if (Input.GetMouseButton (0)) 
-//		{
-//			//don't do anything if SplineSelector hasn't found a spline yet.
-//			if(selector.spline == null)
-//				return;
-//
-//			//this is the first mouse down after SplineSelector has found closest spline
-//			// -> get the points we will transform during this stroke
-//			if(spline == null)
-//			{
-//				spline = selector.spline;
-//
-//				Vector3 mouse = Input.mousePosition;
-//				Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3 (mouse.x, mouse.y, -Camera.main.gameObject.transform.position.z));
-//
-//				Transform limitsObject = spline.transform.Find ("Limits");
-//				if (limitsObject != null) 
-//					limits = limitsObject.GetComponent<BoxCollider>().bounds;
-//
-//				//find all nodes that are formable
-//				formableNodes.Clear();
-//				foreach(SplineNode sN in spline.SplineNodes)
-//				{
-//					Transform t = sN.transform;
-//					if(!t.CompareTag("Formable Node"))
-//						continue;
-//					
-//					formableNodes.Add(t.GetComponent<FormableNode>());
-//				}
-//
-//				findClosestObjects(spline.GetClosestPointParam(mouseWorld, 3));
-//
-//				if(sound != null)
-//					sound.Play();
-//			}
-//
-//			Vector3 mousePos = normalizeMousePos(Input.mousePosition);
-//			Vector3 mousePosDiff = mousePos - lastMousePos;
-//			
-////			Debug.Log("mouse pos: " + Input.mousePosition + " adjusted mouse pos: " + mousePos + " mouse diff: " + mousePosDiff);
-//
-//			terraform(mousePosDiff);
-//
-//			lastMousePos = mousePos;
-//
-//			spline.UpdateSpline();
-//		}
-//
-//		if (Input.GetMouseButtonUp (0)) 
-//		{
-//			spline = null;
-//
-//			if(sound != null)
-//				sound.Stop();
-//
-////			Destroy(limits);
-//			limits = new Bounds(Vector3.zero, Vector3.zero);
-//		}
 	}
 
 	virtual protected void findClosestObjects(float param, int pointerId)

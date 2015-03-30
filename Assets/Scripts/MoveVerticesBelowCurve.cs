@@ -38,6 +38,11 @@ public class MoveVerticesBelowCurve : SplineMeshModifier //SplineMesh modifiers 
 	//use the override keyword to implement the abstract methods of the SplineMeshModifier-class
 	public override Vector3 ModifyVertex( SplineMesh splineMesh, Vector3 vertex, float splineParam )
 	{
+		if (gameObject.GetInstanceID() != splineMesh.gameObject.GetInstanceID())
+		{
+			return vertex;
+		}
+		
 		Vector3 normal = splineMesh.spline.GetNormalToSpline (splineParam);
 
 		return vertex - normal * moveOffset;

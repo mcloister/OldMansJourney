@@ -41,9 +41,9 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		}
 
 		//do we have a seperate collider child
-		Transform cT = transform.Find("Collider");
-		if(cT != null)
-			colliderMesh = cT.GetComponent<SplineMesh>();
+//		Transform cT = transform.Find("Collider");
+//		if(cT != null)
+//			colliderMesh = cT.GetComponent<SplineMesh>();
 	
 
 		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
@@ -58,7 +58,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		Debug.Log ("eD: " + eventData);
 		if (characterMovement.spline.GetInstanceID() == spline.GetInstanceID())
 			return;
 		if (selector.draggedSplines.ContainsKey (eventData.pointerId))

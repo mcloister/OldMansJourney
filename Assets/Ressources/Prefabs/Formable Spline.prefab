@@ -12,9 +12,7 @@ GameObject:
   - 114: {fileID: 11432138}
   - 64: {fileID: 6432138}
   - 114: {fileID: 11432140}
-  - 114: {fileID: 11401752}
-  - 114: {fileID: 11401750}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,29 +483,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11401750
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12f6e20277f444a2ae2620c1a7c5076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11401752
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 132138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9b63f12fe45e426ebefb3357f3d2dd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateTime: .166669995
 --- !u!114 &11432138
 MonoBehaviour:
   m_ObjectHideFlags: 1

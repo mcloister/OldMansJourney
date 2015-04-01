@@ -5,7 +5,7 @@ using System.Collections;
 
 public class UpdateMeshOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler {
 
-	public float updateTime = 0.16667f;
+	public float updateEvery = 0.16667f;
 
 	private SplineMesh mesh;
 	private float updateCounter = 0;
@@ -20,8 +20,8 @@ public class UpdateMeshOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 	{
 		updateCounter = 0.0f;
 
-		//if updateTime is -1 it means it will never be updated while being dragged but only OnEndDrag
-		if(updateTime >= 0)
+		//if updateEvery is -1 it means it will never be updated while being dragged but only OnEndDrag
+		if(updateEvery >= 0)
 			isBeingDragged = true;
 	}
 	
@@ -45,7 +45,7 @@ public class UpdateMeshOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 
 		updateCounter += Time.deltaTime;
 
-		if(updateCounter > updateTime)
+		if(updateCounter > updateEvery)
 		{
 			mesh.UpdateMesh();
 //			Debugger.Log ("updated collider mesh of " + transform.parent.name);

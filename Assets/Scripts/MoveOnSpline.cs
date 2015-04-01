@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityDebugger;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -63,7 +64,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 		GameObject[] splineObjects =  GameObject.FindGameObjectsWithTag("Spline");
 
-		Debug.Log ("Number of Splines: " + splineObjects.Length);
+		Debugger.Log ("Number of Splines: " + splineObjects.Length);
 
 		closeSplines = new List<Spline>(splineObjects.Length);
 		closeSplines.Add (spline);

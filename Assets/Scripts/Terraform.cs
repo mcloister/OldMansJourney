@@ -59,11 +59,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 		selector.draggedSplines.Add (eventData.pointerId, this);
 
-		//disable MeshCollider because it's too expensive to be updated while spline is terraformed
-		//TODO: move the MeshCollider to a seperate GameObject
-		if(spline.gameObject.GetComponent<MeshCollider>() != null)
-			Destroy (spline.gameObject.GetComponent<MeshCollider>());
-
 		findClosestObjects(spline.GetClosestPointParam(eventData.worldPosition, 3), eventData.pointerId);
 		
 		if(sound != null)
@@ -90,10 +85,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		endTerraforming(eventData.pointerId);
 
 		selector.draggedSplines.Remove (eventData.pointerId);
-		
-		//now we can update the meshcollider if no other touch is terraforming it
-		if(!selector.draggedSplines.ContainsValue(this))
-			spline.gameObject.AddComponent<MeshCollider>();
 
 		if(sound != null)
 			sound.Stop();

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityDebugger;
 using System.Collections;
 
 struct Formable
@@ -57,7 +58,7 @@ public class TerraformBrush : Terraform {
 
 		if (toTerraform.Count == 0) 
 		{
-			Debug.LogWarning("couldn't find a node close enough to param " + param);
+			Debugger.LogWarning("couldn't find a node close enough to param " + param);
 		}
 	}
 	

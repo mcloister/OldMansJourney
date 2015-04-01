@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityDebugger;
 using UnityEngine.EventSystems;
 using System.Collections;
 
@@ -16,7 +17,7 @@ public class ReceiveDragEvent : MonoBehaviour, IDragHandler {
 	
 	public void OnDrag(PointerEventData data)
 	{
-		Debug.Log ("hello from draghandler: " + data);
+		Debugger.Log ("hello from draghandler: " + data);
 	}
 	
 }

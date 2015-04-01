@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityDebugger;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ public class TerraformPoint : Terraform
 		
 		if (pickedNode == null) 
 		{
-			Debug.LogError("couldn't find a node close enough to param " + param);
+			Debugger.LogError("couldn't find a node close enough to param " + param);
 			return;
 		}
 		

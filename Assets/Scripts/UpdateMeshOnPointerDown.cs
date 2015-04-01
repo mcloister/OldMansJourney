@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityDebugger;
 using UnityEngine.EventSystems;
 using System.Collections;
 
@@ -34,7 +35,7 @@ public class UpdateMeshOnPointerDown : MonoBehaviour {
 	{
 		if (mesh)
 		{
-			Debug.Log ("updating mesh of " + transform.parent.name);
+			Debugger.Log ("updating mesh of " + transform.parent.name);
 			mesh.UpdateMesh();
 			mesh.UpdateMesh();	//somehow the MeshCollider needs two calls to UpdateMesh to update itself...strange but whatever
 		}

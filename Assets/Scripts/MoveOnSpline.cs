@@ -170,9 +170,6 @@ public class MoveOnSpline : MonoBehaviour {
 			if(Vector3.Distance(target, transform.position - new Vector3 (0, transform.localScale.y / 2, -1)) < stopThreshold)
 			{
 
-//				if(Debug.isDebugBuild)
-//					Debug.Log ("at target! pos: " + transform.position + " t.pos: " + target);
-
 				stopMoving();
 				return;
 			}
@@ -222,24 +219,11 @@ public class MoveOnSpline : MonoBehaviour {
 
 				float deltaP = spline.ConvertDistanceToNormalizedParameter(maxDistancePerFrame)/3.0f;
 
-				if(Debug.isDebugBuild)
-				{
-					Debug.Log ("Interpolating on " + printPath(spline.transform) + " between " + oldD + " and " + curDistance + " distance: " + distanceSinceLastFrame);
-					Debug.Log ("in parameters: " + oldP + " and " + curParameter + " distance: " + Mathf.Abs (curParameter - oldP) + " deltaP is: " + deltaP);
-
-				}
-
 				while (true) 
 				{
 					float interpolatedP = lastInterpolatedP + deltaP;
 					if(interpolatedP > targetP)
 					{
-//						if(Debug.isDebugBuild)
-//						{
-//							Debug.Log("finished interpolating!");
-//							foreach(InterpolationData d in interpolations)
-//								Debug.Log (d.parameter + " pos: " + d.screenPos);
-//						}
 
 						break;
 					}
@@ -251,8 +235,7 @@ public class MoveOnSpline : MonoBehaviour {
 			}
 
 			Ray rayFromAvgPos = Camera.main.ScreenPointToRay(avgPosOnScreen);
-//			Debug.DrawRay(rayFromPos.origin, rayFromPos.direction * 150, Color.yellow);
-			
+
 			if(Debug.isDebugBuild)
 				spline.transform.Find("CharacterPos").position = pos;
 			
@@ -288,10 +271,6 @@ public class MoveOnSpline : MonoBehaviour {
 						continue;
 				}
 
-				
-				if(Debug.isDebugBuild && interpolations.Count > 1)
-					Debug.Log ("Comparing " + printPath(spline.transform) + " to " + printPath (otherSpline.transform));
-
 				float otherP = otherSpline.GetClosestPointParamToRay(rayFromAvgPos, 5);
 
 				Vector3 otherPos = otherSpline.GetPositionOnSpline(otherP);
@@ -308,11 +287,7 @@ public class MoveOnSpline : MonoBehaviour {
 				foreach(InterpolationData interpolated in interpolations)
 				{
 					float dis = Vector3.Distance(interpolated.screenPos, otherPosOnScreen);
-					
-					if(Debug.isDebugBuild && interpolations.Count > 1)
-					{
-						Debug.Log ("interpolated screenPos: " + interpolated.screenPos + " otherScreenPos: " + otherPosOnScreen + " dis: " + dis);
-					}
+
 					//if we are far away stop checking this spline every frame
 					if(dis > remoteThreshold)
 					{
@@ -327,8 +302,7 @@ public class MoveOnSpline : MonoBehaviour {
 						Vector3 tangent = spline.GetTangentToSpline(interpolated.parameter) * direction;
 						Vector3 otherTangent = otherSpline.GetTangentToSpline(otherP) * direction;
 
-						if(Debug.isDebugBuild)
-							Debug.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y + " p: " + interpolated.parameter + " oP: " + otherP);
+//						Debugger.Log (printPath(spline.transform) + " & " + printPath (otherSpline.transform) + " are crossing! dir: " + direction + " t.y: " + tangent.y + " oT.y: " + otherTangent.y + " p: " + interpolated.parameter + " oP: " + otherP);
 						
 						
 						//is the other spline going up, that is moving higher?
@@ -345,14 +319,7 @@ public class MoveOnSpline : MonoBehaviour {
 				//remove any spline that is now far enough away to only be checked occasionally
 				foreach (Spline rmS in toRemove) 
 					closeSplines.Remove(rmS);
-				
-//				if(Debug.isDebugBuild && toRemove.Count > 0)
-//				{
-//					Debug.Log ("LISTS CHANGED!  closeSplines (" + closeSplines.Count + ") remoteSplines (" + remoteSplines.Count + ")");
-//					Debug.Log ("removed from closeSpline:");
-//					foreach (Spline rmS in toRemove) 
-//						Debug.Log (printPath(rmS.transform));
-//				}
+
 				toRemove.Clear ();
 
 				if(switched)
@@ -434,13 +401,13 @@ public class MoveOnSpline : MonoBehaviour {
 
 	void printSplineLists()
 	{
-		Debug.Log ("REMOTESPLINES count: " + remoteSplines.Count);
+		Debugger.Log ("REMOTESPLINES count: " + remoteSplines.Count);
 		foreach (Spline s in remoteSplines)
-			Debug.Log (printPath (s.transform));
+			Debugger.Log (printPath (s.transform));
 		
-		Debug.Log ("CLOSESPLINES count: " + closeSplines.Count);
+		Debugger.Log ("CLOSESPLINES count: " + closeSplines.Count);
 		foreach (Spline s in closeSplines)
-			Debug.Log (printPath (s.transform));
+			Debugger.Log (printPath (s.transform));
 	}
 
 	void checkRemoteSplines(Ray ray, Vector2 compareTo)
@@ -455,9 +422,6 @@ public class MoveOnSpline : MonoBehaviour {
 			Vector2 posOnScreen = (Vector2)Camera.main.WorldToScreenPoint(s.GetPositionOnSpline(p));
 			float dis = Vector2.Distance(compareTo, posOnScreen );
 			
-			//					if(Debug.isDebugBuild)
-			//						Debug.Log("distance to " + printPath(s.transform) + " is " + dis);
-			
 			if(dis <= remoteThreshold)
 			{
 				closeSplines.Add (s);
@@ -469,15 +433,7 @@ public class MoveOnSpline : MonoBehaviour {
 		}
 		foreach (Spline rmS in toRemove) 
 			remoteSplines.Remove(rmS);
-		
-		
-//		if(Debug.isDebugBuild && toRemove.Count > 0)
-//		{
-//			Debug.Log ("LISTS CHANGED! remoteSplines (" + remoteSplines.Count + ")" + " - > closeSplines (" + closeSplines.Count + ")");
-//			Debug.Log ("ADDED to closeSpline:");
-//			foreach (Spline rmS in toRemove) 
-//				Debug.Log (printPath(rmS.transform));
-//		}
+
 		
 		toRemove.Clear();
 	}
@@ -495,8 +451,7 @@ public class MoveOnSpline : MonoBehaviour {
 		Waterfall waterfall = oldSpline.GetComponent<Waterfall> ();
 		//						StartCoroutine(forgetOldSpline());
 		
-		if(Debug.isDebugBuild)
-			Debug.Log("SWITCHED to spline: " + printPath(newSpline.transform));
+		Debugger.Log("SWITCHED to spline: " + printPath(newSpline.transform));
 		
 		spline = newSpline;
 		curParameter = newP;

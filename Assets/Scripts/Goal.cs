@@ -43,7 +43,6 @@ public class Goal : MonoBehaviour {
 			return;
 
 		if (character != null) {
-//			Debug.Log("dis to character: " + Vector3.Distance (character.transform.position, transform.position));
 			if (Vector3.Distance (character.transform.position, transform.position) < winDistance) 
 			{
 				reached = true;

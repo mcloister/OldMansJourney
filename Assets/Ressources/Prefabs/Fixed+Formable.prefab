@@ -12,7 +12,9 @@ GameObject:
   - 114: {fileID: 11430156}
   - 64: {fileID: 6430156}
   - 114: {fileID: 11430154}
-  m_Layer: 8
+  - 114: {fileID: 11481462}
+  - 114: {fileID: 11481460}
+  m_Layer: 10
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,6 +775,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1ba7d69445e949a5a56c88313d862da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11481460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b63f12fe45e426ebefb3357f3d2dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateTime: .166669995
+--- !u!114 &11481462
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12f6e20277f444a2ae2620c1a7c5076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11488094

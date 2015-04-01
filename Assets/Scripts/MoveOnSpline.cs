@@ -534,7 +534,12 @@ public class MoveOnSpline : MonoBehaviour {
 			colliderParent = spline.transform;
 
 		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+		if (!mesh)
+			return;
 		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+		if (!verticesModifier)
+			return;
+
 		verticesModifier.moveOffset = mesh.xyScale.y/2 - 5;
 
 		mesh.UpdateMesh ();
@@ -550,7 +555,12 @@ public class MoveOnSpline : MonoBehaviour {
 
 		
 		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+		if (!mesh)
+			return;
 		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+		if (!verticesModifier)
+			return;
+
 		verticesModifier.moveOffset = mesh.xyScale.y/2 + 3;
 		
 		mesh.UpdateMesh ();

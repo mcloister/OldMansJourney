@@ -13,7 +13,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	protected List<FormableNode> formableNodes;
 	protected Vector3 lastMousePos;
 	
-	protected SplineMesh colliderMesh;
 	private float updateMeshCounter = 0.0f;
 	private float updateMeshTime = 0.166f;
 	
@@ -39,11 +38,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 			
 			formableNodes.Add(t.GetComponent<FormableNode>());
 		}
-
-		//do we have a seperate collider child
-		Transform cT = transform.Find("Collider");
-		if(cT != null)
-			colliderMesh = cT.GetComponent<SplineMesh>();
 	
 
 		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
@@ -72,10 +66,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 		findClosestObjects(spline.GetClosestPointParam(eventData.worldPosition, 3), eventData.pointerId);
 		
-		
-		if(colliderMesh != null)
-			updateMeshCounter = 0.0f;
-		
 		if(sound != null)
 			sound.Play();
 	}
@@ -90,16 +80,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		terraform(normalizeScreenPos(eventData.delta), eventData.pointerId);
 
 		spline.UpdateSpline();
-		
-		if(colliderMesh != null)
-		{
-			updateMeshCounter += Time.deltaTime;
-			if(updateMeshCounter > updateMeshTime)
-			{
-				colliderMesh.UpdateMesh();
-				updateMeshCounter = 0.0f;
-			}
-		}
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
@@ -114,9 +94,6 @@ public class Terraform : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 		//now we can update the meshcollider if no other touch is terraforming it
 		if(!selector.draggedSplines.ContainsValue(this))
 			spline.gameObject.AddComponent<MeshCollider>();
-
-		if(colliderMesh != null)
-			colliderMesh.UpdateMesh();
 
 		if(sound != null)
 			sound.Stop();

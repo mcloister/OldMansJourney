@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityDebugger;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -57,11 +58,13 @@ public class MoveOnSpline : MonoBehaviour {
 	{
 		Application.targetFrameRate = 60;
 
+		disableDraggingOffset (spline);
+
 		initialSpeed = speed;
 
 		GameObject[] splineObjects =  GameObject.FindGameObjectsWithTag("Spline");
 
-		Debug.Log ("Number of Splines: " + splineObjects.Length);
+		Debugger.Log ("Number of Splines: " + splineObjects.Length);
 
 		closeSplines = new List<Spline>(splineObjects.Length);
 		closeSplines.Add (spline);
@@ -479,12 +482,16 @@ public class MoveOnSpline : MonoBehaviour {
 		toRemove.Clear();
 	}
 
-	public void switchTo(Spline newSpline, float otherP)
+	public void switchTo(Spline newSpline, float newP)
 	{
 		if (switchSound != null)
 			switchSound.Play ();
 
 		Spline oldSpline = spline;
+
+		enableDraggingOffset (oldSpline);
+		disableDraggingOffset (newSpline);
+
 		Waterfall waterfall = oldSpline.GetComponent<Waterfall> ();
 		//						StartCoroutine(forgetOldSpline());
 		
@@ -492,8 +499,8 @@ public class MoveOnSpline : MonoBehaviour {
 			Debug.Log("SWITCHED to spline: " + printPath(newSpline.transform));
 		
 		spline = newSpline;
-		curParameter = otherP;
-		curDistance = spline.ConvertNormalizedParameterToDistance(otherP);
+		curParameter = newP;
+		curDistance = spline.ConvertNormalizedParameterToDistance(newP);
 		
 		updateTransform ();
 
@@ -519,5 +526,45 @@ public class MoveOnSpline : MonoBehaviour {
 			else
 				setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
 		}
+	}
+	
+	void enableDraggingOffset(Spline spline)
+	{
+		Transform colliderParent = spline.transform.Find ("Collider");
+		if (!colliderParent) 
+			colliderParent = spline.transform;
+
+		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+		if (!mesh)
+			return;
+		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+		if (!verticesModifier)
+			return;
+
+		verticesModifier.moveOffset = mesh.xyScale.y/2 - 5;
+
+		mesh.UpdateMesh ();
+		mesh.UpdateMesh ();
+
+	}
+
+	void disableDraggingOffset(Spline spline)
+	{
+		Transform colliderParent = spline.transform.Find ("Collider");
+		if (!colliderParent) 
+			colliderParent = spline.transform;
+
+		
+		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+		if (!mesh)
+			return;
+		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+		if (!verticesModifier)
+			return;
+
+		verticesModifier.moveOffset = mesh.xyScale.y/2 + 3;
+		
+		mesh.UpdateMesh ();
+		mesh.UpdateMesh ();
 	}
 }

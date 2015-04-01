@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class TerraformPoint : Terraform 
 {
-	public float minDistance;
+	private float minDistance = 20;
 
 	Dictionary<int, List<FormableNode>> toTerraform;
 //	ArrayList toTerraform;

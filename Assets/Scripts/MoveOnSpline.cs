@@ -483,8 +483,14 @@ public class MoveOnSpline : MonoBehaviour {
 				setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
 		}
 	}
-	
-	void addTouchableOffset(Spline spline, float addend)
+
+	void OnCollisionStay(Collision collision) 
+	{
+		if(direction != 0 && collision.collider.gameObject.layer == LayerMask.NameToLayer("Dynamic"))
+			stopMoving();
+	}
+		
+		void addTouchableOffset(Spline spline, float addend)
 	{
 		Transform collider = spline.transform.Find ("Collider");
 		if (!collider) 
@@ -502,27 +508,7 @@ public class MoveOnSpline : MonoBehaviour {
 		verticesModifier.moveOffset = mesh.xyScale.y/2 + addend;
 
 		mesh.UpdateMesh ();
-		mesh.UpdateMesh ();
+		mesh.UpdateMesh ();	//need to call it twice, otherwise it wont update correctly...strange!
 
 	}
-
-//	void disableDraggingOffset(Spline spline)
-//	{
-//		Transform colliderParent = spline.transform.Find ("Collider");
-//		if (!colliderParent) 
-//			colliderParent = spline.transform;
-//
-//		
-//		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
-//		if (!mesh)
-//			return;
-//		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
-//		if (!verticesModifier)
-//			return;
-//
-//		verticesModifier.moveOffset = mesh.xyScale.y/2 + 3;
-//		
-//		mesh.UpdateMesh ();
-//		mesh.UpdateMesh ();
-//	}
 }

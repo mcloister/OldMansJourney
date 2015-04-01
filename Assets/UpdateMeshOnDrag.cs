@@ -20,7 +20,9 @@ public class UpdateMeshOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 	{
 		updateCounter = 0.0f;
 
-		isBeingDragged = true;
+		//if updateTime is -1 it means it will never be updated while being dragged but only OnEndDrag
+		if(updateTime >= 0)
+			isBeingDragged = true;
 	}
 	
 //	public void OnDrag(PointerEventData eventData)
@@ -30,6 +32,7 @@ public class UpdateMeshOnDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		mesh.UpdateMesh();
+		mesh.UpdateMesh();	//not sure why, but if we call updateMesh only once, the mesh is only accurate on every 2nd drag...(f)
 
 		isBeingDragged = false;
 	}

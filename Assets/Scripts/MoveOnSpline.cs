@@ -58,7 +58,8 @@ public class MoveOnSpline : MonoBehaviour {
 	{
 		Application.targetFrameRate = 60;
 
-		disableDraggingOffset (spline);
+		//only lower part of current spline will be touchable
+		addTouchableOffset (spline, 3);
 
 		initialSpeed = speed;
 
@@ -445,8 +446,8 @@ public class MoveOnSpline : MonoBehaviour {
 
 		Spline oldSpline = spline;
 
-		enableDraggingOffset (oldSpline);
-		disableDraggingOffset (newSpline);
+		addTouchableOffset (oldSpline, -5);		//old spline will be touchable above the line again
+		addTouchableOffset (newSpline, 3);		//new spline is only touchable a bit below spline line
 
 		Waterfall waterfall = oldSpline.GetComponent<Waterfall> ();
 		//						StartCoroutine(forgetOldSpline());
@@ -483,43 +484,45 @@ public class MoveOnSpline : MonoBehaviour {
 		}
 	}
 	
-	void enableDraggingOffset(Spline spline)
+	void addTouchableOffset(Spline spline, float addend)
 	{
-		Transform colliderParent = spline.transform.Find ("Collider");
-		if (!colliderParent) 
-			colliderParent = spline.transform;
+		Transform collider = spline.transform.Find ("Collider");
+		if (!collider) 
+			collider = spline.transform.Find ("Collision/Touchable Area");
+		if(!collider)
+			collider = spline.transform;
 
-		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+		SplineMesh mesh = collider.GetComponent<SplineMesh> ();
 		if (!mesh)
 			return;
-		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+		MoveVerticesBelowCurve verticesModifier = collider.GetComponent<MoveVerticesBelowCurve> ();
 		if (!verticesModifier)
 			return;
 
-		verticesModifier.moveOffset = mesh.xyScale.y/2 - 5;
+		verticesModifier.moveOffset = mesh.xyScale.y/2 + addend;
 
 		mesh.UpdateMesh ();
 		mesh.UpdateMesh ();
 
 	}
 
-	void disableDraggingOffset(Spline spline)
-	{
-		Transform colliderParent = spline.transform.Find ("Collider");
-		if (!colliderParent) 
-			colliderParent = spline.transform;
-
-		
-		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
-		if (!mesh)
-			return;
-		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
-		if (!verticesModifier)
-			return;
-
-		verticesModifier.moveOffset = mesh.xyScale.y/2 + 3;
-		
-		mesh.UpdateMesh ();
-		mesh.UpdateMesh ();
-	}
+//	void disableDraggingOffset(Spline spline)
+//	{
+//		Transform colliderParent = spline.transform.Find ("Collider");
+//		if (!colliderParent) 
+//			colliderParent = spline.transform;
+//
+//		
+//		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+//		if (!mesh)
+//			return;
+//		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+//		if (!verticesModifier)
+//			return;
+//
+//		verticesModifier.moveOffset = mesh.xyScale.y/2 + 3;
+//		
+//		mesh.UpdateMesh ();
+//		mesh.UpdateMesh ();
+//	}
 }

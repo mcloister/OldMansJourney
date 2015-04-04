@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b63f12fe45e426ebefb3357f3d2dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateTime: .166669995
+  updateEvery: .166669995
 --- !u!114 &11432138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -744,7 +744,7 @@ MonoBehaviour:
   - {fileID: 11488652}
   - {fileID: 11488654}
   interpolationMode: 2
-  rotationMode: 2
+  rotationMode: 1
   tangentMode: 1
   normalMode: 0
   updateMode: 0

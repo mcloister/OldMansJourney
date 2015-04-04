@@ -1102,7 +1102,7 @@ MonoBehaviour:
   - {fileID: 11492924}
   - {fileID: 11492930}
   interpolationMode: 2
-  rotationMode: 2
+  rotationMode: 1
   tangentMode: 1
   normalMode: 0
   updateMode: 0

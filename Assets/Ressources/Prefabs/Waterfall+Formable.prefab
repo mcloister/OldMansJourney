@@ -881,7 +881,7 @@ MonoBehaviour:
   - {fileID: 11470010}
   - {fileID: 11469982}
   interpolationMode: 2
-  rotationMode: 1
+  rotationMode: 0
   tangentMode: 1
   normalMode: 0
   updateMode: 0
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   - {fileID: 11470006}
   - {fileID: 11470024}
   interpolationMode: 2
-  rotationMode: 1
+  rotationMode: 0
   tangentMode: 1
   normalMode: 0
   updateMode: 0

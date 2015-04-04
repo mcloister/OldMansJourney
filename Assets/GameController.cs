@@ -7,6 +7,9 @@ public class GameController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Debugger.LogLevel = UnityDebugger.LogLevel.Info;
+
+		
+		Application.targetFrameRate = 60;
 	}
 	
 	// Update is called once per frame

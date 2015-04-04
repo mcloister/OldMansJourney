@@ -58,7 +58,6 @@ public class MoveOnSpline : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Application.targetFrameRate = 60;
 
 		//only lower part of current spline will be touchable
 		addTouchableOffset (spline, 3);

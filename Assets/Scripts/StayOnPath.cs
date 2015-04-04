@@ -15,6 +15,8 @@ public class StayOnPath : MonoBehaviour {
 	Vector3 velocity;
 	Vector3 angularVelocity;
 
+	bool isPhysicPaused;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -39,23 +41,30 @@ public class StayOnPath : MonoBehaviour {
 			if(rigidbody)
 			{
 				param = spline.GetClosestPointParam (transform.position, 3);
-
-				wasKinematic = rigidbody.isKinematic;
-				velocity = rigidbody.velocity;
-				angularVelocity = rigidbody.angularVelocity;
-				rigidbody.isKinematic = true;
 			}
 		}
 
 		if (spline != null && selector != null && selector.isBeingDragged (spline))
 		{
+			if(rigidbody && !isPhysicPaused)
+			{
+				isPhysicPaused = true;
+				
+				wasKinematic = rigidbody.isKinematic;
+				velocity = rigidbody.velocity;
+				angularVelocity = rigidbody.angularVelocity;
+				rigidbody.isKinematic = true;
+			}
+
 			transform.position = spline.GetPositionOnSpline (param) + offset;
 		}
 
 		if (Input.GetMouseButtonUp (0)) 
 		{
-			if(rigidbody)
+			if(rigidbody && isPhysicPaused)
 			{
+				isPhysicPaused = false;
+
 				rigidbody.isKinematic = wasKinematic;
 				if(!wasKinematic)
 				{

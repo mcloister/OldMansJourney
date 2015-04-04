@@ -400,7 +400,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555078
 BoxCollider:
@@ -412,7 +412,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555080
 BoxCollider:
@@ -424,7 +424,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555082
 BoxCollider:
@@ -436,7 +436,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555084
 BoxCollider:
@@ -448,7 +448,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555086
 BoxCollider:
@@ -460,7 +460,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555088
 BoxCollider:
@@ -472,7 +472,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6575368
 BoxCollider:
@@ -818,6 +818,10 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11458068}
   Modifications:
     Modificated:
+    - Object: {fileID: 6555084}
+      ObjeckLink: 1179671483
+      PropertyPath: m_Size
+      Mode: 0
     - Object: {fileID: 6432138}
       ObjeckLink: -571955676
       PropertyPath: m_Mesh
@@ -826,9 +830,9 @@ MonoBehaviour:
       ObjeckLink: 1373419741
       PropertyPath: m_Mesh
       Mode: 0
-    - Object: {fileID: 488646}
-      ObjeckLink: -1824723241
-      PropertyPath: m_LocalPosition
+    - Object: {fileID: 6555076}
+      ObjeckLink: 1422170159
+      PropertyPath: m_Size
       Mode: 0
     - Object: {fileID: 3388642}
       ObjeckLink: 1015843660
@@ -837,6 +841,10 @@ MonoBehaviour:
     - Object: {fileID: 488644}
       ObjeckLink: 1880668774
       PropertyPath: m_RootOrder
+      Mode: 0
+    - Object: {fileID: 6555086}
+      ObjeckLink: -991862434
+      PropertyPath: m_Size
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []

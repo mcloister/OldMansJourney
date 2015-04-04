@@ -176,7 +176,7 @@ GameObject:
   - 65: {fileID: 6554774}
   m_Layer: 2
   m_Name: Node 0003
-  m_TagString: Formable Node
+  m_TagString: Fixed Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,6 +279,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 488098}
+  - 114: {fileID: 11427106}
   m_Layer: 8
   m_Name: Fixed+Formable
   m_TagString: Untagged
@@ -293,7 +294,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.30000019, y: -49.5, z: 0}
+  m_LocalPosition: {x: -9.30000019, y: -49, z: 0}
   m_LocalScale: {x: 22.8944187, y: 96.536232, z: 1.71250296}
   m_Children: []
   m_Father: {fileID: 454756}
@@ -317,7 +318,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -46.0999985, y: 0, z: 0}
+  m_LocalPosition: {x: -46.0999985, y: -.479999989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454760}
@@ -333,7 +334,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.9099998, y: -1.20000005, z: 0}
+  m_LocalPosition: {x: 12, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
@@ -345,7 +346,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154760}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.7000008, y: -1.29999995, z: 0}
+  m_LocalPosition: {x: -29.1399994, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
@@ -462,7 +463,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -51.7999992, y: -2.0999999, z: 0}
+  m_LocalPosition: {x: -46.6300011, y: -1.49000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454770}
@@ -486,7 +487,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.3999996, z: 10}
+  m_LocalPosition: {x: -7, y: 25.3999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454756}
@@ -643,7 +644,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6554768
 BoxCollider:
@@ -655,7 +656,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6554770
 BoxCollider:
@@ -667,7 +668,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6554772
 BoxCollider:
@@ -691,7 +692,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6554776
 BoxCollider:
@@ -703,7 +704,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6554778
 BoxCollider:
@@ -715,7 +716,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6554780
 BoxCollider:
@@ -727,8 +728,215 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11427106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a02d0f612a241b293c0da4f82b712c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Properties:
+    Properties: []
+    Groups: []
+    Hidden: 
+  Links:
+    Links:
+    - LIIF: -1163425228
+      InstanceTarget: {fileID: 11427106}
+    - LIIF: 881737983
+      InstanceTarget: {fileID: 11454728}
+    - LIIF: -312114611
+      InstanceTarget: {fileID: 154752}
+    - LIIF: 1444280873
+      InstanceTarget: {fileID: 154754}
+    - LIIF: 1095303795
+      InstanceTarget: {fileID: 454752}
+    - LIIF: 1238734510
+      InstanceTarget: {fileID: 2354774}
+    - LIIF: 1322474124
+      InstanceTarget: {fileID: 3354772}
+    - LIIF: -1449732244
+      InstanceTarget: {fileID: 154756}
+    - LIIF: 355685988
+      InstanceTarget: {fileID: 454754}
+    - LIIF: -2137822917
+      InstanceTarget: {fileID: 2354776}
+    - LIIF: -1551246140
+      InstanceTarget: {fileID: 6554764}
+    - LIIF: 1908396419
+      InstanceTarget: {fileID: 3354774}
+    - LIIF: -936471428
+      InstanceTarget: {fileID: 454756}
+    - LIIF: -377469480
+      InstanceTarget: {fileID: 11454730}
+    - LIIF: 2040235584
+      InstanceTarget: {fileID: 11454732}
+    - LIIF: 668896412
+      InstanceTarget: {fileID: 11454734}
+    - LIIF: -1801769074
+      InstanceTarget: {fileID: 154758}
+    - LIIF: -1015687456
+      InstanceTarget: {fileID: 454758}
+    - LIIF: -1179762473
+      InstanceTarget: {fileID: 154760}
+    - LIIF: 1024675370
+      InstanceTarget: {fileID: 454760}
+    - LIIF: 1283132694
+      InstanceTarget: {fileID: 11454736}
+    - LIIF: -200028053
+      InstanceTarget: {fileID: 154762}
+    - LIIF: 1093132666
+      InstanceTarget: {fileID: 154764}
+    - LIIF: -263837240
+      InstanceTarget: {fileID: 154766}
+    - LIIF: -1809193967
+      InstanceTarget: {fileID: 154768}
+    - LIIF: -672528099
+      InstanceTarget: {fileID: 154770}
+    - LIIF: -810907414
+      InstanceTarget: {fileID: 154772}
+    - LIIF: 1172821554
+      InstanceTarget: {fileID: 154774}
+    - LIIF: 1639976619
+      InstanceTarget: {fileID: 154776}
+    - LIIF: -1410405019
+      InstanceTarget: {fileID: 154778}
+    - LIIF: 1774788737
+      InstanceTarget: {fileID: 154780}
+    - LIIF: -1433018105
+      InstanceTarget: {fileID: 11454738}
+    - LIIF: -1831568564
+      InstanceTarget: {fileID: 454762}
+    - LIIF: 1137252542
+      InstanceTarget: {fileID: 6554766}
+    - LIIF: 249974949
+      InstanceTarget: {fileID: 11454740}
+    - LIIF: -521531480
+      InstanceTarget: {fileID: 454764}
+    - LIIF: 1337376152
+      InstanceTarget: {fileID: 11454742}
+    - LIIF: 68053863
+      InstanceTarget: {fileID: 11454744}
+    - LIIF: 737631691
+      InstanceTarget: {fileID: 11454746}
+    - LIIF: 398914563
+      InstanceTarget: {fileID: 6454780}
+    - LIIF: -249617355
+      InstanceTarget: {fileID: 11454748}
+    - LIIF: 2108119172
+      InstanceTarget: {fileID: 3354776}
+    - LIIF: 563377045
+      InstanceTarget: {fileID: 11454750}
+    - LIIF: -882906628
+      InstanceTarget: {fileID: 454766}
+    - LIIF: -140869113
+      InstanceTarget: {fileID: 6554768}
+    - LIIF: 564463556
+      InstanceTarget: {fileID: 11454752}
+    - LIIF: 1483447293
+      InstanceTarget: {fileID: 11454754}
+    - LIIF: 181458486
+      InstanceTarget: {fileID: 454768}
+    - LIIF: -1972508483
+      InstanceTarget: {fileID: 6554770}
+    - LIIF: 1400911616
+      InstanceTarget: {fileID: 11454756}
+    - LIIF: -886360295
+      InstanceTarget: {fileID: 11454758}
+    - LIIF: -35045040
+      InstanceTarget: {fileID: 11454760}
+    - LIIF: 1307945005
+      InstanceTarget: {fileID: 2354778}
+    - LIIF: 1631027232
+      InstanceTarget: {fileID: 11454762}
+    - LIIF: 1822369251
+      InstanceTarget: {fileID: 11454764}
+    - LIIF: 1495595501
+      InstanceTarget: {fileID: 11454766}
+    - LIIF: -1820862201
+      InstanceTarget: {fileID: 11454768}
+    - LIIF: -54935112
+      InstanceTarget: {fileID: 11454770}
+    - LIIF: 1794355918
+      InstanceTarget: {fileID: 3354778}
+    - LIIF: -1714435116
+      InstanceTarget: {fileID: 454770}
+    - LIIF: 277333906
+      InstanceTarget: {fileID: 454772}
+    - LIIF: 2123533329
+      InstanceTarget: {fileID: 2354780}
+    - LIIF: -542056334
+      InstanceTarget: {fileID: 6554772}
+    - LIIF: -47256441
+      InstanceTarget: {fileID: 3354780}
+    - LIIF: -2011566196
+      InstanceTarget: {fileID: 454774}
+    - LIIF: -465418747
+      InstanceTarget: {fileID: 6554774}
+    - LIIF: 69205598
+      InstanceTarget: {fileID: 11454772}
+    - LIIF: 1460410386
+      InstanceTarget: {fileID: 454776}
+    - LIIF: 605810466
+      InstanceTarget: {fileID: 6554776}
+    - LIIF: 838113358
+      InstanceTarget: {fileID: 11454774}
+    - LIIF: 1423739454
+      InstanceTarget: {fileID: 11454776}
+    - LIIF: -195368460
+      InstanceTarget: {fileID: 454778}
+    - LIIF: 868313521
+      InstanceTarget: {fileID: 6554778}
+    - LIIF: -96243097
+      InstanceTarget: {fileID: 11454778}
+    - LIIF: 355093910
+      InstanceTarget: {fileID: 454780}
+    - LIIF: 1556892916
+      InstanceTarget: {fileID: 6554780}
+    - LIIF: 1134125981
+      InstanceTarget: {fileID: 11454780}
+    - LIIF: 1991741757
+      InstanceTarget: {fileID: 188098}
+    - LIIF: -267490565
+      InstanceTarget: {fileID: 488098}
+  Modifications:
+    Modificated:
+    - Object: {fileID: 6554766}
+      ObjeckLink: 1137252542
+      PropertyPath: m_Size
+      Mode: 0
+    - Object: {fileID: 6454780}
+      ObjeckLink: 398914563
+      PropertyPath: m_Mesh
+      Mode: 0
+    - Object: {fileID: 3354776}
+      ObjeckLink: 2108119172
+      PropertyPath: m_Mesh
+      Mode: 0
+    - Object: {fileID: 6554768}
+      ObjeckLink: -140869113
+      PropertyPath: m_Size
+      Mode: 0
+    - Object: {fileID: 3354778}
+      ObjeckLink: 1794355918
+      PropertyPath: m_Mesh
+      Mode: 0
+    - Object: {fileID: 6554778}
+      ObjeckLink: 868313521
+      PropertyPath: m_Size
+      Mode: 0
+    NonPrefabObjects: []
+    NonPrefabComponents: []
+    RemovedObjects: 
+    TransformParentChanges: []
+  ParentPrefabGUID: 
+  PrefabGUID: c179ff6fb107444a699c8e8e047f9ad8
 --- !u!114 &11454728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -786,24 +994,8 @@ MonoBehaviour:
       InstanceTarget: {fileID: 454760}
   Modifications:
     Modificated:
-    - Object: {fileID: 454752}
-      ObjeckLink: -1015788347
-      PropertyPath: m_LocalPosition
-      Mode: 0
     - Object: {fileID: 454756}
       ObjeckLink: -885782173
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 11454730}
-      ObjeckLink: -36467573
-      PropertyPath: rotationMode
-      Mode: 0
-    - Object: {fileID: 454758}
-      ObjeckLink: -1188198247
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 454760}
-      ObjeckLink: 134739767
       PropertyPath: m_LocalPosition
       Mode: 0
     NonPrefabObjects: []
@@ -999,6 +1191,10 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11454780}
   Modifications:
     Modificated:
+    - Object: {fileID: 154770}
+      ObjeckLink: 2028889147
+      PropertyPath: m_TagString
+      Mode: 0
     - Object: {fileID: 454762}
       ObjeckLink: 134837245
       PropertyPath: m_LocalPosition
@@ -1033,6 +1229,10 @@ MonoBehaviour:
       Mode: 0
     - Object: {fileID: 454774}
       ObjeckLink: -1329449911
+      PropertyPath: m_LocalPosition
+      Mode: 0
+    - Object: {fileID: 454778}
+      ObjeckLink: 1425307471
       PropertyPath: m_LocalPosition
       Mode: 0
     - Object: {fileID: 454780}

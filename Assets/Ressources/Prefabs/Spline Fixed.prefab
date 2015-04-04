@@ -91,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.2999992, y: -59.5, z: 0}
+  m_LocalPosition: {x: -9.30000019, y: -49, z: 0}
   m_LocalScale: {x: 22.8944187, y: 96.536232, z: 1.71250296}
   m_Children: []
   m_Father: {fileID: 441844}
@@ -115,7 +115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.3999996, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441848}
@@ -131,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.9099998, y: -11.1999998, z: 0}
+  m_LocalPosition: {x: 12, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 441844}
@@ -143,7 +143,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 141848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -76.6999969, y: -11.3000002, z: 0}
+  m_LocalPosition: {x: -29.1399994, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 441844}
@@ -229,7 +229,7 @@ MonoBehaviour:
   - {fileID: 11441846}
   - {fileID: 11441848}
   interpolationMode: 2
-  rotationMode: 2
+  rotationMode: 0
   tangentMode: 1
   normalMode: 0
   updateMode: 0
@@ -324,7 +324,15 @@ MonoBehaviour:
     - LIIF: 134739767
       InstanceTarget: {fileID: 441848}
   Modifications:
-    Modificated: []
+    Modificated:
+    - Object: {fileID: 441844}
+      ObjeckLink: -885782173
+      PropertyPath: m_RootOrder
+      Mode: 0
+    - Object: {fileID: 11441844}
+      ObjeckLink: -36467573
+      PropertyPath: rotationMode
+      Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
     RemovedObjects: 

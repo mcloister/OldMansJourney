@@ -41,6 +41,8 @@ public class MoveOnSpline : MonoBehaviour {
 
 	bool inWaterfall;
 
+	Ray debugRay;
+
 	struct InterpolationData
 	{
 		public float parameter;
@@ -109,7 +111,7 @@ public class MoveOnSpline : MonoBehaviour {
 		targetMousePosObj = GameObject.Find ("TargetMousePos");
 
 		///adapt threshold to different resolutions
-		//a higher resolution means smaller pixel, or more pixels per world unit, does the threshold has to be adjusted
+		//a higher resolution means smaller pixel, or more pixels per world unit, thus the threshold has to be adjusted
 		switchThreshold *= Camera.main.pixelWidth / 1024.0f;
 
 		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
@@ -243,7 +245,7 @@ public class MoveOnSpline : MonoBehaviour {
 			Waterfall waterfall = spline.GetComponent<Waterfall>();
 			float switchThresholdFactor = (waterfall) ? waterfall.switchThresholdFactor : 1;
 
-			//first check the remotesplines every other frame
+			//first update the remotesplines every other frame
 			sinceLastRemoteCheck += Time.deltaTime;
 			if(sinceLastRemoteCheck > 0.1667f)
 			{
@@ -252,9 +254,9 @@ public class MoveOnSpline : MonoBehaviour {
 				sinceLastRemoteCheck = 0.0f;
 			}
 
-			
-			List<Spline> toRemove =new List<Spline>();
+
 			// then check each spline that is close enough if we need to switch spline
+			List<Spline> toRemove =new List<Spline>();
 			for (int cI = 0; cI < closeSplines.Count; cI++)
 			{
 				Spline otherSpline = closeSplines[cI];
@@ -327,15 +329,34 @@ public class MoveOnSpline : MonoBehaviour {
 					break;
 			}
 		}
+
+		if (Debug.isDebugBuild) 
+		{
+			Debug.DrawRay(debugRay.origin, debugRay.direction);
+		}
 	
 	}
 
 	public void setTarget(Vector3 worldPosition)
 	{
 		targetMousePos = worldPosition;
+		float param = spline.GetClosestPointParam (worldPosition, 3);
 
-		target = spline.GetPositionOnSpline(spline.GetClosestPointParam(worldPosition, 3));
+		target = spline.GetPositionOnSpline(param);
 		direction = (target.x - transform.position.x) > 0 ? 1 : -1;
+
+		//don't move if an immovable object is in the way
+		//we cast a ray from characters center along tangent at current position on spline
+		RaycastHit hit;
+		string[] layers = {"Dynamic"};
+		if (Physics.Raycast (transform.position, spline.GetTangentToSpline (param) * direction, out hit, 10, LayerMask.GetMask (layers))) 
+		{
+			if(hit.collider.CompareTag("Immovable"))
+			{
+				direction = 0;	//don't move;
+				return;
+			}
+		}
 
 		if (Debug.isDebugBuild) 
 		{
@@ -484,9 +505,9 @@ public class MoveOnSpline : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionStay(Collision collision) 
+	void OnCollisionEnter(Collision collision) 
 	{
-		if(direction != 0 && collision.collider.gameObject.layer == LayerMask.NameToLayer("Dynamic"))
+		if(direction != 0 && collision.collider.CompareTag("Immovable"))// gameObject.layer == LayerMask.NameToLayer("Dynamic"))
 			stopMoving();
 	}
 		

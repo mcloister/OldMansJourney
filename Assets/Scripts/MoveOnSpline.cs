@@ -332,7 +332,7 @@ public class MoveOnSpline : MonoBehaviour {
 
 		if (Debug.isDebugBuild) 
 		{
-			Debug.DrawRay(debugRay.origin, debugRay.direction);
+//			Debug.DrawRay(debugRay.origin, debugRay.direction);
 		}
 	
 	}

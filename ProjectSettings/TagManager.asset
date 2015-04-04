@@ -12,6 +12,7 @@ TagManager:
   - Static Node
   - Sound
   - TargetPos
+  - Immovable
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

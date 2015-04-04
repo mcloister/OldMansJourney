@@ -371,10 +371,10 @@ public class MoveOnSpline : MonoBehaviour {
 	private void updateTransform()
 	{
 		transform.position = spline.GetPositionOnSpline (curParameter) + new Vector3 (0, transform.localScale.y / 2, -1);
-		if (inWaterfall)
-			transform.rotation = Quaternion.identity;
-		else
-			transform.rotation = spline.GetOrientationOnSpline (curParameter);
+//		if (inWaterfall)
+//			transform.rotation = Quaternion.identity;
+//		else
+//			transform.rotation = spline.GetOrientationOnSpline (curParameter);
 	}
 
 	

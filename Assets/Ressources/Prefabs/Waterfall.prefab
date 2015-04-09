@@ -27,7 +27,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441106}
   - 114: {fileID: 11441112}
-  - 114: {fileID: 11441106}
   m_Layer: 2
   m_Name: Node 0003
   m_TagString: Fixed Node
@@ -44,7 +43,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441108}
   - 114: {fileID: 11441114}
-  - 114: {fileID: 11441108}
   m_Layer: 2
   m_Name: Node 0002
   m_TagString: Fixed Node
@@ -61,7 +59,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441110}
   - 114: {fileID: 11441116}
-  - 114: {fileID: 11441110}
   m_Layer: 2
   m_Name: Node 0001
   m_TagString: Fixed Node
@@ -98,6 +95,7 @@ GameObject:
   - 114: {fileID: 11441124}
   - 114: {fileID: 11441126}
   - 114: {fileID: 11441122}
+  - 114: {fileID: 11462386}
   m_Layer: 8
   m_Name: Spline Drop-Off Left
   m_TagString: Spline
@@ -114,7 +112,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441116}
   - 114: {fileID: 11441128}
-  - 114: {fileID: 11441134}
   m_Layer: 2
   m_Name: Node 0001
   m_TagString: Fixed Node
@@ -131,7 +128,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441118}
   - 114: {fileID: 11441130}
-  - 114: {fileID: 11441136}
   m_Layer: 2
   m_Name: Node 0002
   m_TagString: Fixed Node
@@ -148,7 +144,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 441120}
   - 114: {fileID: 11441132}
-  - 114: {fileID: 11441138}
   m_Layer: 2
   m_Name: Node 0003
   m_TagString: Fixed Node
@@ -482,60 +477,6 @@ MonoBehaviour:
   direction: -1
   fallSpeed: 35
   switchThresholdFactor: 1
---- !u!114 &11441106
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11441108
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11441110
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
 --- !u!114 &11441112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,8 +552,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11441114}
     - LIIF: 820788315
       InstanceTarget: {fileID: 441108}
-    - LIIF: 978850148
-      InstanceTarget: {fileID: 11441108}
     - LIIF: -2077846125
       InstanceTarget: {fileID: 11441120}
     - LIIF: -882564033
@@ -631,12 +570,8 @@ MonoBehaviour:
       InstanceTarget: {fileID: 3341104}
     - LIIF: -1329449911
       InstanceTarget: {fileID: 441106}
-    - LIIF: -190102882
-      InstanceTarget: {fileID: 11441106}
     - LIIF: 1425307471
       InstanceTarget: {fileID: 441110}
-    - LIIF: -354427070
-      InstanceTarget: {fileID: 11441110}
     - LIIF: -715543710
       InstanceTarget: {fileID: 11441104}
   Modifications:
@@ -756,8 +691,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11441130}
     - LIIF: 820788315
       InstanceTarget: {fileID: 441118}
-    - LIIF: 978850148
-      InstanceTarget: {fileID: 11441136}
     - LIIF: -2077846125
       InstanceTarget: {fileID: 11441124}
     - LIIF: -882564033
@@ -776,35 +709,15 @@ MonoBehaviour:
       InstanceTarget: {fileID: 3341106}
     - LIIF: -1329449911
       InstanceTarget: {fileID: 441120}
-    - LIIF: -190102882
-      InstanceTarget: {fileID: 11441138}
     - LIIF: 1425307471
       InstanceTarget: {fileID: 441116}
-    - LIIF: -354427070
-      InstanceTarget: {fileID: 11441134}
     - LIIF: -715543710
-      InstanceTarget: {fileID: 11441122}
+      InstanceTarget: {fileID: 11462386}
   Modifications:
     Modificated:
-    - Object: {fileID: 141114}
-      ObjeckLink: -671019480
-      PropertyPath: m_Name
-      Mode: 0
-    - Object: {fileID: 141120}
-      ObjeckLink: 2028889147
-      PropertyPath: m_TagString
-      Mode: 0
     - Object: {fileID: 441118}
       ObjeckLink: 820788315
       PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 441118}
-      ObjeckLink: 820788315
-      PropertyPath: m_RootOrder
-      Mode: 0
-    - Object: {fileID: 11441124}
-      ObjeckLink: -2077846125
-      PropertyPath: splineNodesArray.Array.size
       Mode: 0
     - Object: {fileID: 441114}
       ObjeckLink: 1880668774
@@ -814,31 +727,15 @@ MonoBehaviour:
       ObjeckLink: 1880668774
       PropertyPath: m_RootOrder
       Mode: 0
-    - Object: {fileID: 441122}
-      ObjeckLink: -540495021
-      PropertyPath: m_RootOrder
-      Mode: 0
     - Object: {fileID: 441120}
       ObjeckLink: -1329449911
       PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 441120}
-      ObjeckLink: -1329449911
-      PropertyPath: m_RootOrder
-      Mode: 0
-    - Object: {fileID: 441116}
-      ObjeckLink: 1425307471
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 441116}
-      ObjeckLink: 1425307471
-      PropertyPath: m_RootOrder
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents:
     - child: {fileID: 11441122}
       parent: {fileID: 141114}
-    RemovedObjects: 06ea55a9d5247e892bf16dea4c4e53df50089a52b05ac9e8bb5b5046c19fcfd74023ca05934f7d0cc3466f2a24a6e8dd8d733855ddb8dc512f98c454eabfed0eeeb0a01211981bc29820287a89fd8b9d1b26a567d4c1031f03a2b5ad4c8b8c3cecfe05cef58d97fab84a6e8301dfe1a15e61e1c43081a139888675bb
+    RemovedObjects: 
     TransformParentChanges: []
   ParentPrefabGUID: e8ff94556041646fcb69fdfeffcca449
   PrefabGUID: fe3c1de6f6ae3411ba49e44edb39faf9
@@ -884,60 +781,20 @@ MonoBehaviour:
   customValue: 0
   tension: 1
   normal: {x: 0, y: 1, z: 0}
---- !u!114 &11441134
+--- !u!114 &11462386
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141116}
+  m_GameObject: {fileID: 141114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
+  m_Script: {fileID: 11500000, guid: f4f29735415f74bdbad8d3d56e31f567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11441136
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11441138
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 141120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
+  direction: 1
+  fallSpeed: 35
+  switchThresholdFactor: 1
 --- !u!114 &11493314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -963,12 +820,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 6541106}
     - LIIF: 1138059816
       InstanceTarget: {fileID: 3341106}
-    - LIIF: -1272204473
-      InstanceTarget: {fileID: 11441138}
-    - LIIF: 214897663
-      InstanceTarget: {fileID: 11441136}
-    - LIIF: 103890536
-      InstanceTarget: {fileID: 11441134}
     - LIIF: -1847226080
       InstanceTarget: {fileID: 11441132}
     - LIIF: 1968278537
@@ -1000,7 +851,7 @@ MonoBehaviour:
     - LIIF: -1550699910
       InstanceTarget: {fileID: 141114}
     - LIIF: 161243986
-      InstanceTarget: {fileID: 11441122}
+      InstanceTarget: {fileID: 11462386}
     - LIIF: -729599659
       InstanceTarget: {fileID: 141112}
     - LIIF: 1485087018
@@ -1031,12 +882,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11441114}
     - LIIF: 2145596823
       InstanceTarget: {fileID: 11441112}
-    - LIIF: -260088631
-      InstanceTarget: {fileID: 11441110}
-    - LIIF: 1697588164
-      InstanceTarget: {fileID: 11441108}
-    - LIIF: -451986735
-      InstanceTarget: {fileID: 11441106}
     - LIIF: 968558169
       InstanceTarget: {fileID: 3341104}
     - LIIF: 753085463
@@ -1059,15 +904,15 @@ MonoBehaviour:
       InstanceTarget: {fileID: 2395370}
     - LIIF: -707181328
       InstanceTarget: {fileID: 3395370}
+    - LIIF: -163407454
+      InstanceTarget: {fileID: 11441122}
   Modifications:
-    Modificated:
-    - Object: {fileID: 11441104}
-      ObjeckLink: -119306084
-      PropertyPath: direction
-      Mode: 0
+    Modificated: []
     NonPrefabObjects: []
-    NonPrefabComponents: []
-    RemovedObjects: 
+    NonPrefabComponents:
+    - child: {fileID: 11441122}
+      parent: {fileID: 141114}
+    RemovedObjects: 47b32bb4ff13cf0c683e3106
     TransformParentChanges: []
   ParentPrefabGUID: 
   PrefabGUID: 208f3f9735ef245a69aa77ba13896750

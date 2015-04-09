@@ -27,7 +27,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 470350}
   - 114: {fileID: 11470336}
-  - 114: {fileID: 11470324}
   m_Layer: 2
   m_Name: Node 0003
   m_TagString: Fixed Node
@@ -44,7 +43,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 470352}
   - 114: {fileID: 11470338}
-  - 114: {fileID: 11470326}
   m_Layer: 2
   m_Name: Node 0002
   m_TagString: Fixed Node
@@ -61,7 +59,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 470354}
   - 114: {fileID: 11470340}
-  - 114: {fileID: 11470328}
   m_Layer: 2
   m_Name: Node 0001
   m_TagString: Fixed Node
@@ -204,60 +201,6 @@ MonoBehaviour:
   direction: 1
   fallSpeed: 35
   switchThresholdFactor: 1
---- !u!114 &11470324
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11470326
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11470328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
 --- !u!114 &11470336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,8 +276,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11470338}
     - LIIF: 820788315
       InstanceTarget: {fileID: 470352}
-    - LIIF: 978850148
-      InstanceTarget: {fileID: 11470326}
     - LIIF: -2077846125
       InstanceTarget: {fileID: 11470350}
     - LIIF: -882564033
@@ -353,12 +294,8 @@ MonoBehaviour:
       InstanceTarget: {fileID: 3370354}
     - LIIF: -1329449911
       InstanceTarget: {fileID: 470350}
-    - LIIF: -190102882
-      InstanceTarget: {fileID: 11470324}
     - LIIF: 1425307471
       InstanceTarget: {fileID: 470354}
-    - LIIF: -354427070
-      InstanceTarget: {fileID: 11470328}
     - LIIF: -715543710
       InstanceTarget: {fileID: 11421786}
   Modifications:
@@ -382,6 +319,10 @@ MonoBehaviour:
     - Object: {fileID: 11470350}
       ObjeckLink: -2077846125
       PropertyPath: splineNodesArray.Array.size
+      Mode: 0
+    - Object: {fileID: 470356}
+      ObjeckLink: 1880668774
+      PropertyPath: m_RootOrder
       Mode: 0
     - Object: {fileID: 470340}
       ObjeckLink: -540495021
@@ -407,7 +348,7 @@ MonoBehaviour:
     NonPrefabComponents:
     - child: {fileID: 11421786}
       parent: {fileID: 170358}
-    RemovedObjects: 06ea55a9d5247e892bf16dea4c4e53df50089a52b05ac9e8bb5b5046c19fcfd74023ca05934f7d0cc3466f2a24a6e8dd8d733855ddb8dc512f98c454eabfed0eeeb0a01211981bc29820287a89fd8b9d1b26a567d4c1031f03a2b5ad4c8b8c3cecfe05cef58d97fab84a6e8301dfe1a15e61e1c43081a139888675bb
+    RemovedObjects: 06ea55a9d5247e892bf16dea4c4e53df50089a52b05ac9e8bb5b5046c19fcfd74023ca05934f7d0cc3466f2a24a6e8dd8d733855ddb8dc512f98c4546411583aeabfed0eeeb0a01211981bc29820287a89fd8b9d1b26a567d4c1031f03a2b5ad4c8b8c3cecfe05ce9e42abf4f58d97fab84a6e8301dfe1a15e61e1c442dfdfea3081a139888675bb
     TransformParentChanges: []
   ParentPrefabGUID: e8ff94556041646fcb69fdfeffcca449
   PrefabGUID: fe3c1de6f6ae3411ba49e44edb39faf9

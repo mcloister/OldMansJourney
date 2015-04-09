@@ -27,7 +27,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 418894}
   - 114: {fileID: 11418900}
-  - 114: {fileID: 11418894}
   m_Layer: 2
   m_Name: Node 0003
   m_TagString: Fixed Node
@@ -44,7 +43,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 418896}
   - 114: {fileID: 11418902}
-  - 114: {fileID: 11418896}
   m_Layer: 2
   m_Name: Node 0002
   m_TagString: Fixed Node
@@ -61,7 +59,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 418898}
   - 114: {fileID: 11418904}
-  - 114: {fileID: 11418898}
   m_Layer: 2
   m_Name: Node 0001
   m_TagString: Fixed Node
@@ -204,60 +201,6 @@ MonoBehaviour:
   direction: -1
   fallSpeed: 35
   switchThresholdFactor: 1
---- !u!114 &11418894
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11418896
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
---- !u!114 &11418898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 118898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced18dbf5e9a8469aa0ca2ccb7041b26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  splineNode: {fileID: 0}
-  limits:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 0
-    height: 0
 --- !u!114 &11418900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,8 +276,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11418902}
     - LIIF: 820788315
       InstanceTarget: {fileID: 418896}
-    - LIIF: 978850148
-      InstanceTarget: {fileID: 11418896}
     - LIIF: -2077846125
       InstanceTarget: {fileID: 11418908}
     - LIIF: -882564033
@@ -353,12 +294,8 @@ MonoBehaviour:
       InstanceTarget: {fileID: 3318892}
     - LIIF: -1329449911
       InstanceTarget: {fileID: 418894}
-    - LIIF: -190102882
-      InstanceTarget: {fileID: 11418894}
     - LIIF: 1425307471
       InstanceTarget: {fileID: 418898}
-    - LIIF: -354427070
-      InstanceTarget: {fileID: 11418898}
     - LIIF: -715543710
       InstanceTarget: {fileID: 11418892}
   Modifications:

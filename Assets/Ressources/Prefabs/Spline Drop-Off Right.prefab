@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f29735415f74bdbad8d3d56e31f567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
+  direction: -1
   fallSpeed: 35
   switchThresholdFactor: 1
 --- !u!114 &11418894
@@ -382,6 +382,10 @@ MonoBehaviour:
     - Object: {fileID: 418898}
       ObjeckLink: 1425307471
       PropertyPath: m_LocalPosition
+      Mode: 0
+    - Object: {fileID: 11418892}
+      ObjeckLink: -715543710
+      PropertyPath: direction
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []

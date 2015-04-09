@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f29735415f74bdbad8d3d56e31f567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 1
+  direction: -1
   fallSpeed: 35
   switchThresholdFactor: 1
 --- !u!114 &11441106
@@ -641,14 +641,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 11441104}
   Modifications:
     Modificated:
-    - Object: {fileID: 141112}
-      ObjeckLink: -671019480
-      PropertyPath: m_Name
-      Mode: 0
-    - Object: {fileID: 441108}
-      ObjeckLink: 820788315
-      PropertyPath: m_LocalPosition
-      Mode: 0
     - Object: {fileID: 441112}
       ObjeckLink: 1880668774
       PropertyPath: m_LocalPosition
@@ -656,14 +648,6 @@ MonoBehaviour:
     - Object: {fileID: 441112}
       ObjeckLink: 1880668774
       PropertyPath: m_RootOrder
-      Mode: 0
-    - Object: {fileID: 441106}
-      ObjeckLink: -1329449911
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 441110}
-      ObjeckLink: 1425307471
-      PropertyPath: m_LocalPosition
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
@@ -1076,7 +1060,11 @@ MonoBehaviour:
     - LIIF: -707181328
       InstanceTarget: {fileID: 3395370}
   Modifications:
-    Modificated: []
+    Modificated:
+    - Object: {fileID: 11441104}
+      ObjeckLink: -119306084
+      PropertyPath: direction
+      Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
     RemovedObjects: 

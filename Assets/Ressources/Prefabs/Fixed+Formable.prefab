@@ -907,10 +907,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 488098}
   Modifications:
     Modificated:
-    - Object: {fileID: 6554766}
-      ObjeckLink: 1137252542
-      PropertyPath: m_Size
-      Mode: 0
     - Object: {fileID: 6454780}
       ObjeckLink: 398914563
       PropertyPath: m_Mesh
@@ -919,17 +915,13 @@ MonoBehaviour:
       ObjeckLink: 2108119172
       PropertyPath: m_Mesh
       Mode: 0
-    - Object: {fileID: 6554768}
-      ObjeckLink: -140869113
-      PropertyPath: m_Size
+    - Object: {fileID: 11454764}
+      ObjeckLink: 1822369251
+      PropertyPath: rotationMode
       Mode: 0
     - Object: {fileID: 3354778}
       ObjeckLink: 1794355918
       PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 6554778}
-      ObjeckLink: 868313521
-      PropertyPath: m_Size
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []

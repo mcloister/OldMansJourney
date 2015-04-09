@@ -817,35 +817,7 @@ MonoBehaviour:
     - LIIF: -1149925752
       InstanceTarget: {fileID: 11458068}
   Modifications:
-    Modificated:
-    - Object: {fileID: 6555084}
-      ObjeckLink: 1179671483
-      PropertyPath: m_Size
-      Mode: 0
-    - Object: {fileID: 6432138}
-      ObjeckLink: -571955676
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 3332138}
-      ObjeckLink: 1373419741
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 6555076}
-      ObjeckLink: 1422170159
-      PropertyPath: m_Size
-      Mode: 0
-    - Object: {fileID: 3388642}
-      ObjeckLink: 1015843660
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 488644}
-      ObjeckLink: 1880668774
-      PropertyPath: m_RootOrder
-      Mode: 0
-    - Object: {fileID: 6555086}
-      ObjeckLink: -991862434
-      PropertyPath: m_Size
-      Mode: 0
+    Modificated: []
     NonPrefabObjects: []
     NonPrefabComponents: []
     RemovedObjects: 

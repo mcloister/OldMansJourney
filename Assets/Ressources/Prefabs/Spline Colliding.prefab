@@ -822,10 +822,10 @@ MonoBehaviour:
       PropertyPath: m_Mesh
       Mode: 0
     NonPrefabObjects:
-    - child: {fileID: 475970}
-      parent: {fileID: 492252}
     - child: {fileID: 475968}
       parent: {fileID: 475970}
+    - child: {fileID: 475970}
+      parent: {fileID: 492252}
     NonPrefabComponents: []
     RemovedObjects: 06ea55a94023ca05934f7d0cc3466f2a24a6e8dd8d733855ddb8dc51
     TransformParentChanges: []

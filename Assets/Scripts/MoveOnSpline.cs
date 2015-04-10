@@ -347,7 +347,7 @@ public class MoveOnSpline : MonoBehaviour {
 		//don't move if an immovable object is in the way
 		//we cast a ray from characters center along tangent at current position on spline
 		RaycastHit hit;
-		string[] layers = {"Dynamic"};
+		string[] layers = {"Dynamic", "Static"};
 		if (Physics.Raycast (transform.position, spline.GetTangentToSpline (param) * direction, out hit, 10, LayerMask.GetMask (layers))) 
 		{
 			if(hit.collider.CompareTag("Immovable"))

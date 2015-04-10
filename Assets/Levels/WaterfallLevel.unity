@@ -5185,7 +5185,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_Text
-      value: 
+      value: Touch to continue
       objectReference: {fileID: 0}
     - target: {fileID: 22410568, guid: 6c8e0c083ddc1403aa0208bd0cd8a348, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -9281,7 +9281,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Touch to continue
 --- !u!222 &1013526117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13572,7 +13572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f90e96a345340d58c9811a55e7b7f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 2036664888}
+  spline: {fileID: 1291142027}
   param: 0
   target: {x: 0, y: 0, z: 0}
   speed: 15
@@ -14927,7 +14927,7 @@ Prefab:
     - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: spline
       value: 
-      objectReference: {fileID: 2036664888}
+      objectReference: {fileID: 1291142027}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
   m_RootGameObject: {fileID: 1480118044}

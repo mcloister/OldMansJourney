@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3309308}
   - 65: {fileID: 6509308}
   - 23: {fileID: 2309308}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TargetPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

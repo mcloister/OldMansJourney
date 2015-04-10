@@ -10,7 +10,6 @@ GameObject:
   - 224: {fileID: 22410566}
   - 223: {fileID: 22310568}
   - 114: {fileID: 11410564}
-  - 114: {fileID: 11410566}
   - 114: {fileID: 11404676}
   m_Layer: 8
   m_Name: WinCanvas
@@ -68,22 +67,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &11410566
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &11410568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,10 +146,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 22410566}
   m_RootOrder: 0
-  m_AnchorMin: {x: .230000004, y: 0}
-  m_AnchorMax: {x: .769876361, y: .186329678}
-  m_AnchoredPosition: {x: -.500015259, y: .999998033}
-  m_SizeDelta: {x: -27, y: -27}
+  m_AnchorMin: {x: .130271867, y: .0700000003}
+  m_AnchorMax: {x: .874271929, y: .19914256}
+  m_AnchoredPosition: {x: -.911003113, y: -1.00000262}
+  m_SizeDelta: {x: 8, y: 3}
   m_Pivot: {x: .5, y: .499999911}
 --- !u!1001 &100100000
 Prefab:

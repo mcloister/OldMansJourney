@@ -41,6 +41,8 @@ public class MoveOnSpline : MonoBehaviour {
 
 	bool inWaterfall;
 
+	Ray debugRay;
+
 	struct InterpolationData
 	{
 		public float parameter;
@@ -56,9 +58,9 @@ public class MoveOnSpline : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		Application.targetFrameRate = 60;
 
-		disableDraggingOffset (spline);
+		//only lower part of current spline will be touchable
+		addTouchableOffset (spline, 3);
 
 		initialSpeed = speed;
 
@@ -108,7 +110,7 @@ public class MoveOnSpline : MonoBehaviour {
 		targetMousePosObj = GameObject.Find ("TargetMousePos");
 
 		///adapt threshold to different resolutions
-		//a higher resolution means smaller pixel, or more pixels per world unit, does the threshold has to be adjusted
+		//a higher resolution means smaller pixel, or more pixels per world unit, thus the threshold has to be adjusted
 		switchThreshold *= Camera.main.pixelWidth / 1024.0f;
 
 		GameObject[] sounds = GameObject.FindGameObjectsWithTag ("Sound");
@@ -242,7 +244,7 @@ public class MoveOnSpline : MonoBehaviour {
 			Waterfall waterfall = spline.GetComponent<Waterfall>();
 			float switchThresholdFactor = (waterfall) ? waterfall.switchThresholdFactor : 1;
 
-			//first check the remotesplines every other frame
+			//first update the remotesplines every other frame
 			sinceLastRemoteCheck += Time.deltaTime;
 			if(sinceLastRemoteCheck > 0.1667f)
 			{
@@ -251,9 +253,9 @@ public class MoveOnSpline : MonoBehaviour {
 				sinceLastRemoteCheck = 0.0f;
 			}
 
-			
-			List<Spline> toRemove =new List<Spline>();
+
 			// then check each spline that is close enough if we need to switch spline
+			List<Spline> toRemove =new List<Spline>();
 			for (int cI = 0; cI < closeSplines.Count; cI++)
 			{
 				Spline otherSpline = closeSplines[cI];
@@ -326,15 +328,34 @@ public class MoveOnSpline : MonoBehaviour {
 					break;
 			}
 		}
+
+		if (Debug.isDebugBuild) 
+		{
+//			Debug.DrawRay(debugRay.origin, debugRay.direction);
+		}
 	
 	}
 
 	public void setTarget(Vector3 worldPosition)
 	{
 		targetMousePos = worldPosition;
+		float param = spline.GetClosestPointParam (worldPosition, 3);
 
-		target = spline.GetPositionOnSpline(spline.GetClosestPointParam(worldPosition, 3));
+		target = spline.GetPositionOnSpline(param);
 		direction = (target.x - transform.position.x) > 0 ? 1 : -1;
+
+		//don't move if an immovable object is in the way
+		//we cast a ray from characters center along tangent at current position on spline
+		RaycastHit hit;
+		string[] layers = {"Dynamic"};
+		if (Physics.Raycast (transform.position, spline.GetTangentToSpline (param) * direction, out hit, 10, LayerMask.GetMask (layers))) 
+		{
+			if(hit.collider.CompareTag("Immovable"))
+			{
+				direction = 0;	//don't move;
+				return;
+			}
+		}
 
 		if (Debug.isDebugBuild) 
 		{
@@ -350,10 +371,10 @@ public class MoveOnSpline : MonoBehaviour {
 	private void updateTransform()
 	{
 		transform.position = spline.GetPositionOnSpline (curParameter) + new Vector3 (0, transform.localScale.y / 2, -1);
-		if (inWaterfall)
-			transform.rotation = Quaternion.identity;
-		else
-			transform.rotation = spline.GetOrientationOnSpline (curParameter);
+//		if (inWaterfall)
+//			transform.rotation = Quaternion.identity;
+//		else
+//			transform.rotation = spline.GetOrientationOnSpline (curParameter);
 	}
 
 	
@@ -440,13 +461,14 @@ public class MoveOnSpline : MonoBehaviour {
 
 	public void switchTo(Spline newSpline, float newP)
 	{
-		if (switchSound != null)
-			switchSound.Play ();
-
 		Spline oldSpline = spline;
 
-		enableDraggingOffset (oldSpline);
-		disableDraggingOffset (newSpline);
+		if (switchSound != null && oldSpline.transform.position.z != newSpline.transform.position.z)
+			switchSound.Play ();
+
+
+		addTouchableOffset (oldSpline, -5);		//old spline will be touchable above the line again
+		addTouchableOffset (newSpline, 3);		//new spline is only touchable a bit below spline line
 
 		Waterfall waterfall = oldSpline.GetComponent<Waterfall> ();
 		//						StartCoroutine(forgetOldSpline());
@@ -482,44 +504,32 @@ public class MoveOnSpline : MonoBehaviour {
 				setTarget (targetMousePos + new Vector3(0,0, spline.transform.position.z - oldSpline.transform.position.z));		//recalculate target on new spline
 		}
 	}
-	
-	void enableDraggingOffset(Spline spline)
+
+	void OnCollisionEnter(Collision collision) 
 	{
-		Transform colliderParent = spline.transform.Find ("Collider");
-		if (!colliderParent) 
-			colliderParent = spline.transform;
-
-		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
-		if (!mesh)
-			return;
-		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
-		if (!verticesModifier)
-			return;
-
-		verticesModifier.moveOffset = mesh.xyScale.y/2 - 5;
-
-		mesh.UpdateMesh ();
-		mesh.UpdateMesh ();
-
+		if(direction != 0 && collision.collider.CompareTag("Immovable"))// gameObject.layer == LayerMask.NameToLayer("Dynamic"))
+			stopMoving();
 	}
-
-	void disableDraggingOffset(Spline spline)
-	{
-		Transform colliderParent = spline.transform.Find ("Collider");
-		if (!colliderParent) 
-			colliderParent = spline.transform;
-
 		
-		SplineMesh mesh = colliderParent.GetComponent<SplineMesh> ();
+		void addTouchableOffset(Spline spline, float addend)
+	{
+		Transform collider = spline.transform.Find ("Collider");
+		if (!collider) 
+			collider = spline.transform.Find ("Collision/Touchable Area");
+		if(!collider)
+			collider = spline.transform;
+
+		SplineMesh mesh = collider.GetComponent<SplineMesh> ();
 		if (!mesh)
 			return;
-		MoveVerticesBelowCurve verticesModifier = colliderParent.GetComponent<MoveVerticesBelowCurve> ();
+		MoveVerticesBelowCurve verticesModifier = collider.GetComponent<MoveVerticesBelowCurve> ();
 		if (!verticesModifier)
 			return;
 
-		verticesModifier.moveOffset = mesh.xyScale.y/2 + 3;
-		
+		verticesModifier.moveOffset = mesh.xyScale.y/2 + addend;
+
 		mesh.UpdateMesh ();
-		mesh.UpdateMesh ();
+		mesh.UpdateMesh ();	//need to call it twice, otherwise it wont update correctly...strange!
+
 	}
 }

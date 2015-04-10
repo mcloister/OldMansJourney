@@ -8,11 +8,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 434248}
-  - 33: {fileID: 3334248}
-  - 65: {fileID: 6534248}
-  - 23: {fileID: 2334248}
   - 114: {fileID: 11434248}
-  m_Layer: 0
+  - 65: {fileID: 6506550}
+  - 54: {fileID: 5461452}
+  m_Layer: 11
   m_Name: Character
   m_TagString: Character
   m_Icon: {fileID: 0}
@@ -90,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.5, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -7.69999981, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 446052}
@@ -147,34 +146,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 434248}
   m_RootOrder: 3
---- !u!23 &2334248
-Renderer:
+--- !u!54 &5461452
+Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134248}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 93dccae00bab048ae918977c88a89679, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &3334248
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134248}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6534248
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6506550
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -184,7 +171,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: .275912523, y: 1, z: .275912493}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &8264622
 AudioSource:

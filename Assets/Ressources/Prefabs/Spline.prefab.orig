@@ -69,8 +69,9 @@ GameObject:
   - 23: {fileID: 2388642}
   - 114: {fileID: 11494004}
   - 114: {fileID: 11453246}
+  - 114: {fileID: 11467588}
   m_Layer: 8
-  m_Name: Formable Spline
+  m_Name: Spline
   m_TagString: Spline
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -248,7 +249,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.34178674, y: -20.2935028, z: 0}
+  m_LocalPosition: {x: -1.29999995, y: -17.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.00000012}
   m_Children: []
   m_Father: {fileID: 488644}
@@ -397,7 +398,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555078
 BoxCollider:
@@ -409,7 +410,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555080
 BoxCollider:
@@ -421,7 +422,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555082
 BoxCollider:
@@ -433,7 +434,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555084
 BoxCollider:
@@ -445,7 +446,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555086
 BoxCollider:
@@ -457,7 +458,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6555088
 BoxCollider:
@@ -469,7 +470,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 60, z: 1}
+  m_Size: {x: 20, y: 50, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6575368
 BoxCollider:
@@ -483,6 +484,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:Assets/Ressources/Prefabs/Formable Spline.prefab
+=======
+--- !u!114 &11401750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f12f6e20277f444a2ae2620c1a7c5076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11401752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b63f12fe45e426ebefb3357f3d2dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateEvery: .166669995
+>>>>>>> rollingBalls:Assets/Ressources/Prefabs/Spline.prefab
 --- !u!114 &11432138
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -659,6 +686,145 @@ MonoBehaviour:
     y: 0
     width: 0
     height: 0
+--- !u!114 &11467588
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46a02d0f612a241b293c0da4f82b712c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Properties:
+    Properties: []
+    Groups: []
+    Hidden: 
+  Links:
+    Links:
+    - LIIF: -453035138
+      InstanceTarget: {fileID: 11467588}
+    - LIIF: -671019480
+      InstanceTarget: {fileID: 188644}
+    - LIIF: -1453987322
+      InstanceTarget: {fileID: 132138}
+    - LIIF: -1393245603
+      InstanceTarget: {fileID: 188648}
+    - LIIF: -827232072
+      InstanceTarget: {fileID: 188654}
+    - LIIF: 2028889147
+      InstanceTarget: {fileID: 188642}
+    - LIIF: -1988221739
+      InstanceTarget: {fileID: 188656}
+    - LIIF: -361893589
+      InstanceTarget: {fileID: 188646}
+    - LIIF: -548188596
+      InstanceTarget: {fileID: 188650}
+    - LIIF: 1385826384
+      InstanceTarget: {fileID: 188652}
+    - LIIF: 700479640
+      InstanceTarget: {fileID: 175368}
+    - LIIF: -389457232
+      InstanceTarget: {fileID: 11488654}
+    - LIIF: 134837245
+      InstanceTarget: {fileID: 488652}
+    - LIIF: 1179671483
+      InstanceTarget: {fileID: 6555084}
+    - LIIF: -674259007
+      InstanceTarget: {fileID: 11458074}
+    - LIIF: -477745598
+      InstanceTarget: {fileID: 432138}
+    - LIIF: 97133376
+      InstanceTarget: {fileID: 11401750}
+    - LIIF: 209538963
+      InstanceTarget: {fileID: 11401752}
+    - LIIF: 711935683
+      InstanceTarget: {fileID: 11432140}
+    - LIIF: -571955676
+      InstanceTarget: {fileID: 6432138}
+    - LIIF: 1429762957
+      InstanceTarget: {fileID: 11432138}
+    - LIIF: 1373419741
+      InstanceTarget: {fileID: 3332138}
+    - LIIF: 1139169126
+      InstanceTarget: {fileID: 11488656}
+    - LIIF: 820788315
+      InstanceTarget: {fileID: 488654}
+    - LIIF: 1422170159
+      InstanceTarget: {fileID: 6555076}
+    - LIIF: 978850148
+      InstanceTarget: {fileID: 11458070}
+    - LIIF: 250462186
+      InstanceTarget: {fileID: 11488648}
+    - LIIF: -1824723241
+      InstanceTarget: {fileID: 488646}
+    - LIIF: 312520942
+      InstanceTarget: {fileID: 6555088}
+    - LIIF: -1038378991
+      InstanceTarget: {fileID: 11458078}
+    - LIIF: 2049450136
+      InstanceTarget: {fileID: 11494004}
+    - LIIF: -1651769975
+      InstanceTarget: {fileID: 11453246}
+    - LIIF: 1738876443
+      InstanceTarget: {fileID: 2388642}
+    - LIIF: 520339924
+      InstanceTarget: {fileID: 11488644}
+    - LIIF: -2077846125
+      InstanceTarget: {fileID: 11488646}
+    - LIIF: -882564033
+      InstanceTarget: {fileID: 11488650}
+    - LIIF: 560165129
+      InstanceTarget: {fileID: 11488642}
+    - LIIF: -1380605437
+      InstanceTarget: {fileID: 11488652}
+    - LIIF: 1015843660
+      InstanceTarget: {fileID: 3388642}
+    - LIIF: 1880668774
+      InstanceTarget: {fileID: 488644}
+    - LIIF: -540495021
+      InstanceTarget: {fileID: 475368}
+    - LIIF: -1882222223
+      InstanceTarget: {fileID: 2375368}
+    - LIIF: 1648239219
+      InstanceTarget: {fileID: 6575368}
+    - LIIF: 1748035662
+      InstanceTarget: {fileID: 3375368}
+    - LIIF: -1329449911
+      InstanceTarget: {fileID: 488642}
+    - LIIF: -838467860
+      InstanceTarget: {fileID: 6555078}
+    - LIIF: -190102882
+      InstanceTarget: {fileID: 11458076}
+    - LIIF: 1766816527
+      InstanceTarget: {fileID: 488656}
+    - LIIF: -90731019
+      InstanceTarget: {fileID: 6555080}
+    - LIIF: -2089923912
+      InstanceTarget: {fileID: 11458072}
+    - LIIF: -1579032831
+      InstanceTarget: {fileID: 11488658}
+    - LIIF: 1425307471
+      InstanceTarget: {fileID: 488648}
+    - LIIF: -991862434
+      InstanceTarget: {fileID: 6555086}
+    - LIIF: -354427070
+      InstanceTarget: {fileID: 11458080}
+    - LIIF: 1377519174
+      InstanceTarget: {fileID: 488650}
+    - LIIF: 966885680
+      InstanceTarget: {fileID: 6555082}
+    - LIIF: -1149925752
+      InstanceTarget: {fileID: 11458068}
+  Modifications:
+    Modificated: []
+    NonPrefabObjects: []
+    NonPrefabComponents: []
+    RemovedObjects: 
+    TransformParentChanges: []
+  ParentPrefabGUID: 
+  PrefabGUID: e8ff94556041646fcb69fdfeffcca449
 --- !u!114 &11488642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -719,7 +885,7 @@ MonoBehaviour:
   - {fileID: 11488652}
   - {fileID: 11488654}
   interpolationMode: 2
-  rotationMode: 2
+  rotationMode: 0
   tangentMode: 1
   normalMode: 0
   updateMode: 0

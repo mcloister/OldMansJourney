@@ -471,7 +471,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 431948, guid: a6e6a6e5b6ff14c0ea00df838307c799, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -.200000003
       objectReference: {fileID: 0}
     - target: {fileID: 431948, guid: a6e6a6e5b6ff14c0ea00df838307c799, type: 2}
       propertyPath: m_LocalPosition.z
@@ -495,7 +495,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 431948, guid: a6e6a6e5b6ff14c0ea00df838307c799, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11431946, guid: a6e6a6e5b6ff14c0ea00df838307c799, type: 2}
       propertyPath: spline
@@ -1998,7 +1998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &711373838
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2216,7 +2216,7 @@ Transform:
   m_PrefabInternal: {fileID: 180245966}
   m_GameObject: {fileID: 730452992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.0999999, y: -3.5, z: 0}
+  m_LocalPosition: {x: 7.0999999, y: -.200000003, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 730568627}
@@ -2675,7 +2675,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splineNodesArray:
   - {fileID: 1368913686}
-  - {fileID: 1357900612}
   - {fileID: 1528121909}
   - {fileID: 1854678492}
   - {fileID: 1127141445}
@@ -3922,7 +3921,7 @@ Transform:
   m_PrefabInternal: {fileID: 1527319407}
   m_GameObject: {fileID: 1357900610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -39.5992393, y: -5.84521294, z: 0}
+  m_LocalPosition: {x: -39.5992393, y: -16.5585918, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 770680941}
@@ -4014,7 +4013,7 @@ Transform:
   m_PrefabInternal: {fileID: 1527319407}
   m_GameObject: {fileID: 1368913685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.723587, y: -3.77517223, z: 0}
+  m_LocalPosition: {x: -100.723587, y: -17.2833366, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 770680941}
@@ -4185,7 +4184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &1405359127
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4420,7 +4419,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: splineNodesArray.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 488644, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4500,7 +4499,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488642, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -19.7999992
+      value: -13.2788658
       objectReference: {fileID: 0}
     - target: {fileID: 2388642, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -4512,7 +4511,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488648, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.77517223
+      value: -17.2833366
       objectReference: {fileID: 0}
     - target: {fileID: 11488644, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: xyScale.y
@@ -4560,16 +4559,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 488654, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.84521294
+      value: -16.5585918
       objectReference: {fileID: 0}
     - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: splineNodesArray.Array.data[3]
       value: 
-      objectReference: {fileID: 1854678492}
+      objectReference: {fileID: 1127141445}
     - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: splineNodesArray.Array.data[4]
       value: 
-      objectReference: {fileID: 1127141445}
+      objectReference: {fileID: 1947146765}
     - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
       propertyPath: splineNodesArray.Array.data[5]
       value: 
@@ -4622,6 +4621,18 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
+      propertyPath: splineNodesArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 1528121909}
+    - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
+      propertyPath: splineNodesArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1854678492}
+    - target: {fileID: 11488646, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
+      propertyPath: updateMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11494004, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e8ff94556041646fcb69fdfeffcca449, type: 2}
@@ -4653,7 +4664,7 @@ Transform:
   m_PrefabInternal: {fileID: 1527319407}
   m_GameObject: {fileID: 1528121907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.2999992, y: -19.7999992, z: 0}
+  m_LocalPosition: {x: -16.2999992, y: -13.2788658, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 770680941}
@@ -5805,7 +5816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &1964146343
 MeshCollider:
   m_ObjectHideFlags: 0

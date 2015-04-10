@@ -7724,10 +7724,6 @@ MonoBehaviour:
       InstanceTarget: {fileID: 857408190}
   Modifications:
     Modificated:
-    - Object: {fileID: 99826198}
-      ObjeckLink: -99402696
-      PropertyPath: m_LocalPosition
-      Mode: 0
     - Object: {fileID: 755656764}
       ObjeckLink: 1638695730
       PropertyPath: m_Mesh
@@ -7740,21 +7736,9 @@ MonoBehaviour:
       ObjeckLink: -733569695
       PropertyPath: m_Mesh
       Mode: 0
-    - Object: {fileID: 352822704}
-      ObjeckLink: -1813485906
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 1620521280}
-      ObjeckLink: -1253227320
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 194497393}
-      ObjeckLink: -297248445
-      PropertyPath: m_LocalPosition
-      Mode: 0
-    - Object: {fileID: 857408190}
-      ObjeckLink: -798059785
-      PropertyPath: m_RootOrder
+    - Object: {fileID: 2076618397}
+      ObjeckLink: 1381705732
+      PropertyPath: moveOffset
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []

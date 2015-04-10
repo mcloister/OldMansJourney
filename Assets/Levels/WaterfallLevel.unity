@@ -682,10 +682,8 @@ MonoBehaviour:
   Modifications:
     Modificated: []
     NonPrefabObjects: []
-    NonPrefabComponents:
-    - child: {fileID: 1648099781}
-      parent: {fileID: 1648099779}
-    RemovedObjects: 47b32bb4ff13cf0c683e3106
+    NonPrefabComponents: []
+    RemovedObjects: 
     TransformParentChanges: []
   ParentPrefabGUID: 
   PrefabGUID: 208f3f9735ef245a69aa77ba13896750
@@ -1108,9 +1106,9 @@ MonoBehaviour:
       InstanceTarget: {fileID: 64334444}
   Modifications:
     Modificated:
-    - Object: {fileID: 458059618}
-      ObjeckLink: -1015687456
-      PropertyPath: m_LocalPosition
+    - Object: {fileID: 1277723250}
+      ObjeckLink: 737631691
+      PropertyPath: moveOffset
       Mode: 0
     - Object: {fileID: 1277723249}
       ObjeckLink: 398914563
@@ -1123,10 +1121,6 @@ MonoBehaviour:
     - Object: {fileID: 2121051924}
       ObjeckLink: 1794355918
       PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 64334444}
-      ObjeckLink: -267490565
-      PropertyPath: m_RootOrder
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
@@ -1291,7 +1285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &78888801
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1828,7 +1822,7 @@ Transform:
   m_PrefabInternal: {fileID: 258012116}
   m_GameObject: {fileID: 99826197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -28.4089012, y: -1, z: 0}
+  m_LocalPosition: {x: -25.5866356, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2036664886}
@@ -2318,7 +2312,7 @@ Transform:
   m_PrefabInternal: {fileID: 258012116}
   m_GameObject: {fileID: 194497392}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.2000008, y: 2.71000051, z: 0}
+  m_LocalPosition: {x: 31.5, y: 3.11999989, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.00000012}
   m_Children: []
   m_Father: {fileID: 755656758}
@@ -2513,7 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &212846404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2903,15 +2897,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 438868, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.71000051
+      value: 3.11999989
       objectReference: {fileID: 0}
     - target: {fileID: 438864, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.73999929
+      value: 3.1500001
       objectReference: {fileID: 0}
     - target: {fileID: 438862, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.25999975
+      value: .959999979
       objectReference: {fileID: 0}
     - target: {fileID: 3338876, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
       propertyPath: m_Mesh
@@ -2968,6 +2962,10 @@ Prefab:
     - target: {fileID: 11438834, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
       propertyPath: updateMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 438852, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -25.5866356
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 829c95a65bc1e4d3590c75c58f5837f6, type: 2}
@@ -3716,7 +3714,7 @@ Transform:
   m_PrefabInternal: {fileID: 258012116}
   m_GameObject: {fileID: 352822703}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.5099983, y: 1.25999975, z: 0}
+  m_LocalPosition: {x: 42.5099983, y: .959999979, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 755656758}
@@ -6844,8 +6842,8 @@ GameObject:
   - 4: {fileID: 773301891}
   - 114: {fileID: 773301894}
   - 114: {fileID: 773301893}
-  - 114: {fileID: 773301892}
   - 114: {fileID: 773301895}
+  - 114: {fileID: 773301892}
   m_Layer: 8
   m_Name: Spline Drop-Off Left
   m_TagString: Spline
@@ -7079,7 +7077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &792947819
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -7381,9 +7379,9 @@ MonoBehaviour:
       InstanceTarget: {fileID: 821335682}
   Modifications:
     Modificated:
-    - Object: {fileID: 120717214}
-      ObjeckLink: -1015687456
-      PropertyPath: m_LocalPosition
+    - Object: {fileID: 1339637939}
+      ObjeckLink: 737631691
+      PropertyPath: moveOffset
       Mode: 0
     - Object: {fileID: 1339637940}
       ObjeckLink: 398914563
@@ -7396,10 +7394,6 @@ MonoBehaviour:
     - Object: {fileID: 96086158}
       ObjeckLink: 1794355918
       PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 821335682}
-      ObjeckLink: -267490565
-      PropertyPath: m_RootOrder
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
@@ -7730,6 +7724,10 @@ MonoBehaviour:
       InstanceTarget: {fileID: 857408190}
   Modifications:
     Modificated:
+    - Object: {fileID: 99826198}
+      ObjeckLink: -99402696
+      PropertyPath: m_LocalPosition
+      Mode: 0
     - Object: {fileID: 755656764}
       ObjeckLink: 1638695730
       PropertyPath: m_Mesh
@@ -7742,8 +7740,16 @@ MonoBehaviour:
       ObjeckLink: -733569695
       PropertyPath: m_Mesh
       Mode: 0
-    - Object: {fileID: 857408190}
-      ObjeckLink: -798059785
+    - Object: {fileID: 352822704}
+      ObjeckLink: -1813485906
+      PropertyPath: m_LocalPosition
+      Mode: 0
+    - Object: {fileID: 1620521280}
+      ObjeckLink: -1253227320
+      PropertyPath: m_LocalPosition
+      Mode: 0
+    - Object: {fileID: 194497393}
+      ObjeckLink: -297248445
       PropertyPath: m_LocalPosition
       Mode: 0
     - Object: {fileID: 857408190}
@@ -7964,9 +7970,9 @@ MonoBehaviour:
       InstanceTarget: {fileID: 860165467}
   Modifications:
     Modificated:
-    - Object: {fileID: 953710091}
-      ObjeckLink: -1015687456
-      PropertyPath: m_LocalPosition
+    - Object: {fileID: 2117618167}
+      ObjeckLink: 737631691
+      PropertyPath: moveOffset
       Mode: 0
     - Object: {fileID: 2117618168}
       ObjeckLink: 398914563
@@ -7979,10 +7985,6 @@ MonoBehaviour:
     - Object: {fileID: 1136307596}
       ObjeckLink: 1794355918
       PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 860165467}
-      ObjeckLink: -267490565
-      PropertyPath: m_RootOrder
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
@@ -11231,10 +11233,8 @@ MonoBehaviour:
   Modifications:
     Modificated: []
     NonPrefabObjects: []
-    NonPrefabComponents:
-    - child: {fileID: 1486974552}
-      parent: {fileID: 1486974550}
-    RemovedObjects: 47b32bb4ff13cf0c683e3106
+    NonPrefabComponents: []
+    RemovedObjects: 
     TransformParentChanges: []
   ParentPrefabGUID: 
   PrefabGUID: 208f3f9735ef245a69aa77ba13896750
@@ -12135,7 +12135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &1277723251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12653,7 +12653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &1339637940
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13572,7 +13572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f90e96a345340d58c9811a55e7b7f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 1291142027}
+  spline: {fileID: 2036664888}
   param: 0
   target: {x: 0, y: 0, z: 0}
   speed: 15
@@ -13805,8 +13805,8 @@ GameObject:
   - 4: {fileID: 1486974551}
   - 114: {fileID: 1486974554}
   - 114: {fileID: 1486974553}
-  - 114: {fileID: 1486974552}
   - 114: {fileID: 1486974555}
+  - 114: {fileID: 1486974552}
   m_Layer: 8
   m_Name: Spline Drop-Off Left
   m_TagString: Spline
@@ -14833,7 +14833,7 @@ Transform:
   m_PrefabInternal: {fileID: 258012116}
   m_GameObject: {fileID: 1620521279}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35.0900002, y: 2.73999929, z: 0}
+  m_LocalPosition: {x: 35.9000015, y: 3.1500001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 755656758}
@@ -14927,7 +14927,7 @@ Prefab:
     - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: spline
       value: 
-      objectReference: {fileID: 1291142027}
+      objectReference: {fileID: 2036664888}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
   m_RootGameObject: {fileID: 1480118044}
@@ -15092,8 +15092,8 @@ GameObject:
   - 4: {fileID: 1648099780}
   - 114: {fileID: 1648099783}
   - 114: {fileID: 1648099782}
-  - 114: {fileID: 1648099781}
   - 114: {fileID: 1648099784}
+  - 114: {fileID: 1648099781}
   m_Layer: 8
   m_Name: Spline Drop-Off Left
   m_TagString: Spline
@@ -16868,10 +16868,8 @@ MonoBehaviour:
   Modifications:
     Modificated: []
     NonPrefabObjects: []
-    NonPrefabComponents:
-    - child: {fileID: 773301892}
-      parent: {fileID: 773301890}
-    RemovedObjects: 47b32bb4ff13cf0c683e3106
+    NonPrefabComponents: []
+    RemovedObjects: 
     TransformParentChanges: []
   ParentPrefabGUID: 
   PrefabGUID: 208f3f9735ef245a69aa77ba13896750
@@ -18261,7 +18259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &2076618398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18724,7 +18722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &2117618168
 MeshCollider:
   m_ObjectHideFlags: 0

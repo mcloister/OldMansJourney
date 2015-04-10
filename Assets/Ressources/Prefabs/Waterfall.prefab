@@ -94,8 +94,8 @@ GameObject:
   - 4: {fileID: 441114}
   - 114: {fileID: 11441124}
   - 114: {fileID: 11441126}
-  - 114: {fileID: 11441122}
   - 114: {fileID: 11462386}
+  - 114: {fileID: 11441122}
   m_Layer: 8
   m_Name: Spline Drop-Off Left
   m_TagString: Spline
@@ -909,10 +909,8 @@ MonoBehaviour:
   Modifications:
     Modificated: []
     NonPrefabObjects: []
-    NonPrefabComponents:
-    - child: {fileID: 11441122}
-      parent: {fileID: 141114}
-    RemovedObjects: 47b32bb4ff13cf0c683e3106
+    NonPrefabComponents: []
+    RemovedObjects: 
     TransformParentChanges: []
   ParentPrefabGUID: 
   PrefabGUID: 208f3f9735ef245a69aa77ba13896750

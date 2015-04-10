@@ -320,10 +320,6 @@ MonoBehaviour:
       ObjeckLink: -2077846125
       PropertyPath: splineNodesArray.Array.size
       Mode: 0
-    - Object: {fileID: 470356}
-      ObjeckLink: 1880668774
-      PropertyPath: m_RootOrder
-      Mode: 0
     - Object: {fileID: 470340}
       ObjeckLink: -540495021
       PropertyPath: m_RootOrder

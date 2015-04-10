@@ -907,9 +907,9 @@ MonoBehaviour:
       InstanceTarget: {fileID: 488098}
   Modifications:
     Modificated:
-    - Object: {fileID: 454758}
-      ObjeckLink: -1015687456
-      PropertyPath: m_LocalPosition
+    - Object: {fileID: 11454746}
+      ObjeckLink: 737631691
+      PropertyPath: moveOffset
       Mode: 0
     - Object: {fileID: 6454780}
       ObjeckLink: 398914563
@@ -922,10 +922,6 @@ MonoBehaviour:
     - Object: {fileID: 3354778}
       ObjeckLink: 1794355918
       PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 488098}
-      ObjeckLink: -267490565
-      PropertyPath: m_RootOrder
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
@@ -1311,7 +1307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &11454748
 MonoBehaviour:
   m_ObjectHideFlags: 1

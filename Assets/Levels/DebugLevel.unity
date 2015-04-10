@@ -117,7 +117,7 @@ Prefab:
     - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: spline
       value: 
-      objectReference: {fileID: 1064069044}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
   m_RootGameObject: {fileID: 1639030868}
@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &586847490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,10 +2177,6 @@ MonoBehaviour:
     - Object: {fileID: 986231488}
       ObjeckLink: -2077846125
       PropertyPath: splineNodesArray.Array.size
-      Mode: 0
-    - Object: {fileID: 986231489}
-      ObjeckLink: 1880668774
-      PropertyPath: m_RootOrder
       Mode: 0
     - Object: {fileID: 1491399581}
       ObjeckLink: -540495021
@@ -3425,7 +3421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f90e96a345340d58c9811a55e7b7f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 1064069044}
+  spline: {fileID: 0}
   param: 0
   target: {x: 0, y: 0, z: 0}
   speed: 15
@@ -4133,7 +4129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &2067739058
 MonoBehaviour:
   m_ObjectHideFlags: 0

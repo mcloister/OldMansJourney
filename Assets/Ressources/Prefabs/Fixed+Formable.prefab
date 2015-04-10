@@ -334,7 +334,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 154758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: -1, z: 0}
+  m_LocalPosition: {x: 8.80000019, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454756}
@@ -907,6 +907,10 @@ MonoBehaviour:
       InstanceTarget: {fileID: 488098}
   Modifications:
     Modificated:
+    - Object: {fileID: 454758}
+      ObjeckLink: -1015687456
+      PropertyPath: m_LocalPosition
+      Mode: 0
     - Object: {fileID: 6454780}
       ObjeckLink: 398914563
       PropertyPath: m_Mesh
@@ -915,13 +919,13 @@ MonoBehaviour:
       ObjeckLink: 2108119172
       PropertyPath: m_Mesh
       Mode: 0
-    - Object: {fileID: 11454764}
-      ObjeckLink: 1822369251
-      PropertyPath: rotationMode
-      Mode: 0
     - Object: {fileID: 3354778}
       ObjeckLink: 1794355918
       PropertyPath: m_Mesh
+      Mode: 0
+    - Object: {fileID: 488098}
+      ObjeckLink: -267490565
+      PropertyPath: m_RootOrder
       Mode: 0
     NonPrefabObjects: []
     NonPrefabComponents: []
@@ -988,6 +992,10 @@ MonoBehaviour:
     Modificated:
     - Object: {fileID: 454756}
       ObjeckLink: -885782173
+      PropertyPath: m_LocalPosition
+      Mode: 0
+    - Object: {fileID: 454758}
+      ObjeckLink: -1188198247
       PropertyPath: m_LocalPosition
       Mode: 0
     NonPrefabObjects: []

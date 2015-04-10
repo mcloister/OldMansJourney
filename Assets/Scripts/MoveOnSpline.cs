@@ -461,10 +461,11 @@ public class MoveOnSpline : MonoBehaviour {
 
 	public void switchTo(Spline newSpline, float newP)
 	{
-		if (switchSound != null)
+		Spline oldSpline = spline;
+
+		if (switchSound != null && oldSpline.transform.position.z != newSpline.transform.position.z)
 			switchSound.Play ();
 
-		Spline oldSpline = spline;
 
 		addTouchableOffset (oldSpline, -5);		//old spline will be touchable above the line again
 		addTouchableOffset (newSpline, 3);		//new spline is only touchable a bit below spline line

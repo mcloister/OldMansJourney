@@ -1152,7 +1152,7 @@ Prefab:
     - target: {fileID: 11434248, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: spline
       value: 
-      objectReference: {fileID: 1101273620}
+      objectReference: {fileID: 1583808796}
     - target: {fileID: 6506550, guid: fc3787e7160c14600be8d33931e9ce4c, type: 2}
       propertyPath: m_Size.z
       value: 1
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f90e96a345340d58c9811a55e7b7f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spline: {fileID: 1101273620}
+  spline: {fileID: 1583808796}
   param: 0
   target: {x: 0, y: 0, z: 0}
   speed: 15

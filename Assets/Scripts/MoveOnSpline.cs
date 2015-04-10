@@ -145,14 +145,17 @@ public class MoveOnSpline : MonoBehaviour {
 				Vector3 mousePos = Input.mousePosition;
 				setTarget(Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z + spline.gameObject.transform.position.z)));
 
-				if(targetPosObj != null)
-					targetPosObj.SetActive (true);
-
-				if(tap != null)
-					tap.Play();
-
-				if(walking != null)
-					walking.Play();
+				if(direction != 0)
+				{
+					if(targetPosObj != null)
+						targetPosObj.SetActive (true);
+					
+					if(tap != null)
+						tap.Play();
+					
+					if(walking != null)
+						walking.Play();
+				}
 			}
 		}
 		
@@ -352,7 +355,7 @@ public class MoveOnSpline : MonoBehaviour {
 		{
 			if(hit.collider.CompareTag("Immovable"))
 			{
-				direction = 0;	//don't move;
+				stopMoving ();	//don't move;
 				return;
 			}
 		}

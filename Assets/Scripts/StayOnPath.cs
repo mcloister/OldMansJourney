@@ -68,6 +68,7 @@ public class StayOnPath : MonoBehaviour {
 				rigidbody.isKinematic = wasKinematic;
 				if(!wasKinematic)
 				{
+					rigidbody.WakeUp();
 					rigidbody.velocity = velocity;
 					rigidbody.angularVelocity = angularVelocity;
 				}

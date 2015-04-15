@@ -348,7 +348,7 @@ MonoBehaviour:
   target: {fileID: 1639030873}
   distance: 60
   height: 0
-  heightDamping: 2
+  heightDamping: 100
   rotationDamping: 3
 --- !u!1 &87139061
 GameObject:

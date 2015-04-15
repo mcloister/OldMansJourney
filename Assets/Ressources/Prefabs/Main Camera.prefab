@@ -93,7 +93,7 @@ MonoBehaviour:
   target: {fileID: 0}
   distance: 60
   height: 0
-  heightDamping: 2
+  heightDamping: 100
   rotationDamping: 3
 --- !u!114 &11457592
 MonoBehaviour:

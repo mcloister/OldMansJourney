@@ -241,6 +241,7 @@ GameObject:
   - 124: {fileID: 49624640}
   - 81: {fileID: 49624639}
   - 114: {fileID: 49624638}
+  - 114: {fileID: 49624644}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -332,6 +333,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &49624644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11430034, guid: accb32920f5e6464d93390c80b0460c5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1485467018}
+  m_GameObject: {fileID: 49624637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1639030873}
+  distance: 60
+  height: 0
+  heightDamping: 2
+  rotationDamping: 3
 --- !u!1 &87139061
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,35 +1796,7 @@ MonoBehaviour:
     - LIIF: -1149925752
       InstanceTarget: {fileID: 1969255882}
   Modifications:
-    Modificated:
-    - Object: {fileID: 215677704}
-      ObjeckLink: 1179671483
-      PropertyPath: m_Size
-      Mode: 0
-    - Object: {fileID: 1001519422}
-      ObjeckLink: -571955676
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 1001519424}
-      ObjeckLink: 1373419741
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 1591450023}
-      ObjeckLink: 1422170159
-      PropertyPath: m_Size
-      Mode: 0
-    - Object: {fileID: 572505698}
-      ObjeckLink: 1015843660
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 572505700}
-      ObjeckLink: 1880668774
-      PropertyPath: m_RootOrder
-      Mode: 0
-    - Object: {fileID: 270492479}
-      ObjeckLink: -991862434
-      PropertyPath: m_Size
-      Mode: 0
+    Modificated: []
     NonPrefabObjects: []
     NonPrefabComponents: []
     RemovedObjects: 
@@ -2710,7 +2700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!64 &1001519422
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3039,35 +3029,7 @@ MonoBehaviour:
     - LIIF: -1149925752
       InstanceTarget: {fileID: 1222648623}
   Modifications:
-    Modificated:
-    - Object: {fileID: 1942267500}
-      ObjeckLink: 1179671483
-      PropertyPath: m_Size
-      Mode: 0
-    - Object: {fileID: 1877863917}
-      ObjeckLink: -571955676
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 1877863915}
-      ObjeckLink: 1373419741
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 507591013}
-      ObjeckLink: 1422170159
-      PropertyPath: m_Size
-      Mode: 0
-    - Object: {fileID: 1201326571}
-      ObjeckLink: 1015843660
-      PropertyPath: m_Mesh
-      Mode: 0
-    - Object: {fileID: 1201326565}
-      ObjeckLink: 1880668774
-      PropertyPath: m_RootOrder
-      Mode: 0
-    - Object: {fileID: 598124126}
-      ObjeckLink: -991862434
-      PropertyPath: m_Size
-      Mode: 0
+    Modificated: []
     NonPrefabObjects: []
     NonPrefabComponents: []
     RemovedObjects: 
@@ -3421,6 +3383,10 @@ Prefab:
       propertyPath: m_EventMask.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 11430034, guid: accb32920f5e6464d93390c80b0460c5, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1639030873}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: accb32920f5e6464d93390c80b0460c5, type: 2}
   m_RootGameObject: {fileID: 49624637}
@@ -4398,7 +4364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 573079d18f887433fa9828162c6007cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveOffset: 45
+  moveOffset: 47
 --- !u!114 &1877863919
 MonoBehaviour:
   m_ObjectHideFlags: 0

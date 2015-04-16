@@ -14728,6 +14728,10 @@ Prefab:
       propertyPath: heightDamping
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 11489998, guid: accb32920f5e6464d93390c80b0460c5, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1480118049}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: accb32920f5e6464d93390c80b0460c5, type: 2}
   m_RootGameObject: {fileID: 2056467478}
@@ -18308,20 +18312,19 @@ MonoBehaviour:
 --- !u!114 &2056467485
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11430034, guid: accb32920f5e6464d93390c80b0460c5,
+  m_PrefabParentObject: {fileID: 11489998, guid: accb32920f5e6464d93390c80b0460c5,
     type: 2}
   m_PrefabInternal: {fileID: 1594861061}
   m_GameObject: {fileID: 2056467478}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
+  m_Script: {fileID: 11500000, guid: eb89e685a11e84650a4afefa2c315a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1480118049}
+  horizontalDamping: 0
+  verticalDamping: 0
   distance: 60
-  height: 0
-  heightDamping: 100
-  rotationDamping: 3
 --- !u!1 &2058858705
 GameObject:
   m_ObjectHideFlags: 0

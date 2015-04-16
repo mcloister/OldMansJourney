@@ -13,7 +13,7 @@ GameObject:
   - 124: {fileID: 12470614}
   - 81: {fileID: 8170614}
   - 114: {fileID: 11457592}
-  - 114: {fileID: 11430034}
+  - 114: {fileID: 11489998}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -79,22 +79,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170614}
   m_Enabled: 1
---- !u!114 &11430034
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 885b1972ad11a921d000d37b8d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  distance: 60
-  height: 0
-  heightDamping: 100
-  rotationDamping: 3
 --- !u!114 &11457592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +93,21 @@ MonoBehaviour:
   m_EventMask:
     serializedVersion: 2
     m_Bits: 1280
+--- !u!114 &11489998
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb89e685a11e84650a4afefa2c315a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  horizontalDamping: 0
+  verticalDamping: 0
+  distance: 60
 --- !u!124 &12470614
 Behaviour:
   m_ObjectHideFlags: 1
